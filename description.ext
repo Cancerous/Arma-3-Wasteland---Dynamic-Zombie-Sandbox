@@ -1,0 +1,876 @@
+onLoadMission="Loading Mission";
+//#define LOADSCREEN "craigs_scripts\img.paa"
+//#define LOADSCREENTEXT "Creating Game World"
+//#include "loadingscreen.ext"
+//disableChannels[]={2};
+//enableItemsDropping = 0;
+//Dialog includes
+#include "addons\R3F_ARTY_AND_LOG\desc_include.h"
+#include "client\systems\common.hpp"
+#include "client\systems\playerMenu\dialog\player_settings.hpp"
+#include "client\systems\groups\dialog\groupManagement.hpp"
+#include "client\systems\gunStore\dialog\gunshop_settings.hpp"
+#include "client\systems\generalStore\dialog\genstore_settings.hpp"
+#include "client\systems\adminPanel\dialog\adminMenu.hpp"
+#include "client\systems\adminPanel\dialog\modMenu.hpp"
+#include "client\systems\adminPanel\dialog\serverAdminMenu.hpp"
+#include "client\systems\adminPanel\dialog\debugMenu.hpp"
+#include "client\systems\adminPanel\dialog\playerMenu.hpp"
+#include "client\systems\adminPanel\dialog\VehicleManagement.hpp"
+#include "client\systems\playerMenu\dialog\respawn_dialog.hpp"
+#include "client\systems\playerMenu\dialog\teamkill_dialog.hpp"
+#include "addons\proving_ground\PG_config.hpp"
+//#include "player_system\dialog\common.hpp"
+//#include "player_system\dialog\player_settings.hpp"
+briefing = 0;
+respawn="BASE";
+respawnDelay=15;
+disabledAI=1;
+//loadScreen =  "craigs_scripts\img.paa";
+class Header
+{
+	gameType=Wasteland;
+	//gameType=COOP;
+    minPlayers=1;
+    maxPlayers=60;
+};
+
+	class Params
+	{
+		class CLY_friendlyfire0
+		{
+			title="Friendly fire damage:";
+			values[]={1,2,0};
+			texts[]={"Full","Reduced","Off"};
+			default=1;
+		};
+		class CLY_terraingrid1
+		{
+			title="Terrain detail:";
+			values[]={0,50,25};
+			texts[]={"Individual choice","Very low (no grass)","Low (default)"};
+			default=0;
+		};
+		
+		class CVG_Debug2
+		{
+			title="Debug mode:";
+			values[]={1,2};
+			texts[]={"Off", "On"};
+			default=1;
+		};
+		
+		class CVG_timeOfDay3
+		{
+			title="Start time:";
+			values[]={1,3,6,9,12,15,18,21,24,25};
+			texts[]={"0100 Hours","0300 Hours","0600 Hours","0900 Hours","1200 Hours","1500 Hours","1800 Hours","2100 Hours","2400 Hours","Random"};
+			default=18;
+		};
+		
+		class CVG_CityDestruction4
+		{
+			title="Building destruction:";
+			values[]={1,2};
+			texts[]={"No","YES"};
+			default=2;
+		};
+		class CVG_bandages5
+		{
+			title="Bandage Count:";
+			values[]={0,1,2,3,4,5,6,7,10};
+			texts[]={"0","1", "2","3","4","5","6","7","10"};
+			default=4;
+		};
+		class CVG_Fog6
+		{
+			title="Volumetric Fog:";
+			values[]={1,0};
+			texts[]={"Yes","No"};
+			default=0;
+		};
+		class CVG_View_Dist7
+		{
+			title="View Distance:";
+			values[]={100,200,300,400,600,1000,1500,2000,2500,3000,5000,10000};
+			texts[]={"100m","200m","300m","400m","600m","1000m","1500m","2000m","2500m","3000m","5000m","10,000m"};
+			default=2500;
+		};
+		
+		class CVG_weather8
+		{
+			title="Weather:";
+			values[]={1,2,3,4,5};
+			texts[]={"Clear","Overcast w/wintry mix","In between","Foggy and Overcast","Completely Random"};
+			default=1;
+		};
+		
+		class CVG_GAMEMODE9
+		{
+			title="Game Type (Some parameters may be overridden)";
+			values[]={0,1,2};
+			texts[]={"Classic","Infected","Clear out Town"};
+			default=0;
+		};
+		class CVG_FoodWater10
+		{
+			title="Food and Water System";
+			values[]={0,1};
+			texts[]={"Off","On (Requires logistics, animals suggested)"};
+			default=0;
+		};
+		class CVG_playerStart11
+		{
+			title="Player start area:";
+			values[]={50,100,150};
+			texts[]={"At a random town", "Randomly around map","With other players"};
+			default=50;
+		};
+		
+		class CVG_playerWeapons12
+		{
+			title="Start with weapons:";
+			values[]={1,2,3};
+			texts[]={"Yes", "No","Random"};
+			default=1;
+		};
+		
+		class CVG_playerItems13
+		{
+			title="Start with map:";
+			values[]={1,2,3};
+			texts[]={"Yes", "No","Random"};
+			default=1;
+		};
+		
+		class CVG_Aminals14
+		{
+			title="Ambient Aminals:";
+			values[]={1,2};
+			texts[]={"Yes", "No"};
+			default=2;
+		};
+		
+		class CVG_Horde15
+		{
+			title="Super Zombies, All zombies can find you anywhere you are:";
+			values[]={1,2};
+			texts[]={"Off", "On"};
+			default=1;
+		};
+		
+		class CVG_maxaggrodist16
+		{
+			title="Maximum Agro radius:";
+			values[]={100,200,300,400,500,600,700,1000,9999};
+			texts[]={"100 Meters", "200 Meters","300 Meters","400 Meters","500 Meters","600 Meters","700 Meters","1000 Meters","Random"};
+			default=500;
+		};
+		
+		class CVG_Zdensity17
+		{
+			title="Zombies per KM:";
+			values[]={10,20,30,40,50,60,70,100,99};
+			texts[]={"10", "20","30","40","50","60","70","100","Random"};
+			default=100;
+		};
+		
+		class CVG_MINSPAWNDIST18
+		{
+			title="Minimum spawn dist:";
+			values[]={5,10,25,50,75,100,150,200,300,400,999};
+			texts[]={"5 Meters", "10 Meters","25 Meters","50 Meters","75 Meters","100 Meters","150 Meters","200 Meters","300 Meters","400 Meters","Random"};
+			default=100;
+		};
+		
+		class CVG_weapontype19
+		{
+			title="Findable weapon types:";
+			values[]={1,2,3,4,5,6,8,7};
+			texts[]={"All Weapons (And I mean Every Weapon)","Local Weapons","BLUFOR Weapons","OPFOR Weapons","Pistols","All Weapons, based on type","Weapons from mods only","Random"};
+			default=1;
+		};
+		
+		class CVG_Zombietowns20
+		{
+			title="Zombie spawn area:";
+			values[]={1,2,3,4};
+			texts[]={"Towns","Everywhere","Everywhere, More in towns","In groups, around nearby buildings, (Best)"};
+			default=4;
+		};
+		
+		class CVG_tasks21
+		{
+			title="Task types:";
+			values[]={2,1,3,4};
+			texts[]={"Find and defend US base - Beta","Find escape helicopter","Survive for 30 minutes","Sandbox. Survive. No escape. Fight for weapons. Do what it takes."};
+			default=4;
+		};
+		
+		class CVG_Taskoptions22
+		{
+			title="Show task location";
+			values[]={0,1};
+			texts[]={"No (A lot harder)","Yes (for a quick game. You know right where to go)"};
+			default=1;
+		};
+		
+		class CVG_vehicles23
+		{
+			title="Vehicle Spawn Types:";
+			values[]={0,1,2,3,4,5};
+			texts[]={"Based on surroundings (All)","All Civilian","Trucks","Military","All","Vehicles from mods only"};
+			default=0;
+		};
+		
+		class CVG_vehicle24
+		{
+			title="Vehicle Spawn Number:";
+			values[]={0,1,5,10,20,40,60,99};
+			texts[]={"None (The Are you Man enough? Mode)","Almost none","Tiny","Small","Medium","Large","Insane","Random"};
+			default=0;
+		};
+		
+		class CVG_Fuel25
+		{
+			title="Destroy Fuel Stations:";
+			values[]={0,1,3};
+			texts[]={"No","Yes","Random"};
+			default=0;
+		};
+		
+		class CVG_fastTime26
+		{
+			title="Speed up time:";
+			values[]={0,1};
+			texts[]={"No","Yes"};
+			default=0;
+		};
+		
+		class CVG_Weaponcount27
+		{
+			title="Amount of Weapons (affects vehicle weapons and sidemissions):";
+			values[]={20,50,75,101,99};
+			texts[]={"Very Few","Medium","Plenty","Every Vehicle","Random"};
+			default=75;
+		};
+		
+		class CVG_Vehicleinfo28
+		{
+			title="Vehicle Status (options represent best possible condition):";
+			values[]={1,2,3,4};
+			texts[]={"Very Good","Okay","Bad","Random"};
+			default=4;
+		};
+		class CVG_Mochilla29
+		{
+			title="ACE Stamina/backpacks:";
+			values[]={0,1};
+			texts[]={"Disabled","Enabled"};
+			default=0;
+		};
+		class CVG_Caches30
+		{
+			title="Small Ammo Caches in Towns:";
+			values[]={0,1};
+			texts[]={"Disabled","Enabled"};
+			default=1;
+		};
+		class CVG_sideMission31
+		{
+			title="Side Missions:";
+			values[]={0,1};
+			texts[]={"Disabled","Enabled"};
+			default=0;
+		};
+		class CVG_sideMarkers32
+		{
+			title="Side Mission Markers";
+			values[]={0,1};
+			texts[]={"Exact Position","General Area"};
+			default=1;
+		};
+		class CVG_Logistics33
+		{
+			title="R3F Logistics:";
+			values[]={0,1};
+			texts[]={"Disabled","Enabled"};
+			default=0;
+		};
+		class CVG_NVGS34
+		{
+			title="Night Vision";
+			values[]={0,1,2};
+			texts[]={"Disabled","On Players at Start","Available throughout mission"};
+			default=1;
+		};
+		class CVG_E35
+		{
+			title="Press E to get in vehicles";
+			values[]={0,1};
+			texts[]={"Disabled","Enabled"};
+			default=0;
+		};
+		class CVG_Heli36
+		{
+			title="Helicopters have a chance to spawn at airports ";
+			values[]={0,1};
+			texts[]={"Disabled","Enabled"};
+			default=1;
+		};
+		class CVG_PLACEHOLDER37
+		{
+			title="------------The following parameters are for the Town Attack Gamemode------------";
+			values[]={0};
+			texts[]={"--------"};
+			default=0;
+		};
+		class CVG_TattackVehicles38
+		{
+			title="Start with vehicles?";
+			values[]={0,1};
+			texts[]={"No","Start with Military Vehicles"};
+			default=0;
+		};
+		class CVG_TattackAmmo39
+		{
+			title="Ammoboxes for town attack";
+			values[]={0,1,2};
+			texts[]={"None","Magic Box","5 Random Boxes"};
+			default=2;
+		};
+	
+	};
+	
+class CfgSounds
+{
+    class attack1
+    {
+        name="attack1";
+        sound[]={\sound\attack1.ogg,0.1,1};
+        titles[]={};
+    };
+    class attack2
+    {
+        name="attack2";
+        sound[]={\sound\attack2.ogg,0.1,1};
+        titles[]={};
+    };
+    class attack3
+    {
+        name="attack3";
+        sound[]={\sound\attack3.ogg,0.1,1};
+        titles[]={};
+    };
+    class attack4
+    {
+        name="attack4";
+        sound[]={\sound\attack4.ogg,0.1,1};
+        titles[]={};
+    };
+    class chase1
+    {
+        name="chase1";
+        sound[]={\sound\chase1.ogg,0.1,1};
+        titles[]={};
+    };
+    class chase2
+    {
+        name="chase2";
+        sound[]={\sound\chase2.ogg,0.1,1};
+        titles[]={};
+    };
+    class chase3
+    {
+        name="chase3";
+        sound[]={\sound\chase3.ogg,0.1,1};
+        titles[]={};
+    };
+    class chase4
+    {
+        name="chase4";
+        sound[]={\sound\chase4.ogg,0.1,1};
+        titles[]={};
+    };
+    class chase5
+    {
+        name="chase5";
+        sound[]={\sound\chase5.ogg,0.1,1};
+        titles[]={};
+    };
+    class chase6
+    {
+        name="chase6";
+        sound[]={\sound\chase6.ogg,0.1,1};
+        titles[]={};
+    };
+    class chase7
+    {
+        name="chase7";
+        sound[]={\sound\chase7.ogg,0.1,1};
+        titles[]={};
+    };
+    class chase8
+    {
+        name="chase8";
+        sound[]={\sound\chase8.ogg,0.1,1};
+        titles[]={};
+    };
+    class chase9
+    {
+        name="chase9";
+        sound[]={\sound\chase9.ogg,0.1,1};
+        titles[]={};
+    };
+    class chase10
+    {
+        name="chase10";
+        sound[]={\sound\chase10.ogg,0.1,1};
+        titles[]={};
+    };
+    class chase11
+    {
+        name="chase11";
+        sound[]={\sound\chase11.ogg,0.1,1};
+        titles[]={};
+    };
+    
+    
+    class die1
+    {
+        name="die1";
+        sound[]={\sound\die1.ogg,0.1,1};
+        titles[]={};
+    };
+    class die2
+    {
+        name="die2";
+        sound[]={\sound\die2.ogg,0.1,1};
+        titles[]={};
+    };
+    class die3
+    {
+        name="die3";
+        sound[]={\sound\die3.ogg,0.1,1};
+        titles[]={};
+    };
+    class idle2
+    {
+        name="idle2";
+        sound[]={\sound\idle2.ogg,0.1,1};
+        titles[]={};
+    };
+    class idle3
+    {
+        name="idle3";
+        sound[]={\sound\idle3.ogg,0.1,1};
+        titles[]={};
+    };
+    class idle4
+    {
+        name="idle4";
+        sound[]={\sound\idle4.ogg,0.1,1};
+        titles[]={};
+    };
+    class idle5
+    {
+        name="idle5";
+        sound[]={\sound\idle5.ogg,0.1,1};
+        titles[]={};
+    };
+    class idle6
+    {
+        name="idle6";
+        sound[]={\sound\idle6.ogg,0.1,1};
+        titles[]={};
+    };
+    class idle7
+    {
+        name="idle7";
+        sound[]={\sound\idle7.ogg,0.1,1};
+        titles[]={};
+    };
+    class idle8
+    {
+        name="idle8";
+        sound[]={\sound\idle8.ogg,0.1,1};
+        titles[]={};
+    };
+    class scream1
+    {
+        name="scream1";
+        sound[]={\sound\scream1.ogg,0.1,1};
+        titles[]={};
+    };
+    class scream2
+    {
+        name="scream2";
+        sound[]={\sound\scream2.ogg,0.1,1};
+        titles[]={};
+    };
+    class scream3
+    {
+        name="scream3";
+        sound[]={\sound\scream3.ogg,0.1,1};
+        titles[]={};
+    };
+    class dash
+    {
+        name="dash";
+        sound[]={\sound\dash.ogg,0.02,1.2};
+        titles[]={};
+    };
+    class dot
+    {
+        name="dot";
+        sound[]={\sound\dot.ogg,0.02,1.2};
+        titles[]={};
+    };
+    class sirens
+    {
+        name="sirens";
+        sound[]={\sound\sirens.ogg,1,1};
+        titles[]={};
+    };
+	class roundintro
+	{
+		name="roundintro";
+		sound[]={\sound\roundintro.ogg,1,1};
+		titles[]={};
+	};
+	class roundend
+	{
+		name="roundend";
+		sound[]={\sound\roundend.ogg,1,1};
+		titles[]={};
+	};
+	class mysteryBox
+	{
+		name="mysteryBox";
+		sound[]={\sound\mysteryBox.ogg,1,1};
+		titles[]={};
+	};
+	class bandageRip
+	{
+		name="bandageRip";
+		sound[]={\sound\bandageRip.ogg,1,1};
+		titles[]={};
+	};
+};
+class RscTitles {
+	#include "addons\proving_ground\PG_rsctitles.hpp"
+    #include "client\systems\hud\dialog\hud.hpp"
+	#include "client\systems\playerMenu\dialog\welcome.hpp"
+	#include "client\systems\newicons.hpp"
+    titles[]={};
+    
+    class outro
+    {
+        idd=-1;
+        movingEnable=0;
+        duration=11;
+        fadein=1;
+        fadeout=1;
+        name="outro";
+        controls[]={"title1","title3"};
+        
+        class title1
+        {
+            type=0;
+            idc=-1;
+            colorBackground[]={0,0,0,0};
+            colorText[]={0.2,0.2,0.4,1};
+            font="PuristaMedium";
+            size=1;
+            text="...in";
+            style=0;
+            sizeEx=0.04;
+            x=0.18;
+            y=0.33;
+            w=0.1;
+            h=0.1;
+        };
+        class title3
+        {
+            type=0;
+            idc=-1;
+            colorBackground[]={0,0,0,0};
+            colorText[]={0.2,0.2,0.4,1};
+            font="PuristaMedium";
+            size=1;
+            text="part three";
+            style=0;
+            sizeEx=0.04;
+            x=0.7;
+            y=0.52;
+            w=0.2;
+            h=0.1;
+        };
+    };
+    class claw1
+    {
+        idd=-1;
+        movingEnable=0;
+        duration=0;
+        fadein=0.25;
+        fadeout=0.75;
+        name="zombie_scripts\claw1";
+        controls[]={"title1"};
+        
+        class title1
+        {
+            type=0;
+            idc=-1;
+            size=1;
+            colorBackground[]={0,0,0,0};
+            colorText[]={1,1,1,1};
+            font="PuristaMedium";
+            text="zombie_scripts\claw1.paa";
+            style=48;
+            sizeEx=0.15;
+            x=0.275;
+            y=0.2;
+            w=0.45;
+            h=0.6;
+        };
+    };
+    class claw2
+    {
+        idd=-1;
+        movingEnable=0;
+        duration=0;
+        fadein=0.25;
+        fadeout=0.75;
+        name="zombie_scripts\claw2";
+        controls[]={"title1"};
+        
+        class title1
+        {
+            type=0;
+            idc=-1;
+            size=1;
+            colorBackground[]={0,0,0,0};
+            colorText[]={1,1,1,1};
+            font="PuristaMedium";
+            text="zombie_scripts\claw2.paa";
+            style=48;
+            sizeEx=0.15;
+            x=0.275;
+            y=0.2;
+            w=0.45;
+            h=0.6;
+        };
+    };
+    class claw3
+    {
+        idd=-1;
+        movingEnable=0;
+        duration=0;
+        fadein=0;
+        fadeout=0.2;
+        name="zombie_scripts\claw3";
+        controls[]={"title1"};
+        
+        class title1
+        {
+            type=0;
+            idc=-1;
+            size=1;
+            colorBackground[]={0,0,0,0};
+            colorText[]={1,1,1,1};
+            font="PuristaMedium";
+            text="zombie_scripts\claw3.paa";
+            style=48;
+            sizeEx=0.15;
+            x=0.275;
+            y=0.2;
+            w=0.45;
+            h=0.6;
+        };
+    };
+	class clawhud
+   	{
+		idd=-1;
+		movingEnable=0;
+	  	fadein=0;
+		duration=0.3;
+	  	fadeout=0.5;
+		name="clawhud";
+		onLoad="uiNamespace setVariable ['clawhud',_this select 0]";
+		controlsBackground[]={};
+		objects[]={};
+		class controls
+		{
+			class hud1
+			{
+				type=0;
+				idc=23500;
+				size=1;
+				colorBackground[]={0,0,0,0};
+				colorText[]={1,1,1,1};
+				font="PuristaMedium";
+				style=48;
+	  	  		sizeEx=0.15;
+				x=-1;
+	  	  		y=-1;
+				w=0.06;
+				h=0.08;
+				text="";
+			};
+		};   
+ 	};
+
+	class bandagehud
+   	{
+		idd=-1;
+		movingEnable=0;
+	  	fadein=0;
+		duration=20;
+	  	fadeout=0;
+		name="bandagehud";
+		onLoad="uiNamespace setVariable ['bandagehud',_this select 0]";
+		controlsBackground[]={};
+		objects[]={};
+		class controls
+		{
+			class hud1
+			{
+				type=0;
+				idc=23500;
+				style=0;
+				x=-1;
+				y=-1;
+				w=0.2;
+				h=0.02;
+				sizeEx=0.02;
+				size=1;
+				font="EtelkaMonospaceProBold";
+				colorBackground[]={0,0,0,0};
+				colorText[]={1,0.5,0.5,0.6};
+				shadow=true;
+				text="";
+			};
+		};   
+ 	};
+
+	class meathud
+   	{
+		idd=-1;
+		movingEnable=0;
+	  	fadein=0;
+		duration=20;
+	  	fadeout=0;
+		name="meathud";
+		onLoad="uiNamespace setVariable ['meathud',_this select 0]";
+		controlsBackground[]={};
+		objects[]={};
+		class controls
+		{
+			class hud1
+			{
+				type=0;
+				idc=23500;
+				style=0;
+				x=-1;
+				y=-1;
+				w=0.2;
+				h=0.02;
+				sizeEx=0.02;
+				size=1;
+				font="EtelkaMonospaceProBold";
+				colorBackground[]={0,0,0,0};
+				colorText[]={1,0.5,0.5,0.6};
+				shadow=true;
+				text="";
+			};
+		};   
+ 	};
+
+
+	class hud
+   	{
+		idd=-1;
+		movingEnable=0;
+	  	fadein=0;
+		duration=0.3;
+	  	fadeout=0.5;
+		name="hud";
+		onLoad="uiNamespace setVariable [""hud"",_this select 0]";
+		controlsBackground[]={};
+		objects[]={};
+		class controls
+		{
+			class hud1
+			{
+				type=0;
+				idc=23501;
+				size=1;
+				colorBackground[]={0,0,0,0};
+				colorText[]={1,1,1,1};
+				font="PuristaMedium";
+				style=48;
+	  	  		sizeEx=0.15;
+				x=0;
+	  	  		y=0;
+				w=0.06;
+				h=0.08;
+				text="";
+			};
+		};   
+ 	};	
+	
+	class namehud
+   	{
+		idd = -1;
+		movingEnable = 0;
+	  	fadein = 0;
+		duration = 999999;
+	  	fadeout = 0.5;
+		name = "namehud";
+		onLoad = "uiNamespace setVariable ['namehud', _this select 0]";
+		controlsBackground[] = {};
+		objects[] = {};
+		class controls
+		{
+			class hud1
+			{
+				type = 0;
+				idc = 235;
+				style = 2;
+				x = -1;
+				y = -1;
+				w = 0.6;
+				h = 0.03;
+				sizeEx = 0.03;
+				size = 1;
+				font = "EtelkaMonospaceProBold";
+				colorBackground[] = {0, 0, 0, 0};
+				colorText[] = {1, 0.5, 0.5, 0.6};
+				shadow = true;
+				text = "";
+			};
+			class hud2
+			{
+				type = 0;
+				idc = 236;
+				size = 1;
+				colorBackground[] = {0, 0, 0, 0};
+				colorText[] = {1, 1, 1, 1};
+				font = "PuristaMedium";
+				style = 48;
+	  	  		sizeEx = 0.15;
+				x = -1;
+	  	  		y = -1;
+				w = 0.03;
+				h = 0.04;
+				text = "";
+			};
+		};   
+ 	};
+};
+
+
+#include "BuyDialog.hpp"
+
+
+

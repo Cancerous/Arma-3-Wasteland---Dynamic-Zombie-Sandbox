@@ -1,0 +1,70 @@
+;Zombie init script
+;This script turns a unit into a zombie
+
+
+@time>0.3
+
+_zombie=_this select 0
+_zombietype=_this select 1
+_victim=_this select 2
+_horde=_this select 3
+_radius=_this select 4
+_pos=_this select 5
+_dynamic = if (count _this > 5) then {_this select 6} else {false}
+
+removeAllWeapons _zombie
+removeAllItems _zombie
+?CLY_game != "A2": call compile "removeBackpack _zombie"
+_zombie addRating -10000
+_zombie setBehaviour "CARELESS"
+?_zombietype == "creeper": _zombie setBehaviour "STEALTH"
+_zombie setCombatMode "BLUE"
+_zombie setSpeedMode "LIMITED"
+_zombie allowFleeing 0
+_zombie setSkill 1
+_zombie disableAI "TARGET"
+_zombie disableAI "AUTOTARGET"
+_zombie disableAI "FSM"
+_zombie switchMove "amovpercmstpsnonwnondnon"
+_zombie setUnitPos "UP"
+?_zombietype == "creeper": _zombie setUnitPos "Middle"
+?_zombietype in ["crawler", "sneaker", "ambusher", "passive crawler"]: _zombie setUnitPos "DOWN"
+_zombie setDir random 360
+_zombie setVariable ["BIS_noCoreConversations", true, true]
+_zombie setVariable ["victim", _victim, true]
+_zombie setVariable ["zombietype", _zombietype, true]
+_zombie setVariable ["horde", _horde, true]
+_zombie setVariable ["despawn", false]
+_zombie setVariable ["dynamic", _dynamic]
+;_zombie setObjectTexture [0,"\CA\characters_E\civil\Tak_civil01\Data\w1_tak_civil01_mc.paa"]
+?gameType == 1:_zombie addMPEventHandler ["MPkilled", {nul = [_this select 0, _this select 1,"killed"] execVM "gamemodes\LTJ_infected\points.sqf"; }]
+?gameType == 1:_zombie addMPEventHandler ["MPhit", {nul = [_this select 0, _this select 1,"hit"] execVM "gamemodes\LTJ_infected\points.sqf"; }]
+?gameType == 2:_zombie addMPEventHandler ["MPkilled", {nul = [_this select 0, _this select 1,"killed"] execVM "gamemodes\CVG_townattack\kills.sqf"; }]
+
+;Custom zombie damage handling
+CVG_hardzombies = true;
+?CVG_hardZombies:_zombie spawn CLY_zombiehandledamage
+
+;Set face
+[_zombie] exec "zombie_scripts\cly_z_textures.sqs"
+
+~1
+?!isNil "_pos": _zombie setPosATL [_pos select 0, _pos select 1, 0];
+_zombie enableSimulation true
+
+_EHkilled = _zombie addEventHandler ["killed", {_this execVM "craigs_scripts\onDeath.sqf"}]
+
+[_zombie, _radius] execVM "zombie_scripts\cly_z_routines.sqf"
+
+;Debug markers
+?!CLY_debug: exit
+_marker = createMarkerLocal [format ["zmarker%1", str _zombie], getPos _zombie]
+_marker setMarkerTypeLocal "Dot"
+_marker setMarkerColorLocal "ColorBrown"
+_marker setMarkerSizeLocal [0.3, 0.3]
+
+#loop
+~1
+?!alive _zombie: deleteMarkerLocal _marker;exit
+_marker setMarkerPosLocal getPos _zombie
+goto "loop"

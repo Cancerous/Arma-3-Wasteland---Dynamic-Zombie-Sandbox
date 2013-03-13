@@ -1,0 +1,152 @@
+// ======================
+// Loading screen related
+// ======================
+#ifndef LOADSCREENTEXT
+#define LOADSCREEN "img\loading_CO.paa"
+#endif
+
+#ifndef LOADSCREENTEXT
+#define LOADSCREENTEXT "Mission text missing"
+#endif
+
+#ifndef _RSCTEXT_DEFINED
+class RscText
+{
+    #define _RSCTEXT_DEFINED 1
+    type = 0;
+    idc = -1;
+    x = 0;
+    y = 0;
+    h = 0.037;
+    w = 0.3;
+    style = 0x100; 
+    font = PuristaMedium;
+    SizeEx = 0.03921;
+    colorText[] = {1,1,1,1};
+    colorBackground[] = {0, 0, 0, 0};
+    linespacing = 1;
+    shadow = 0;
+};
+#endif
+
+#ifndef _RSCACTIVETEXT_DEFINED
+class RscActiveText
+{
+    #define _RSCACTIVETEXT_DEFINED 1
+    access=0;
+    type=11;
+    style=2;
+    h=0.050000;
+    w=0.150000;
+    font="TahomaB";
+    sizeEx=0.040000;
+    color[]={1,1,1,1};
+    colorActive[]={1,0.500000,0,1};
+    soundEnter[]={"",0.100000,1};
+    soundPush[]={"",0.100000,1};
+    soundClick[]={"",0.100000,1};
+    soundEscape[]={"",0.100000,1};
+    text="";
+    default=0;
+    shadow = 0;
+};
+#endif
+
+#ifndef _RSCPICTURE_DEFINED
+class RscPicture
+{
+    #define _RSCPICTURE_DEFINED 1
+    access=0;
+    type=0;
+    idc=-1;
+    style=48;
+    colorBackground[]={0,0,0,0};
+    colorText[]={1,1,1,1};
+    font="TahomaB";
+    sizeEx=0;
+    lineSpacing=0;
+    text="";
+    shadow = 0;
+};
+#endif
+
+class RscLoadingText : RscText
+{
+    x =  SafezoneX+0.025;
+    y = SafezoneY;
+    w = SafezoneW*0.95;
+    h = SafezoneH*0.075;
+    sizeEx = 0.05;
+    text = "";
+    colorText[] = {1,1,0.8,1};
+    shadow = 2;
+};
+
+class RscProgress
+{
+    idc = 104;
+    type = 8;
+    style = 0;
+    shadow = 2;
+ 
+    colorFrame[] = {0,0,0,0};
+    colorBar[] = {1,1,1,1}; 
+    x =  (SafezoneX+(SafezoneW -SafezoneH*3/4)/2)+ (0.5/2/4)*3*SafezoneH;
+    y = SafezoneY+SafezoneH*0.95;
+    w =0.5* (((SafezoneW*3)/4)/SafezoneW)/(1/SafezoneH); 
+    h = 0.0261438;
+};
+
+
+class RscLoadingBg : RscText
+{
+    x = SafeZoneXAbs;
+    y = safezoneY;
+    w = SafeZoneWAbs;
+    h = safezoneH;
+    text = "";
+    colorText[] = {0,0,0,0};
+    colorBackground[] = {0,0,0,1};
+}; 
+
+
+class RscLoadingPicture: RscPicture
+{
+    style = 48 + 0x800; // Keep aspect ratio
+    x =  SafezoneX;
+    y = SafezoneY+SafezoneH*0.075;
+    w = SafezoneW; 
+    h = SafezoneH*0.85;
+    text = "";
+};
+class RscLoadScreenCustom
+{
+    idd = -1;
+    duration = 10e10;
+    fadein = 0;
+    fadeout = 0;
+    name = "Loading Screen";
+    
+    class ControlsBackground
+    {
+        class Loading_BG : RscLoadingBg
+        {
+        }; 
+        class Loading_CE2 : RscLoadingPicture
+        {
+            text = LOADSCREEN;
+        };
+    };
+    
+    class controls
+    {
+        class Title1 : RscLoadingText
+        {
+            text = LOADSCREENTEXT;
+        };
+        class CA_Progress : RscProgress
+        {
+            
+        };
+    }; 
+};

@@ -1,0 +1,325 @@
+/*%FSM<COMPILE "C:\Program Files (x86)\Bohemia Interactive\Tools\FSM Editor Personal Edition\scriptedFSM.cfg, DZS Spawn">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"Defcon_1",0,250,-113.384918,71.331543,-23.384855,121.331497,0.000000,"Defcon 1"};
+item1[] = {"true",8,218,21.382607,75.913559,111.382607,125.913559,0.000000,"true"};
+item2[] = {"Spawn_Cars",2,4346,14.735853,159.452621,104.735863,209.452637,0.000000,"Spawn Cars"};
+item3[] = {"Moving_on_",8,218,-81.016647,226.857544,8.983353,276.857544,0.000000,"" \n "Moving" \n "on" \n ""};
+item4[] = {"Spawn_Objects",2,250,14.214413,283.754944,104.214310,333.754913,0.000000,"Spawn Objects"};
+item5[] = {"Set_Triggers",2,250,11.333839,398.940277,101.333801,448.940430,0.000000,"Set Triggers"};
+item6[] = {"Defcon_11_",1,250,-1.793461,818.715881,88.206528,868.715881,0.000000,"" \n "Defcon 11" \n ""};
+item7[] = {"Moving_On",8,218,-76.465454,333.049347,13.534546,383.049347,0.000000,"Moving" \n "On"};
+item8[] = {"Moving__On",8,218,-120.307533,559.688843,-30.307526,609.688843,0.000000,"Moving " \n "On"};
+item9[] = {"Spawn_Boats",2,250,-2.245014,613.041565,87.754990,663.041565,0.000000,"Spawn Boats"};
+item10[] = {"Moving__On",8,218,-134.692505,674.028503,-44.692505,724.028503,0.000000,"Moving " \n "On"};
+item11[] = {"Spawn__Helicopte",2,250,-4.347343,730.791687,85.652672,780.791687,0.000000,"Spawn " \n "Helicopters"};
+item12[] = {"Done",8,218,-146.255432,807.527161,-56.255402,857.527161,0.000000,"Done"};
+link0[] = {0,1};
+link1[] = {1,2};
+link2[] = {2,3};
+link3[] = {3,4};
+link4[] = {4,7};
+link5[] = {5,8};
+link6[] = {7,5};
+link7[] = {8,9};
+link8[] = {9,10};
+link9[] = {10,11};
+link10[] = {11,12};
+link11[] = {12,6};
+globals[] = {0.000000,0,0,0,0,640,480,1,38,6316128,1,-161.192245,258.264343,470.778046,-380.411926,205,416,1};
+window[] = {2,-1,-1,-32000,-32000,623,2127,3150,62,1,223};
+*//*%FSM</HEAD>*/
+class FSM
+{
+  fsmName = "DZS Spawn";
+  class States
+  {
+    /*%FSM<STATE "Defcon_1">*/
+    class Defcon_1
+    {
+      name = "Defcon_1";
+      init = /*%FSM<STATEINIT""">*/"blacklist = [""Land_stand_small_EP1"",""Land_stand_meat_EP1"",""Land_stand_waterl_EP1"",""Land_Crates_stack_EP1"",""Land_Carpet_rack_EP1"",""Land_Market_stalls_01_EP1"",""Land_Market_stalls_02_EP1"",""Land_Market_shelter_EP1"",""Land_Misc_Well_L_EP1"",""Land_Misc_Well_C_EP1"",""Fort_StoneWall_EP1"",""Land_Wall_L_2m5_gate_EP1"",""Land_Wall_L1_gate_EP1"",""Land_Wall_L3_gate_EP1"",""Land_Wall_L3_5m_EP1"",""Land_Wall_L3_pillar_EP1"",""Land_Wall_L_Mosque_1_EP1"",""Land_Wall_L_Mosque_2_EP1"",""Wall_FenW2_6_EP1"",""Wall_L_2m5_EP1"",""Wall_L1_2m5_EP1"",""Wall_L1_5m_EP1"",""Wall_L2_5m_EP1"",""Wall_L3_5m_EP1"",""Land_BoatSmall_1"",""Land_D_Mlyn_Vys"",""Land_D_Pec_Vez1"",""Land_Ind_BoardsPack1"",""Land_Ind_Shed_02_end"",""Land_Ind_Shed_01_end"",""Land_Ind_Shed_01_main"",""Land_Ind_BoardsPack2"",""Land_Dam_Barrier_40"",""Land_Dam_ConcP_20"",""Land_Dam_Conc_20"",""Land_D_Pec_Vez2"",""Land_BoatSmall_2a"",""Land_BoatSmall_2b"",""Land_fort_artillery_nest"",""Land_fort_rampart"",""Land_Vez_Pec"",""Land_runway_edgelight"",""Land_Nav_Boathouse_PierR"",""Land_Nav_Boathouse_PierT"",""Land_Nav_Boathouse_PierL"",""Land_fort_bagfence_corner"",""Land_fort_bagfence_long"",""Land_fort_bagfence_round"",""Land_Fort_Watchtower"",""Land_NavigLight"",""Land_Panelak"",""Land_Panelak2"",""Land_Panelak3"",""Land_plot_green_branka"",""Land_plot_rust_branka"",""Land_plot_green_vrata"",""Land_plot_rust_vrata"",""Land_plot_istan1_rovny_gate"",""Land_Plot_Ohrada_Pruchozi"",""Land_plot_zboreny"",""Land_plot_zed_drevo1_branka"",""Land_psi_bouda"",""Land_A_Castle_Bastion"",""Land_A_Castle_Gate"",""Land_A_Castle_Wall1_20"",""Land_A_Castle_Wall1_20_Turn"",""Land_A_Castle_Wall1_Corner"",""Land_A_Castle_Wall1_End"",""Land_A_Castle_Wall1_End_2"",""Land_A_Castle_Wall2_30"",""Land_A_Castle_Wall2_Corner"",""Land_A_Castle_Wall2_End"",""Land_A_Castle_Wall2_End_2"",""Land_A_Castle_WallS_10"",""Land_Gate_wood2_5"",""Land_Ind_Expedice_2"",""Land_Ind_Expedice_3"",""Land_Ind_Timbers"",""Land_Rail_Semafor"",""Land_Rail_Zavora"",""Land_Stoplight02"",""Land_Wall_CBrk_5_D"",""Land_brana02nodoor"",""Land_plot_green_branka"",""Land_plot_rust_branka"",""Land_plot_green_vrata"",""Land_molo_drevo_bs"",""Land_molo_drevo_end"",""Land_nav_pier_m_2"",""Land_psi_bouda"",""Land_plot_rust_vrata"",""Land_rails_bridge_40"",""Land_seno_balik"",""Land_sloup_vn"",""Land_sloup_vn_drat"",""Land_sloup_vn_dratZ"",""Land_sloup_vn_drat_d"",""ZavoraAnim"",""Land_vez"",""Land_pumpa"",""Land_Gate_Wood1_5"",""Land_fortified_nest_big"",""Land_fortified_nest_small"",""Fort_Nest"",""Land_Fire"",""Land_Fire_barrel"",""Land_Fire_barrel_burning"",""Land_Fire_burning"",""Land_Campfire"",""Land_Campfire_burning"",""Misc_TyreHeap"",""Land_ConcreteBlock"",""Land_ConcreteRamp"",""Land_sign_altar"",""Land_Sign_Bar_RU"",""Land_Sign_BES"",""Land_sign_TEC"",""Land_sign_ulgano"",""Land_SignB_Gov"",""Land_SignB_GovPolice"",""Land_SignB_GovSchool"",""Land_SignB_GovSign"",""Land_SignB_Hotel_CZ"",""Land_SignB_Hotel_CZ2"",""Land_SignB_Hotel_CZ3"",""Land_SignB_Pharmacy"",""Land_SignB_PostOffice"",""Land_SignB_Pub_CZ1"",""Land_SignB_Pub_CZ2"",""Land_SignB_Pub_CZ3"",""Land_SignB_Pub_RU1"",""Land_SignB_Pub_RU2"",""Land_SignB_Pub_RU3"",""Land_Ind_Timbers"",""Haystack"",""Pile_of_wood"",""Land_IndPipe1_stair"",""Land_IndPipe1_stair_todo_delete"",""Land_IndPipe2_big_9"",""Land_IndPipe2_big_18"",""Land_IndPipe2_big_18ladder"",""Land_IndPipe2_big_support"",""Land_IndPipe2_bigL_R"",""Land_IndPipe2_bigL_L"",""Land_IndPipe2_bigBuild1_R"",""Land_IndPipe2_bigBuild1_L"",""Land_IndPipe2_bigBuild2_R"",""Land_IndPipe2_bigBuild2_L"",""Land_IndPipe2_big_ground1"",""Land_IndPipe2_big_ground2"",""Land_IndPipe2_T_R"",""Land_IndPipe2_T_L"",""Land_IndPipe2_Small_9"",""Land_IndPipe2_Small_ground1"",""Land_IndPipe2_Small_ground2"",""Land_IndPipe2_SmallBuild1_L"",""Land_IndPipe2_SmallBuild1_R"",""Land_IndPipe2_SmallBuild2_L"",""Land_IndPipe2_SmallBuild2_R"",""Land_IndPipe2_SmallL_L"",""Land_IndPipe2_SmallL_R"",""Land_nav_pier_m_2"",""land_nav_pier_c"",""land_nav_pier_c2"",""land_nav_pier_c2_end"",""land_nav_pier_c_270"",""land_nav_pier_c_90"",""land_nav_pier_c_big"",""land_nav_pier_C_L"",""land_nav_pier_C_L10"",""land_nav_pier_C_L30"",""land_nav_pier_C_R"",""land_nav_pier_C_R10"",""land_nav_pier_C_R30"",""land_nav_pier_c_t15"",""land_nav_pier_c_t20"",""land_nav_pier_F_17"",""land_nav_pier_F_23"",""land_nav_pier_m"",""land_nav_pier_m_1"",""land_nav_pier_m_end"",""land_nav_pier_M_fuel"",""land_nav_pier_pneu"",""Land_ruin_chimney"",""Land_ruin_corner_1"",""Land_ruin_corner_2"",""Land_ruin_rubble"",""Land_ruin_walldoor"",""Land_ruin_wall"",""land_nav_pier_uvaz"",""Land_Misc_Cargo1C"",""Land_Misc_Cargo1D"",""Land_Misc_Cargo1E"",""Land_Misc_Cargo1F"",""Land_Misc_Cargo1G"",""Land_Misc_Cargo2B"",""Land_Misc_Cargo2C"",""Land_Misc_Cargo2D"",""Land_Misc_Cargo2E"",""Land_Misc_deerstand"",""Land_Misc_GContainer_Big"",""Land_sign_elektrozavodsk"",""Land_sign_balota"",""Land_sign_berezino"",""Land_sign_chernogorsk"",""Land_sign_kamenka"",""Land_sign_kamyshovo"",""Land_sign_komarovo"",""Land_sign_prigorodki"",""Land_sign_solnichnyi"",""Land_wagon_box"",""Land_wagon_flat"",""Land_wagon_tanker"",""Land_Wall_CBrk_5_D"",""Land_Wall_CGry_5_D"",""Land_Wall_Gate_Ind1_L"",""Land_Wall_Gate_Ind1_R"",""Land_Gate_IndVar2_5"",""Land_Gate_wood1_5"",""Land_Gate_wood2_5"",""Land_Wall_Gate_Ind2A_R"",""Land_Wall_Gate_Ind2B_R"",""Land_Wall_Gate_Ind2Rail_R"",""Land_Wall_Gate_Village"",""Land_Wall_Gate_Wood1"",""Land_Wall_Gate_Ind2A_L"",""Land_Wall_Gate_Ind2B_L"",""Land_Wall_Gate_Ind2Rail_L""];" \n
+       "militarylist = [""Fort_EnvelopeSmall"",""Fort_EnvelopeBig"",""Land_Barrack2"",""Land_Hangar_2"",""Land_Hlidac_budka"",""Land_Mil_Barracks"",""Land_Mil_Barracks_L"",""Land_Mil_Barracks_i"",""Land_Mil_ControlTower"",""Land_Mil_Guardhouse"",""Land_Mil_House"",""Land_SS_hangar"",""Land_Shed_Ind02"",""Land_a_stationhouse"",""Land_A_Villa_EP1"",""Land_A_Villa_dam_EP1"",""Land_Mil_ControlTower_EP1"",""Land_Mil_ControlTower_dam_EP1"",""Land_Mil_House_EP1"",""Land_Mil_House_dam_EP1"",""Land_Mil_Barracks_i_EP1"",""Land_Mil_Barracks_EP1"",""Land_Mil_Barracks_L_EP1"",""Land_Mil_Guardhouse_EP1"",""Land_Mil_hangar_EP1"",""Land_Mil_Repair_center_EP1"",""Bunker_PMC""];" \n
+       "militaryWeaponBuildings = [""Land_Barrack2_EP1"",""Land_Barrack2"",""Land_Hlidac_budka"",""Land_Mil_ControlTower"",""Land_Mil_ControlTower_EP1"",""Land_Mil_Barracks_i"",""Land_Mil_Barracks_L"",""Land_Mil_Barracks"",""Land_LHD_house_1"",""Land_LHD_house_2"",""Land_a_stationhouse""];" \n
+       "civilianWeaponBuildings = [];" \n
+       "hangars = [""Land_SS_hangar"",""Land_Mil_hangar_EP1""];" \n
+       "piers = [""Land_Nav_Boathouse_PierT"",""Land_molo_drevo_bs"",""Land_Nav_Boathouse_PierL""];" \n
+       "" \n
+       "_pos = [0,0];" \n
+       " buildings = nearestObjects [_pos, [""house""], 60000];" \n
+       "diag_log(""DZS Spawn: Started"");" \n
+       "" \n
+       "_startTime = time;"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "true">*/
+        class true
+        {
+          priority = 0.000000;
+          to="Spawn_Cars";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/"_objNum = 0;" \n
+           "_vehNum = 0;"/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Spawn_Cars">*/
+    class Spawn_Cars
+    {
+      name = "Spawn_Cars";
+      init = /*%FSM<STATEINIT""">*/"private[""_num"",""_build""];" \n
+       "{" \n
+       "_num = (random 100);" \n
+       "	if(_num < chanceNumber) then " \n
+       "	{" \n
+       "		if((typeOf _x) in blacklist) then" \n
+       "		{} else" \n
+       "		{" \n
+       "			if((typeOf _x) in militarylist) then" \n
+       "			{" \n
+       "				_build = getPos _x;" \n
+       "				[_build,1] call vehicleInfo;" \n
+       "			} else {" \n
+       "				_build = getPos _x;" \n
+       "				[_build,0] call vehicleInfo;" \n
+       "			};" \n
+       "		};	" \n
+       "	};" \n
+       "} forEach buildings;" \n
+       "" \n
+       "CVG_vehicleDone = true;"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "Moving_on_">*/
+        class Moving_on_
+        {
+          priority = 0.000000;
+          to="Spawn_Objects";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"CVG_vehicleDone"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Spawn_Objects">*/
+    class Spawn_Objects
+    {
+      name = "Spawn_Objects";
+      init = /*%FSM<STATEINIT""">*/"if (CVG_Logistics == 1) then {" \n
+       "private[""_num"",""_build""];" \n
+       "{" \n
+       "	if ((typeOf _x) in blacklist) then" \n
+       "	{} else" \n
+       "	{" \n
+       "		_num = (random 100);" \n
+       "		if (_num < 25) then " \n
+       "		{" \n
+       "			_build = getpos _x;" \n
+       "			[_Build] call objSpawn;" \n
+       "		};" \n
+       "	};" \n
+       "} forEach buildings;" \n
+       "};" \n
+       "CVG_objectDone = true;"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "Moving_On">*/
+        class Moving_On
+        {
+          priority = 0.000000;
+          to="Set_Triggers";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"CVG_objectDone"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Set_Triggers">*/
+    class Set_Triggers
+    {
+      name = "Set_Triggers";
+      init = /*%FSM<STATEINIT""">*/"private[""_pos"",""_trig"",""_marker"",""_num"",""_build""];" \n
+       "{" \n
+       "if ((CVG_Zombietowns == 1) || (CVG_Zombietowns == 3)) then {" \n
+       "_num = (random 100);" \n
+       "_building = _x;" \n
+       "	if (_num < 2) then {" \n
+       "		if ((typeOf _building) in blacklist) then {" \n
+       "		} else	" \n
+       "		{" \n
+       "			_pos = getpos _building;" \n
+       "			_trig = createTrigger [""EmptyDetector"", _pos];" \n
+       "			trigArray = trigArray + [_trig];" \n
+       "			_trig setTriggerArea [250,250,0,true];" \n
+       "			_trig setTriggerActivation [""NONE"", ""PRESENT"", FALSE];" \n
+       "			if (CVG_Horde == 2) then {" \n
+       "				_trig setTriggerStatements [""true"", ""0=[thisTrigger,-1] execVM 'zombie_scripts\cly_z_generatorhorde.sqf';"", """"];" \n
+       "			};" \n
+       "			if (CVG_Horde == 1) then {" \n
+       "				_trig setTriggerStatements [""true"", ""0=[thisTrigger,-1] execVM 'zombie_scripts\cly_z_generator.sqf';"", """"];" \n
+       "		};" \n
+       "			if (CVG_Debug == 2) then {" \n
+       "				_marker=createMarker [format [""mar%1"",random 100000],getpos _trig];" \n
+       "				_marker setMarkerType ""Dot"";" \n
+       "				_marker setMarkerColor ""ColorRed"";" \n
+       "				_marker setMarkerSize [2,2];" \n
+       "			};" \n
+       "		};" \n
+       "	};" \n
+       "	};" \n
+       "} forEach buildings;" \n
+       "" \n
+       "CVG_triggerDone = true;"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "Moving__On">*/
+        class Moving__On
+        {
+          priority = 0.000000;
+          to="Spawn_Boats";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"CVG_triggerDone"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Defcon_11_">*/
+    class Defcon_11_
+    {
+      name = "Defcon_11_";
+      init = /*%FSM<STATEINIT""">*/"diag_log(""DZS Spawn: Completed"");" \n
+       "_totalTime = round((time - _startTime));" \n
+       "diag_log format[""DZS Spawn: Total Time to execute - %1 seconds"",  _totalTime];" \n
+       "diag_log format[""DZS Spawn: Total Vehicles - %1"", count allMissionObjects ""LandVehicle""];" \n
+       "diag_log format[""DZS Spawn: Total Objects - %1"", count allMissionObjects ""building""];"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Spawn_Boats">*/
+    class Spawn_Boats
+    {
+      name = "Spawn_Boats";
+      init = /*%FSM<STATEINIT""">*/"{" \n
+       "			if ((typeOf _x) in piers) then {" \n
+       "				_num = random 100;" \n
+       "				if (_num < 70) then {" \n
+       "					_Offset = [-5,0,0];" \n
+       "					if (_num < 15) then {" \n
+       "						_Offset = [5,0,0];" \n
+       "					};" \n
+       "					_worldPos = _x modelToWorld _Offset;" \n
+       "					_ship_Class = ""Land_Destroyer"";" \n
+       "					while {_ship_Class == ""Land_Destroyer"" or _ship_Class == ""Land_Fregata""} do {" \n
+       "						_ship_Class = CVG_ships call BIS_fnc_selectRandom;" \n
+       "					};" \n
+       "					_ship = createVehicle [_ship_Class,_worldPos, [], 0, ""NONE""];" \n
+       "					_ship setDir (getDir _x);" \n
+       "					_ship setposASL [_worldPos select 0, _worldPos select 1, 2];" \n
+       "" \n
+       "					switch (CVG_VehicleStatus) do {" \n
+       "						case 1:" \n
+       "						{" \n
+       "							_ship setFuel ((random .6) +.3);" \n
+       "							_ship setDamage ((random .6) +.3);" \n
+       "						};" \n
+       "						case 2:" \n
+       "						{" \n
+       "							_ship setFuel ((random .5)+.2);" \n
+       "							_ship setDamage ((random .5)+.2);" \n
+       "						};" \n
+       "						case 3:" \n
+       "						{" \n
+       "							_ship setFuel ((random .4)+.1);" \n
+       "							_ship setDamage ((random .4)+.1);" \n
+       "						};" \n
+       "						case 4: " \n
+       "						{" \n
+       "							_ship setFuel (random .50);" \n
+       "							_ship setDamage (random .50);" \n
+       "						};" \n
+       "					};" \n
+       "				};" \n
+       "			};" \n
+       "			" \n
+       "} forEach buildings;" \n
+       "" \n
+       "CVG_boatDone = true;"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "Moving__On">*/
+        class Moving__On
+        {
+          priority = 0.000000;
+          to="Spawn__Helicopte";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"CVG_boatDone"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "Spawn__Helicopte">*/
+    class Spawn__Helicopte
+    {
+      name = "Spawn__Helicopte";
+      init = /*%FSM<STATEINIT""">*/"	if (CVG_Helis == 1) then {" \n
+       "	{	" \n
+       "" \n
+       "				if ((typeOf _x) in hangars) then {" \n
+       "					_num = random 100;" \n
+       "					if (_num < 30) then {" \n
+       "						_Offset = [0,-30,0];" \n
+       "						_worldPos = _x modelToWorld _Offset;" \n
+       "						_heli_Class = CVG_Helicopters call BIS_fnc_selectRandom;" \n
+       "						_heli = createVehicle [_heli_Class,[ _worldPos select 0, _worldPos select 1, 0], [], 0, ""NONE""];" \n
+       "						_heli setDir (random 360);" \n
+       "						waitUntil {typeOf _heli == _heli_Class};" \n
+       "					};" \n
+       "				};	" \n
+       "" \n
+       "} forEach buildings;" \n
+       "};" \n
+       "" \n
+       "CVG_heliDone = true;"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "Done">*/
+        class Done
+        {
+          priority = 0.000000;
+          to="Defcon_11_";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"CVG_heliDone"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+  };
+  initState="Defcon_1";
+  finalStates[] =
+  {
+    "Defcon_11_",
+  };
+};
+/*%FSM</COMPILE>*/

@@ -1,0 +1,32 @@
+?!isServer:exit
+
+_logic="logic" createVehicleLocal [0,0,0]
+
+_interval=CLY_randomhordemininterval+random (CLY_randomhordemaxinterval-CLY_randomhordemininterval)
+~_interval
+
+#loop
+~1
+_averagex=0
+_averagey=0
+_divide=count CLY_players
+_amount=CLY_randomhordeminamount+floor random (CLY_randomhordemaxamount-CLY_randomhordeminamount+1)
+?_divide==0 or {side _x==east} count allGroups>=(144-_amount) or {currentWeapon _x!=""} count CLY_players==0:goto "loop"
+
+{_averagex=_averagex+(getPos vehicle _x select 0);_averagey=_averagey+(getPos vehicle _x select 1)} forEach CLY_players
+_averagepos=[_averagex/_divide,_averagey/_divide,0]
+
+_interval=CLY_randomhordemininterval+random (CLY_randomhordemaxinterval-CLY_randomhordemininterval)
+
+#randompos
+~1
+_pos=[(_averagepos select 0)-CLY_randomhordemaxspawndist*0.5+random CLY_randomhordemaxspawndist,(_averagepos select 1)-CLY_randomhordemaxspawndist*0.5+random CLY_randomhordemaxspawndist,0]
+_logic setPos [_pos select 0,_pos select 1,1000]
+?surfaceIsWater _pos or (getPos _logic select 2)<(getPosATL _logic select 2) or _pos distance _averagepos>CLY_randomhordemaxspawndist or _pos distance _averagepos<CLY_randomhordeminspawndist:goto "randompos"
+
+_trigger=createTrigger ["EmptyDetector",_pos]
+_trigger setTriggerArea [10,10,0,false]
+[_trigger,_amount,CLY_hordetrigger,"normal"] execVM "zombie_scripts\cly_z_horde.sqf"
+
+~_interval
+goto "loop"

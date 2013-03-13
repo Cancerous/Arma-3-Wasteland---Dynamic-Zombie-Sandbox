@@ -1,0 +1,29 @@
+;Elegant face texture and expression script by Celery
+
+?!isServer:goto "clientstart"
+?count _this==0:exit
+_zombie=_this select 0
+
+~0.1
+_face=""
+_faces=[]
+?typeOf _zombie in CLY_zombieclasses_a:_faces=_faces+CLY_faces_a
+?typeOf _zombie in CLY_zombieclasses_b:_faces=_faces+CLY_faces_b
+?typeOf _zombie in CLY_zombieclasses_c:_faces=_faces+CLY_faces_c
+?typeOf _zombie in CLY_zombieclasses_d:_faces=_faces+CLY_faces_d
+?count _faces==0:_faces=CLY_faces_default
+_face=_faces select floor random count _faces
+_mimic="neutral"
+?random 1<0.5:_mimic="dead"
+
+_zombie setFace _face
+_zombie setMimic _mimic
+_zombie setVariable ["face",[_face,_mimic],true]
+exit
+
+#clientstart
+{if (!isNil {_x getVariable "face"}) then {if (typeName (_x getVariable "face" select 0)=="STRING") then {_x setFace (_x getVariable "face" select 0);_x setMimic (_x getVariable "face" select 1);_x setVariable ["face",nil]}}} forEach allUnits+allDead
+#client
+~5
+{if (!isNil {_x getVariable "face"}) then {if (typeName (_x getVariable "face" select 0)=="STRING") then {_x setFace (_x getVariable "face" select 0);_x setMimic (_x getVariable "face" select 1);_x setVariable ["face",nil]}}} forEach allUnits
+goto "client"

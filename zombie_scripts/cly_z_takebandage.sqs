@@ -1,0 +1,27 @@
+;Take bandage
+_target=_this select 0
+_caller=_this select 1
+_taken=_this select 3
+
+_caller setVariable ["CLY_healings",(_caller getVariable "CLY_healings")+_taken,true]
+_s=if (_taken>1) then {"s"} else {""}
+titleText [format ["%1 bandage%2 taken",_taken,_s],"PLAIN DOWN",0.3]
+for "_x" from 0 to 99 do {_target removeAction _x}
+CLY_healbandagepv=[_target]
+publicVariable "CLY_healbandagepv"
+
+_h=getPosATL _target nearObjects ["logic",0.1]
+?count _h>0:deleteVehicle (_h select 0)
+
+CLY_dontremovedeadremove set [count CLY_dontremovedeadremove,_target]
+publicVariable "CLY_dontremovedeadremove"
+
+exit
+
+~30
+
+hideBody _target
+CLY_hidebodypv=_target
+publicVariable "CLY_hidebodypv"
+~4
+deleteVehicle _target

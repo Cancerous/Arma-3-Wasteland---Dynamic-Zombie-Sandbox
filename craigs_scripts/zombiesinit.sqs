@@ -1,0 +1,198 @@
+;Zombie mission init script by Celery
+diag_log "Zombie .sqs init executed"
+?isNil "CLY_hordetrigger" : CLY_hordetrigger = ""
+?isNil "CLY_playerstates" : CLY_playerstates = []
+?isNil "CLY_deadcharacters" : CLY_deadcharacters = []
+?isNil "CLY_alldead" : CLY_alldead = false
+?isNil "CLY_cutscene" : CLY_cutscene = false
+CLY_playerrating = rating player
+
+CLY_maxaggroradius=500
+CLY_defaultdensity=100
+
+
+
+cly_debug=false
+
+@isDedicated || !isNull player
+
+diag_log "Zombie .sqs init started"
+
+cly_cutscene = false
+if (isNil "CLY_deadcharacters") then {CLY_deadcharacters=[]}
+
+
+;Init variables
+?isNil "CLY_hordetrigger":CLY_hordetrigger=""
+?isNil "CLY_playerstates":CLY_playerstates=[]
+?isNil "CLY_deadcharacters":CLY_deadcharacters=[]
+?isNil "CLY_alldead":CLY_alldead=false
+?isNil "CLY_cutscene":CLY_cutscene=false
+CLY_playerrating=0
+CLY_noises_bark=["dog_bark01","dog_bark02","dog_bark03","dog_bark04","dog_bark05"]
+CLY_noises_yelp=["dog_yelp01","dog_yelp02","dog_yelp03"]
+
+;Determin Game Version
+CLY_game = ""
+?isClass (configFile / "CfgPatches" / "Chernarus") : CLY_game = "A2"
+?isClass (configFile / "CfgPatches" / "CA_E") : CLY_game = "OA"
+?isClass (configFile / "CfgPatches" / "Chernarus") && isClass (configFile / "CfgPatches" / "CA_E") : CLY_game = "CO"
+?isClass (configFile / "CfgMods" / "DayZ") : titleText ["DayZ is incompatible with other Arma 2 content!\nPlay this mission without DayZ!", "PLAIN"]
+
+@isDedicated or !isNull player
+
+;Fade sound
+[] spawn {0 fadeSound 0;sleep 2.5;5 fadeSound 1}
+
+;Make markers invisible
+?isServer:{_x setMarkerAlpha 0} forEach ["respawn_civilian","safehouseborder"]
+
+;Character specific equipment
+?CLY_game != "A2" : call compile "removeBackpack player"
+
+
+;Zombie facts
+player createDiaryRecord ["Diary",["Miscellaneous facts","<br/>- Zombies will pursue you if they've noticed you and you're in range<br/>- You die from the third strike<br/>- You can heal yourself fully with a bandage<br/>- Zombies are vulnerable to shots in or near the head<br/>- Torso kills are easier with a powerful weapon<br/>- Unarmed survivors are much less likely to attract attention<br/>- Gunshots and running engines attract zombies<br/>- Zombies may have bandages or items on their person<br/><br/>This mission supports joining in progress. New players teleport to a constantly updating position near a random teammate. Each character's status is saved to allow disconnecting and resuming the mission without losing equipment. A resumed character will have 2/3 of its original magazines. You can also switch slots upon death to continue playing."]]
+
+;Credits
+player createDiaryRecord ["Diary",["Credits","<br/>Mission design and scripting:<br/><br/>Craig/bobtom<br/>Zombie Scripts:<br/>Celery<br/><br/>Noises and screams:<br/>Thief II: The Metal Age and freesound.org<br/><br/>"]];
+
+
+
+CVG_ZombieTowns = 4
+;;;;;;;;;;Serverside only;;;;;;;;;;
+?((!isServer) and (CVG_ZombieTowns != 4)):exit
+
+;No conversations
+{_x setVariable ["BIS_noCoreConversations",true,true]} forEach allUnits
+
+;Create HQs for all sides in case the mission doesn't do it
+_hqwest=createCenter west
+_hqeast=createCenter east
+_hqres=createCenter resistance
+_hqciv=createCenter civilian
+{_x setFriend [west,1]} forEach [west,east,civilian]
+{_x setFriend [east,1]} forEach [west,east,civilian]
+{_x setFriend [resistance,1]} forEach [resistance]
+{_x setFriend [civilian,1]} forEach [west,east,civilian]
+
+
+;Zombie aggro radius (random between min and max)
+CLY_minaggroradius=20
+CLY_maxaggroradius = 500
+
+;Max aggro radius if spawned within X meters of one of the objects in the array
+CLY_altmaxaggroradius = 100
+CLY_altmaxaggroradiustriggers = [];
+
+CVG_minspawndist = 100
+;At what range from a player zombies can spawn and despawn
+CLY_minspawndist=CVG_minspawndist
+CLY_maxspawndist=800
+CLY_despawndist=CLY_maxspawndist+50
+
+;Distance from victim at which a non-horde zombie gives up the chase
+CLY_chasegiveupdist=400
+
+;Zombie will pick a random victim within this radius from the nearest target
+;Value of 1 or below is multiplier of aggro radius, 0 disables randomization
+CLY_randomvictimradius=0.333
+
+;Motorized vehicle aggro radius multiplier
+CLY_vehicleaggromultiplier=2
+
+;Unarmed aggro radius multiplier
+CLY_unarmedaggromultiplier=0.2
+
+;Minimum knowsAbout that allows a zombie to attack a target within aggro range (0 - 4)
+CLY_minaggroknowsabout = 0.1
+
+;Default zombies per km^2
+
+;Objects that prevent zombies spawning within CLY_minspawndist of them
+CLY_nospawnobjects=[]
+
+;Minimum and maximum interval between spawning random hordes
+CLY_randomhordemininterval=300
+CLY_randomhordemaxinterval=960
+
+;Minimum and maximum random horde spawning distance from player group
+CLY_randomhordeminspawndist=300
+CLY_randomhordemaxspawndist=500
+
+;Minimum and maximum number of zombies in a random horde
+CLY_randomhordeminamount=1
+CLY_randomhordemaxamount=3
+
+;Groups reserved for hordes - allows hordes to spawn in very crowded areas
+CLY_hordereservedgroups=50
+;?CVG_Horde == 2:CLY_hordereservedgroups=200
+;Zombie types and their % of automatically generated zombies (must total 100)
+;normal		makes noise when idle, runs to victim when one is spotted
+;surprise		runs to victim when one is spotted, silent until close
+;passive		runs to victim when one is spotted, silent until close, waits still
+;crawler		crawls, silent until very close, aggro radius always maximum
+;passive crawler	crawls, silent until very close, waits still
+;sneaker		crawls, silent until very close, starts running when close, aggro radius always maximum
+;ambusher		crawls, silent until very close, waits still, starts running when victim is in aggro range
+;armored		runs to victim when one is spotted, silent until close, withstands lots of damage
+;slow armored	walks to victim when one is spotted, silent until close, withstands lots of damage
+CLY_zombietypes = [["normal", 62], ["surprise", 30], ["passive", 0], ["crawler", 6], ["passive crawler", 0], ["sneaker", 2], ["ambusher", 0], ["creeper", 0], ["walker", 0], ["armored", 0], ["slow armored", 0]]
+;Chance of zombie spawning with a lootable bandage
+CLY_zombiebandagechance=0.06
+
+;Range at which a zombie can attack
+CLY_zombieattackdist = 2.5
+
+;Chance of zombie dropping a random magazine
+CLY_zombiemagazinechance=0.1
+
+;Magazines that a zombie can drop
+CLY_zombiemagazines=["16Rnd_9x21_Mag",["20Rnd_556x45_UW_mag","20Rnd_762x45_Mag","30Rnd_65x39_caseless_mag","30Rnd_65x39_case_mag","100Rnd_65x39_caseless_mag_Tracer","200Rnd_65x39_cased_Box"]]
+
+;Sound arrays
+CLY_noises_idle=["idle2","idle3","idle4","idle5","idle6","idle7","idle8"]
+CLY_noises_chase=["chase1","chase2","chase3","chase4","chase5","chase6","chase7","chase8"]
+CLY_noises_attack=["attack1","attack2","attack3","attack4"]
+CLY_noises_die=["die1","die2"]
+CLY_noises_scream=["scream1","scream2","scream3"]
+
+;Unit classes that can be used as zombies - civilian units are not recommended due to AI problems
+;Make subarrays for a group of similar units to make the whole group have the same chance to appear as a single unit
+
+
+;Armored zombie classes
+CLY_armoredzombieclasses=["MVD_Soldier"]
+
+;What classes can have which faces (a = Asian, b = African, c = European, d = Arab/Persian)
+CLY_zombieclasses_a=["USMC_Soldier","USMC_SoldierM_Marksman","USMC_Soldier_Officer","USMC_Soldier_TL","USMC_Soldier_Crew","USMC_Soldier_Light","FR_TL","FR_Marksman","FR_GL","FR_Sapper","FR_Light","Soldier_PMC","Soldier_GL_PMC","Soldier_Engineer_PMC","Soldier_TL_PMC"]
+CLY_zombieclasses_b=["USMC_Soldier","USMC_SoldierM_Marksman","USMC_Soldier_Officer","USMC_Soldier_TL","USMC_Soldier_Crew","USMC_Soldier_Light","FR_TL","FR_Marksman","FR_GL","FR_Sapper","FR_Light","BAF_Soldier_W","BAF_Soldier_L_W","Soldier_PMC","Soldier_GL_PMC","Soldier_Engineer_PMC","Soldier_TL_PMC"]
+CLY_zombieclasses_c=["USMC_Soldier","USMC_SoldierM_Marksman","USMC_Soldier_Officer","USMC_Soldier_TL","USMC_Soldier_Crew","USMC_Soldier_Light","FR_TL","FR_Marksman","FR_GL","FR_Sapper","FR_Light","BAF_Soldier_W","BAF_Soldier_Officer_W","BAF_crewman_W","BAF_Soldier_AR_W","BAF_Soldier_TL_W","BAF_Soldier_L_W","MVD_Soldier","Soldier_PMC","Soldier_GL_PMC","Soldier_Engineer_PMC","Soldier_TL_PMC"]
+CLY_zombieclasses_d=[]
+
+;Zombie faces
+CLY_faces=[]
+CLY_faces_a=["Face58_camo1"]
+CLY_faces_b=[]
+CLY_faces_c=[]
+CLY_faces_d=[]
+for "_x" from 1 to 107 do {_0=if (_x<10) then {"0"} else {""};_face=format ["Face%1%2_camo1",_0,_x];CLY_faces=CLY_faces+[_face]}
+for "_x" from 1 to 20 do {_0=if (_x<10) then {"0"} else {""};_face=format ["Face%1%2_camo1_EP1",_0,_x];CLY_faces=CLY_faces+[_face];CLY_faces_d=CLY_faces_d+[_face]}
+for "_x" from 108 to 124 do {_face=format ["Face%1_camo1_PMC",_x];CLY_faces=CLY_faces+[_face];CLY_faces_a=CLY_faces_a+[_face]}
+for "_x" from 26 to 40 do {_face=format ["Face%1_camo1",_x];CLY_faces_b=CLY_faces_b+[_face]}
+for "_x" from 78 to 86 do {_face=format ["Face%1_camo1",_x];if (_face!="Face85_camo1") then {CLY_faces_b=CLY_faces_b+[_face]}}
+for "_x" from 1 to 107 do {_0=if (_x<10) then {"0"} else {""};_face=format ["Face%1%2_camo1",_0,_x];if (_face!="Face58_camo1" and !(_face in CLY_faces_b)) then {CLY_faces_c=CLY_faces_c+[_face]}}
+
+;Default face type for uncategorized classes
+CLY_faces_default=CLY_faces_c
+
+[] execVM "zombie_scripts\cly_z_unitupdate.sqf"
+?!isServer:exit
+
+;execVM "cly_playerstates.sqf"
+;[] exec "zombie_scripts\cly_z_randomhorde.sqs"
+;[] exec "jipresumepos.sqs"
+@{isNil _x} count ["BIS_fnc_inTrigger", "BIS_fnc_distance2D"] == 0
+diag_log "Zombie .sqs init finished"
+
+exit

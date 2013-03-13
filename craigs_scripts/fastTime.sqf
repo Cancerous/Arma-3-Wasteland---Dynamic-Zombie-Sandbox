@@ -1,0 +1,1 @@
+tmp = [4] spawn {timeJump = (_this select 0)/60;while {true} do {sleep 60; skipTime timeJump};};

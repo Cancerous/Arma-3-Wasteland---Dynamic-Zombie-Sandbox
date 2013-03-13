@@ -1,0 +1,11 @@
+If you are changing this Mission in ANY way, please leave it at 1.25
+Don't change the version number in any way, shape or form
+Also put [Modified] at the end of the mission. Any other info
+can be in your host name.
+
+This will eliminate any ideas of it being an official version, when it
+isn't.
+
+Thank you.
+
+Craig
