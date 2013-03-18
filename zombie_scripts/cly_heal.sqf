@@ -285,7 +285,7 @@ while {typeName _id == "SCALAR"} do
 			};
 		} forEach (getPosATL _unit nearObjects ["All", 10]);
 
-		sleep 0.01;
+		sleep 0.3;
 	};
 	
 	//Remove actions at death or unit switch

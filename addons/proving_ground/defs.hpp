@@ -49,7 +49,7 @@
 
 
 #define balca_sound_player_IDD __idCounter(70)
-//#define balca_soundlist_IDC __idCounter(71)
+#define balca_soundlist_IDC __idCounter(71)
 
 #define balca_debug_hint_IDD __idCounter(80)
 

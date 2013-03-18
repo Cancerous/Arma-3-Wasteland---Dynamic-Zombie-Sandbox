@@ -171,9 +171,9 @@ class w_RscListBox
     colorDisabled[] = {0,0,0,0.3};
     font = "PuristaSemibold";
     sizeEx = 0.023;
-    soundSelect[] = {"",0.1,1};
-    soundExpand[] = {"",0.1,1};
-    soundCollapse[] = {"",0.1,1};
+	soundSelect[] = {"", 0.1, 1};
+	soundExpand[] = {"", 0.1, 1};
+	soundCollapse[] = {"", 0.1, 1};
     maxHistoryDelay = 1;
     autoScrollSpeed = -1;
     autoScrollDelay = 5;
@@ -213,9 +213,9 @@ class w_Rsclist
         colorDisabled[] = {0,0,0,0.3};
         font = "PuristaSemibold";
         sizeEx = 0.023;
-        soundSelect[] = {"",0.1,1};
-        soundExpand[] = {"",0.1,1};
-        soundCollapse[] = {"",0.1,1};
+		soundSelect[] = {"", 0.1, 1};
+		soundExpand[] = {"", 0.1, 1};
+		soundCollapse[] = {"", 0.1, 1};
         maxHistoryDelay = 1;
         autoScrollSpeed = -1;
         autoScrollDelay = 5;
@@ -312,10 +312,10 @@ class w_RscButtonBase {
 	sizeEx = 0.023;
 	text = "";
 	
-	soundEnter[] = {"\A3\ui_f\data\Sound\MOUSE2", 0.09, 1};
-	soundPush[] = {"\A3\ui_f\data\Sound\NEW1", 0.09, 1};
-	soundClick[] = {"\A3\ui_f\data\Sound\MOUSE3", 0.07, 1};
-	soundEscape[] = {"\A3\ui_f\data\Sound\MOUSE1", 0.09, 1};
+		soundEnter[] = {"", 0.09, 1};
+		soundPush[] = {"", 0.09, 1};
+		soundClick[] = {"", 0.07, 1};
+		soundEscape[] = {"", 0.09, 1};
 	
 	action = "";
 	
@@ -403,9 +403,10 @@ class RscButton
     colorText[]               = {1, 1, 1, 1};
     font                      = "";
     sizeEx                    = 0.025;
-    soundPush[]               = {"", 0.2, 1};
-    soundClick[]              = {"ui\ui_ok", 0.2, 1};
-    soundEscape[]             = {"ui\ui_cc", 0.2, 1};
+		soundEnter[] = {"", 0.09, 1};
+		soundPush[] = {"", 0.09, 1};
+		soundClick[] = {"", 0.07, 1};
+		soundEscape[] = {"", 0.09, 1};
     default                   = false;
     text                      = "";
     action                    = "";
@@ -422,7 +423,6 @@ class RscButton
     offsetPressedX            = 0;
     offsetPressedY            = 0;
     borderSize                = 0;
-    soundEnter[]              = {"", 0.15, 1};
 
 };
 
@@ -445,9 +445,9 @@ class w_RscCombo {
 	colorBackground[] = {1, 1, 1, 1};
 	colorSelect[] = {1, 0, 0, 1};
 	colorSelectBackground[] = {0, 1, 0, 1};
-	soundSelect[] = {"", 0.000000, 1};
-	soundExpand[] = {"", 0.000000, 1};
-	soundCollapse[] = {"", 0.000000, 1};
+		soundSelect[] = {"", 0.1, 1};
+		soundExpand[] = {"", 0.1, 1};
+		soundCollapse[] = {"", 0.1, 1};
 	maxHistoryDelay = 10;
 	autoScrollSpeed = -1;
 	autoScrollDelay = 5;

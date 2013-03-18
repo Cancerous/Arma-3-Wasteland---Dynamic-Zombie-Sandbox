@@ -20,7 +20,7 @@ else
 	};
 
 	R3F_LOG_joueur_deplace_objet = objNull;
-	sleep 0.01;
+	sleep 0.1;
 	
 	R3F_LOG_mutex_local_verrou = false;
 };

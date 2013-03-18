@@ -15,7 +15,7 @@ Craig
 #include "setup.sqf"
 //if (isnil "RE") then {[] execVM "\ca\Modules\MP\data\scripts\MPframework.sqf"};
 //Include Strings for text like side missions.
-#include "en_strings.sqf";
+//#include "en_strings.sqf";
 
 //Just some variables being set for if is server, client, jip. 
 if(isServer) then { Z_Server = true;} else { Z_Server = false;};
@@ -28,13 +28,13 @@ paramsDone = 0;
 trigArray = [];
 
 StartProgress = false;
-//enableSaving[false,false];
+enableSaving[false,false];
 
 X_Server = false;
 X_Client = false;
 X_JIP = false;
 hitStateVar = false;
-versionName = "v1.05 Alpha";
+versionName = "v1.07 +DZS Alpha";
 
 if(isServer) then { X_Server = true;};
 if(!isDedicated) then { X_Client = true;};
@@ -104,19 +104,14 @@ if (gameType == 0) then {
 		CVG_survivors = 0;
 		CVG_logistics = 0;
 		CVG_SideMissions =0;
-
-
-
 	if (CVG_logistics == 1) then {
 		[] execVM "addons\R3F_ARTY_AND_LOG\init.sqf";
 	};
-
-	
 	if (CVG_SideMissions == 1) then {
 		SMarray = ["SM1","SM2","SM3","SM4"];
 		[1] execVM "sideMissions\SMfinder.sqf";
-	};	
-	[] execVM "craigs_Scripts\hordeSpawner.sqf"; 
+	};
+	
 };
 
 //init Wasteland Core
@@ -158,37 +153,13 @@ if (gameType == 2) then {
 [] execVM  "craigs_scripts\zombiesinit.sqf";
 [] exec "craigs_scripts\zombiesinit.sqs";
 
-/*	
-//init keypress get-in system
-if (!isdedicated) then {
-	waitUntil {!isNil "CVG_E"};
-	if (CVG_E == 1) then {
-	onKeyPress = compile preprocessFile "craigs_scripts\onKeyPress.sqf";
-	waituntil {!(IsNull (findDisplay 46))};
-	(findDisplay 46) displayAddEventHandler ["KeyDown", "nul = [_this select 0, _this select 1] execVM 'craigs_scripts\onKeyPress.sqf' "];
-	};
-};
-*/
+
 //init 3rd Party Scripts
 [] execVM "addons\R3F_ARTY_AND_LOG\init.sqf";
 [] execVM "addons\proving_Ground\init.sqf";
-//[0.1, 0.5, 0.5] execVM "addons\scripts\DynamicWeatherEffects.sqf";
+[0.1, 0.5, 0.5] execVM "addons\scripts\DynamicWeatherEffects.sqf";
 
 //runs player connect script
 onPlayerConnected "Z_JIP_Time = date; publicVariable ""Z_JIP_Time""";
-
 sleep 3;
 _messages = ["Escape this hellhole!","Survive","Lock and load","Get ready, Zombies are coming","Pillage and steal","The higher, the better","Enjoy your stay!","Headshots are better!!","craigvandergalien@gmail.com","Unite or Fight","Kill some Zs!","By Craig Vander Galien","Help: Luke Jansen"];
-
-
-/*
-// words at start, dedicated can't run it
-if (!isDedicated) then {
-	_pos = (getPosATL player);
-	_words = _messages call BIS_fnc_selectRandom;
-	waitUntil {_pos distance (getPosATL player) > .1};
-    [str ("DZS:Dynamic Zombie Sandbox") ,  str (format ["%1", name player]),_words] spawn BIS_fnc_infoText;
-};
-*/
-
-

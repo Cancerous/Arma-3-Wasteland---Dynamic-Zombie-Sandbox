@@ -1,6 +1,6 @@
 /**
  * English and French comments
- * Commentaires anglais et français
+ * Commentaires anglais et francais
  * 
  * This file adds the ArmA 2 and Arrowhead objetcs in the configuration variables of the logistics system.
  * Fichier ajoutant les objets d'ArmA 2 et Arrowhead dans la configuration du système de logistique.

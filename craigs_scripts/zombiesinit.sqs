@@ -58,8 +58,8 @@ player createDiaryRecord ["Diary",["Miscellaneous facts","<br/>- Zombies will pu
 player createDiaryRecord ["Diary",["Credits","<br/>Mission design and scripting:<br/><br/>Craig/bobtom<br/>Zombie Scripts:<br/>Celery<br/><br/>Noises and screams:<br/>Thief II: The Metal Age and freesound.org<br/><br/>"]];
 
 
-
 CVG_ZombieTowns = 4
+
 ;;;;;;;;;;Serverside only;;;;;;;;;;
 ?((!isServer) and (CVG_ZombieTowns != 4)):exit
 
@@ -88,7 +88,7 @@ CLY_altmaxaggroradiustriggers = [];
 CVG_minspawndist = 100
 ;At what range from a player zombies can spawn and despawn
 CLY_minspawndist=CVG_minspawndist
-CLY_maxspawndist=800
+CLY_maxspawndist=500
 CLY_despawndist=CLY_maxspawndist+50
 
 ;Distance from victim at which a non-horde zombie gives up the chase

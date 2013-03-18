@@ -27,15 +27,15 @@ diag_log format["WASTELAND SERVER - Server Complie Finished"];
 if (serverSpawning == 1) then {
     diag_log format["WASTELAND SERVER - Initilizing Server Spawning"];
 	_vehSpawn = [] ExecVM "server\functions\vehicleSpawning.sqf";
-	waitUntil{sleep 0.01; scriptDone _vehSpawn};
+	waitUntil{sleep 0.1; scriptDone _vehSpawn};
     _objSpawn = [] ExecVM "server\functions\objectsSpawning.sqf";
-	waitUntil{sleep 0.01; scriptDone _objSpawn};
+	waitUntil{sleep 0.1; scriptDone _objSpawn};
     _boxSpawn = [] ExecVM "server\functions\boxSpawning.sqf";
-	waitUntil{sleep 0.01; scriptDone _boxSpawn};
+	waitUntil{sleep 0.1; scriptDone _boxSpawn};
     //_gunSpawn = [] ExecVM "server\functions\staticGunSpawning.sqf";
 	//waitUntil{sleep 0.1; scriptDone _gunSpawn};
     _heliSpawn = [] ExecVM "server\functions\staticHeliSpawning.sqf";
-    waitUntil{sleep 0.01; scriptDone _heliSpawn};
+    waitUntil{sleep 0.1; scriptDone _heliSpawn};
 };
 #endif
 //Execute Server Missions.

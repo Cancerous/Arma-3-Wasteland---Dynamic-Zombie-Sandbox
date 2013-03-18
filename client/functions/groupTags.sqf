@@ -44,7 +44,7 @@ while {true} do
 		}; 	
 	} else {
 		_tempArray = [];
-		sleep 0.01;       
+		sleep 0.1;       
     };
         
     private ["_storeInteractionBuffer","_storeInteractionZone","_currPos","_store","_relativeDir","_absoluteDir"];

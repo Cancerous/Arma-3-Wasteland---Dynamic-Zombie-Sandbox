@@ -278,7 +278,7 @@ if (isServer) then {
     
     setWind [drn_DynamicWeather_WindX, drn_DynamicWeather_WindZ, true];
     
-	sleep 0.01;
+	sleep 0.1;
     
     publicVariable "drn_var_DynamicWeather_Rain";
     drn_var_DynamicWeather_ServerInitialized = true;
@@ -506,7 +506,7 @@ if (isServer) then {
                 };
                 
                 if (_debug) then {
-					sleep 0.01;
+					sleep 0.1;
                 }
                 else {
                     sleep 10;
@@ -538,7 +538,7 @@ if (isServer) then {
     };
     
     0 setRain _rain;
-	sleep 0.01;
+	sleep 0.1;
     
     while {true} do {
         if (_rainIntervalRainProbability > 0) then {

@@ -51,8 +51,8 @@ _box = createVehicle ["Box_East_WpsSpecial_F",[(_randomPos select 0), (_randomPo
 _box2 = createVehicle ["Box_NATO_WpsSpecial_F",[(_randomPos select 0), (_randomPos select 1) - 10,0],[], 0, "NONE"];
 [_box2,"mission_Side_USSpecial"] call fn_refillbox;
 
-_picture = getText (configFile >> "cfgVehicles" >> typeOf _vehicle >> "picture");
-_vehicleName = getText (configFile >> "cfgVehicles" >> typeOf _vehicle >> "displayName");
+_picture = getText (configFile >> "CfgVehicles" >> typeOf _vehicle >> "picture");
+_vehicleName = getText (configFile >> "CfgVehicles" >> typeOf _vehicle >> "displayName");
 _hint = parseText format ["<t align='center' color='%4' shadow='2' size='1.75'>Side Objective</t><br/><t align='center' color='%4'>------------------------------</t><br/><t align='center' color='%5' size='1.25'>%1</t><br/><t align='center'><img size='5' image='%2'/></t><br/><t align='center' color='%5'>A<t color='%4'> %3</t>, has come down under enemy fire!</t>", _missionType, _picture, _vehicleName, sideMissionColor, subTextColor];
 messageSystem = _hint;
 publicVariable "messageSystem";

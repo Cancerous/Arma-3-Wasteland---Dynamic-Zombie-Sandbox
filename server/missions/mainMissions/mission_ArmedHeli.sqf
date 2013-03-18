@@ -46,8 +46,8 @@ _vehicleClass = ["O_Ka60_F","B_AH9_F"] call BIS_fnc_selectRandom;
 //Vehicle Class, Posistion, Fuel, Ammo, Damage
 _vehicle = [_vehicleClass,_randomPos,0.25,1,0.50,"NONE"] call createMissionVehicle;
 
-_picture = getText (configFile >> "cfgVehicles" >> typeOf _vehicle >> "picture");
-_vehicleName = getText (configFile >> "cfgVehicles" >> typeOf _vehicle >> "displayName");
+_picture = getText (configFile >> "CfgVehicles" >> typeOf _vehicle >> "picture");
+_vehicleName = getText (configFile >> "CfgVehicles" >> typeOf _vehicle >> "displayName");
 _hint = parseText format ["<t align='center' color='%4' shadow='2' size='1.75'>Main Objective</t><br/><t align='center' color='%4'>------------------------------</t><br/><t align='center' color='%5' size='1.25'>%1</t><br/><t align='center'><img size='5' image='%2'/></t><br/><t align='center' color='%5'>A<t color='%4'> %3</t>, has been immobilized go get it for your team.</t>", _missionType, _picture, _vehicleName, mainMissionColor, subTextColor];
 messageSystem = _hint;
 publicVariable "messageSystem";

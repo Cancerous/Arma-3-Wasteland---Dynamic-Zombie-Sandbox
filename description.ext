@@ -1,6 +1,6 @@
 onLoadMission="Loading Mission";
 //#define LOADSCREEN "craigs_scripts\img.paa"
-//#define LOADSCREENTEXT "Creating Game World"
+//#define LOADSCREENTEXT "Creating World"
 //#include "loadingscreen.ext"
 //disableChannels[]={2};
 //enableItemsDropping = 0;

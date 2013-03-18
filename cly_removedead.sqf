@@ -85,7 +85,7 @@ _pendingunits=[];
 while {!_oa} do {
 	_units=allUnits;
 	_deadunits=[];
-	sleep 0.01;
+	sleep 3;
 	{
 		if !(_x in allUnits) then {
 			_deadunits set [count _deadunits,_x];

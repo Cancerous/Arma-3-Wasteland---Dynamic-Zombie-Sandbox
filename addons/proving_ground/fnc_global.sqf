@@ -57,9 +57,9 @@ _fnc_create_land_target = {
 	{_unit removeMagazine _x} forEach magazines _unit;
 	group player reveal _unit;
 	//hint on hit
-	_unit addEventHandler["hit","hintSilent format['""%1"" hit, damage:%2',getText(configFile >> 'cfgVehicles' >> typeof (_this select 0) >> 'displayName'),ceil((_this select 2)*100)/100]; [4,_this] call c_proving_ground_fnc_statistics"]; 
+	_unit addEventHandler["hit","hintSilent format['""%1"" hit, damage:%2',getText(configFile >> 'CfgVehicles' >> typeof (_this select 0) >> 'displayName'),ceil((_this select 2)*100)/100]; [4,_this] call c_proving_ground_fnc_statistics"]; 
 	//hint when killed
-	_unit addEventHandler["killed","hintSilent format['""%1"" killed',getText(configFile >> 'cfgVehicles' >> typeof (_this select 0) >> 'displayName')];[5,_this] call c_proving_ground_fnc_statistics"];
+	_unit addEventHandler["killed","hintSilent format['""%1"" killed',getText(configFile >> 'CfgVehicles' >> typeof (_this select 0) >> 'displayName')];[5,_this] call c_proving_ground_fnc_statistics"];
 
 
 	//hint format ["%1",[_index,_trgname]];
@@ -85,7 +85,7 @@ _fnc_create_crew = {
 	private["_unit","_crew","_grp","_veh"];
 	_veh = _this select 0;
 	_grp = _this select 1;
-	_crew = getArray(configFile >> "cfgVehicles" >> (typeOf _veh) >> "typicalCargo");
+	_crew = getArray(configFile >> "CfgVehicles" >> (typeOf _veh) >> "typicalCargo");
 	_target_mode = PG_get(target_mode);
 
 	{
@@ -144,8 +144,8 @@ _fnc_create_air_target = {
 	_grp copyWaypoints PG_get(air_target_grp);
 	_veh flyInHeight 300;
 
-	_veh addEventHandler["hit","hintSilent format['""%1"" hit\ndamage:%2\ncrew status: %3',getText(configFile >> 'cfgVehicles' >> typeof (_this select 0) >> 'displayName'),ceil((_this select 2)*100)/100,[(_this select 0)] call {_crew = crew (_this select 0);_crew_stat = [];{_crew_stat set [count _crew_stat, damage _x]} forEach _crew;_crew_stat}]; "]; 
-	_veh addEventHandler["killed","hintSilent format['""%1"" killed',getText(configFile >> 'cfgVehicles' >> typeof (_this select 0) >> 'displayName')];"];
+	_veh addEventHandler["hit","hintSilent format['""%1"" hit\ndamage:%2\ncrew status: %3',getText(configFile >> 'CfgVehicles' >> typeof (_this select 0) >> 'displayName'),ceil((_this select 2)*100)/100,[(_this select 0)] call {_crew = crew (_this select 0);_crew_stat = [];{_crew_stat set [count _crew_stat, damage _x]} forEach _crew;_crew_stat}]; "]; 
+	_veh addEventHandler["killed","hintSilent format['""%1"" killed',getText(configFile >> 'CfgVehicles' >> typeof (_this select 0) >> 'displayName')];"];
 
 	_veh
 };

@@ -134,10 +134,10 @@ switch(_switch) do
 };
 // words at start, dedicated can't run it
 if (!isDedicated) then {
-sleep 1;
+sleep 2;
 _mins = floor(60 * (daytime - floor(daytime)));
 [
-	"404 Wasteland","Spawn Beacon",
+	"Wasteland with DZS","Spawn Beacon",
 	format ["%1:%3%2", floor(daytime), _mins, if(_mins < 10) then {"0"} else {""}]
 ] spawn BIS_fnc_infoText;
-)
+};

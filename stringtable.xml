@@ -221,12 +221,6 @@
         <German> Debug-Modus </German>
         <Russian> Режим отладки </Russian>
         <Spanish> Modo Debug </Spanish>
-      </Key>
-      <Key ID="STR_CVG_message_MysteryBox">
-        <English> Mystery Box </English>
-        <German> Debug-Modus </German>
-        <Russian> Режим отладки </Russian>
-        <Spanish> Modo Debug </Spanish>
       </Key>  
     </Container>
   </Package>

@@ -1,6 +1,7 @@
 //Zombie generator script by Celery
+if (!isServer) exitWith {};
+if (CVG_Zombietowns != 4) exitWith {};
 
-if ((!isServer) && (CVG_Zombietowns != 4)) exitWith {};
 
 waitUntil {{isNil _x} count ["CLY_minspawndist","CLY_maxspawndist","CLY_despawndist","CLY_defaultdensity","CLY_hordereservedgroups","CLY_players","CLY_debug","BIS_fnc_inTrigger"]==0};
 
@@ -68,7 +69,7 @@ while {_amount>0} do {
 	_zombies=[];
 	for "_x" from 1 to count _positions do {_zombies set [count _zombies,objNull]};
 	
-	sleep 0.01;
+	sleep 0.1;
 	
 	//Loop until players are out of range
 	while {_amount>0 and {_triggerpos distance [getPos vehicle _x select 0,getPos vehicle _x select 1,0]>_deactivatedist} count CLY_players<count CLY_players} do {
@@ -129,14 +130,14 @@ while {_amount>0} do {
 					};
 				};
 			};
-			sleep 0.01;
+			sleep 0.3;
 		} forEach _idarray;
 		
 		//Remove expired IDs
 		{_idarray=_idarray-[_x]} forEach _removeidarray;
 		_amount=count _idarray;
 		
-		sleep 0.01;
+		sleep 1;
 	};
 	{deleteMarkerLocal _x} forEach _markers;
 	_amount=count _idarray;

@@ -75,7 +75,7 @@ hrn_worldCenter = (getArray (configFile >> "CfgWorlds" >> worldName >> "centerPo
 
 hrn_fnc_setLoot =
 {
-diag_log "setting started";
+//diag_log "setting started";
 	private["_holder","_random","_arr","_subArr","_wep","_mag","_modifiers","_magAmount","_rnd","_obj","_m","_tmp","_pick"];
 	_holder = _this select 0;
 	_type = _this select 1;
@@ -211,7 +211,7 @@ diag_log "setting started";
 
 hrn_fnc_spawnLoot =
 {
-diag_log "spawning loot";
+	diag_log "spawning loot";
 	private["_building","_type","_index","_pos","_h","_buildings","_rnd","_nearHolders","_wepHolder","_sel","_rnd2"];
 	_buildings = buildings;
 	{

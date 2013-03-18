@@ -119,7 +119,7 @@ while {_run} do
 				_timeout = time + _deserted;
 				#endif
 				
-				sleep 0.01;
+				sleep 0.1;
 				#ifdef __A2NET__
 			 	waitUntil {_timeout < netTime or !alive _unit or {alive _x} count crew _unit > 0};
 				#else
@@ -134,10 +134,10 @@ while {_run} do
 		// Respawn vehicle
       	if (_dead) then 
 		{	
-			if (_nodelay) then {sleep 0.01; _nodelay = false;} else {sleep _delay;};
+			if (_nodelay) then {sleep 0.1; _nodelay = false;} else {sleep _delay;};
 			if (_dynamic) then {_position = getPosASL _unit; _dir = getDir _unit;};
 			if (_explode) then {_effect = "M_TOW_AT" createVehicle getPosASL _unit; _effect setPosASL getPosASL _unit;};
-			sleep 0.01;
+			sleep 0.1;
 	
 			deleteVehicle _unit;
 			sleep 2;
@@ -159,5 +159,5 @@ while {_run} do
     } else {
     	sleep 5;
     };
-	sleep 0.01;
+	sleep 1;
 };

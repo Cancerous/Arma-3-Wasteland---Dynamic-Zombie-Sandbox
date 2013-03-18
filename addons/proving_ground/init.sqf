@@ -8,7 +8,7 @@ if (isClass(configFile >> "cfgPatches" >> "ace_main")) then {
 };
 
 if (time==0) then {
-	sleep 0.01;
+	sleep 0.1;
 };
 
 if !(isNil{GVAR(init)}) exitWith {};
@@ -28,7 +28,7 @@ __prepFnc(exec_console);
 __prepFnc(sattelite);
 __prepFnc(statistics);
 __prepFnc(environment);
-if (isClass(configFile >> "cfgVehicles" >> "An2_1_TK_CIV_EP1")) then {
+if (isClass(configFile >> "CfgVehicles" >> "An2_1_TK_CIV_EP1")) then {
 	PG_set(satcam_keyhandler,__preprocess __scriptPath(satcam_keyhandler_OA));
 }else{
 	PG_set(satcam_keyhandler,__preprocess __scriptPath(satcam_keyhandler));

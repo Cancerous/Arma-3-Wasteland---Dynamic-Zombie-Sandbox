@@ -4,7 +4,7 @@
  * To enable the logistics system, write #define R3F_LOG_enable withouth double-slash.
  * 
  * Ajoutez deux barres obliques ( // ) au début de la ligne #include pour désactiver le système logistique.
- * (En plus de ça, vous pouvez supprimer le répertoire R3F_LOG pour alléger votre mission. Plus de 90ko économisés.)
+ * (En plus de ca, vous pouvez supprimer le répertoire R3F_LOG pour alléger votre mission. Plus de 90ko économisés.)
  * Pour activer le système logistique, écrivez #define R3F_LOG_enable sans les deux barres obliques.
  */
 

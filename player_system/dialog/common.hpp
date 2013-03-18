@@ -133,9 +133,9 @@ class w_Rsclist
 		colorDisabled[] = {0,0,0,0.3};
 		font = "PuristaMedium";
 		sizeEx = 0.023;
-		soundSelect[] = {"",0.1,1};
-		soundExpand[] = {"",0.1,1};
-		soundCollapse[] = {"",0.1,1};
+		soundSelect[] = {"", 0.1, 1};
+		soundExpand[] = {"", 0.1, 1};
+		soundCollapse[] = {"", 0.1, 1};
 		maxHistoryDelay = 1;
 		autoScrollSpeed = -1;
 		autoScrollDelay = 5;
@@ -231,10 +231,10 @@ class w_RscButtonBase {
 	sizeEx = 0.023;
 	text = "";
 	
-	soundEnter[] = {"\ca\ui\data\sound\mouse2", 0.09, 1};
-	soundPush[] = {"\ca\ui\data\sound\new1", 0.09, 1};
-	soundClick[] = {"\ca\ui\data\sound\mouse3", 0.07, 1};
-	soundEscape[] = {"\ca\ui\data\sound\mouse1", 0.09, 1};
+		soundEnter[] = {"", 0.09, 1};
+		soundPush[] = {"", 0.09, 1};
+		soundClick[] = {"", 0.07, 1};
+		soundEscape[] = {"", 0.09, 1};
 	
 	action = "";
 	
@@ -342,15 +342,9 @@ class w_RscCombo {
 	colorSelectBackground[] = {
 			0, 1, 0, 1
 	};
-	soundSelect[] = {
-			"", 0.000000, 1
-	};
-	soundExpand[] = {
-			"", 0.000000, 1
-	};
-	soundCollapse[] = {
-			"", 0.000000, 1
-	};
+		soundSelect[] = {"", 0.1, 1};
+		soundExpand[] = {"", 0.1, 1};
+		soundCollapse[] = {"", 0.1, 1};
 	maxHistoryDelay = 10;
 	autoScrollSpeed = -1;
 	autoScrollDelay = 5;
@@ -364,15 +358,14 @@ class w_RscCombo {
 	arrowEmpty = "\ca\ui\data\ui_arrow_top_ca.paa";
 	border = "\ca\ui\data\ui_border_scroll_ca.paa";
 
-		class ScrollBar
-		{
-			color[] = {1, 1, 1, 1};
-			colorActive[] = {1, 1, 1, 1};
-			colorDisabled[] = {1, 1, 1, 1};
-			thumb = "\ca\ui\data\ui_scrollbar_thumb_ca.paa";
-			arrowFull = "\ca\ui\data\ui_arrow_top_active_ca.paa";
-			arrowEmpty = "\ca\ui\data\ui_arrow_top_ca.paa";
-			border = "\ca\ui\data\ui_border_scroll_ca.paa";
-		};
-	
+	class ScrollBar
+	{
+		color[] = {1, 1, 1, 1};
+		colorActive[] = {1, 1, 1, 1};
+		colorDisabled[] = {1, 1, 1, 1};
+		thumb = "\ca\ui\data\ui_scrollbar_thumb_ca.paa";
+		arrowFull = "\ca\ui\data\ui_arrow_top_active_ca.paa";
+		arrowEmpty = "\ca\ui\data\ui_arrow_top_ca.paa";
+		border = "\ca\ui\data\ui_border_scroll_ca.paa";
+	};
 };

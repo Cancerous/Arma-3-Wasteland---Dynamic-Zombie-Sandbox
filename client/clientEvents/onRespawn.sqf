@@ -23,12 +23,25 @@ true spawn playerSpawn;
 
 [] spawn {
 	waitUntil{respawnDialogActive};
-	waitUntil{sleep 0.01; !respawnDialogActive};
+	waitUntil{sleep 0.1; !respawnDialogActive};
 
 	if(!isNull pvar_PlayerTeamKiller) then {
 		pDialogTeamkiller = pvar_PlayerTeamKiller;
 		pvar_PlayerTeamKiller = objNull;
 
 		[] execVM "client\functions\createTeamKillDialog.sqf";
+	};
+};
+
+//[] execVM "tonic\onRespawn.sqf";
+
+//player setcaptive true;
+
+if (!isDedicated) then
+ {
+	_EHkilled = player addEventHandler ["killed", {_this execVM "craigs_scripts\onDeath.sqf"}];	
+	player execVM "zombie_scripts\cly_z_victim.sqf";
+	if (CVG_ZombieTowns == 4) then {
+		[] spawn zedLoop; //[] execVM
 	};
 };

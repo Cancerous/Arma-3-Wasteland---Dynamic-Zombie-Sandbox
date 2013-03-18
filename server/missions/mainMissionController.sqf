@@ -50,6 +50,6 @@ while {true} do
 	messageSystem = _hint;
 	publicVariable "messageSystem";
     _lastMission = _missionType;
-	waitUntil{sleep 0.01; scriptDone _missionRunning};
+	waitUntil{sleep 0.1; scriptDone _missionRunning};
     sleep 5; 
 };

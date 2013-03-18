@@ -241,5 +241,5 @@ while {respawnDialogActive} do
             
         };	    
     };
-	sleep 0.01;
+	sleep 0.3;
 };

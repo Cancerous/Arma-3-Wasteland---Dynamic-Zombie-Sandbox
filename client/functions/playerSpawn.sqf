@@ -65,6 +65,6 @@ waitUntil {respawnDialogActive};
 while {respawnDialogActive} do {
 	titleText ["", "BLACK OUT", 0.00001];
 };
-	sleep 0.01;
+	//sleep 0.01;
 titleText ["", "BLACK IN", 0.00001];
 playerSpawning = false;

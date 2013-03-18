@@ -35,7 +35,7 @@ if (_try > 9) then {
 };
 _findingBase = 0;
 };
-sleep 0.01;
+sleep .1;
 };
 
 
@@ -70,7 +70,7 @@ baserunover = [_locationPos, random 360, "smallbase"] call (compile (preprocessF
 
 _checking = 1;
 while {_checking == 1} do {
-_people =  nearestObjects [[getpos _locationPos select 0, getpos _locationPos select 1,0],["Man","LandVehicle","Air"],300];
+_people =  nearestObjects [[getpos _hill select 0, getpos _hill select 1,0],["Man","Land"],300];
 {
 _vehicle = _x;
 if ({isPlayer _x} count crew _vehicle > 0) exitWith {vehicleCheck = true};

@@ -13,7 +13,7 @@ _sleepTime = 30 * _sleepTime;
 _sleepTime = 1200 - _sleepTime;
 _sleepTime = 120 + _sleepTime;
 
-diag_log format ["Horde Spawning starts in %1", str(_sleppTime)];
+diag_log format ["Horde Spawning starts in %1", str(_sleepTime)];
 sleep _sleepTime;
 
 _victim = playableUnits select (floor random count playableUnits);
@@ -35,7 +35,7 @@ _randomPosP setDir (random 360);
 trigger = createTrigger ["EmptyDetector", _position];
 trigger setTriggerArea [10, 10, 0, false];
 
-[trigger, _randomNum, CLY_hordetrigger, "normal", _victim] execVM "zombie_Scripts\z_horde.sqf";
+[trigger, _randomNum, CLY_hordetrigger, "normal", _victim] execVM "zombie_scripts\cly_z_horde.sqf";
 
 deleteVehicle _randomPosP;		
 	

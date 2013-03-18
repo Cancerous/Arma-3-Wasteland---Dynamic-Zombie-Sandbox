@@ -59,5 +59,5 @@ while {local _unit && alive _unit} do
 			
 		} forEach _units;
 	};
-	sleep 0.01;
+	sleep 3;
 };

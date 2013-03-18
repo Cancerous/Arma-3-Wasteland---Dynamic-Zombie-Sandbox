@@ -36,6 +36,12 @@ client_respawnDialog = compile preprocessFileLineNumbers "client\functions\loadR
 loadGeneralStore = compile preprocessFileLineNumbers "client\systems\generalStore\loadGenStore.sqf";
 loadGunStore = compile preprocessFileLineNumbers "client\systems\gunStore\loadGunStore.sqf";
 
-player groupChat "Client Compile Complete";
-	sleep 0.01;
+//Zombie compiles
+CVG_spawn_Zombies = compile preProcessFileLineNumbers "craigs_scripts\CVG_spawn_zombies.sqf";
+//genZeds = compile preProcessFileLineNumbers "craigs_scripts\zombieGenerator2.FSM";
+zedLoop = compile preprocessFileLineNumbers "craigs_scripts\zombieRespawner.sqf";
+
+
+//player groupChat "Client Compile Complete";
+//	sleep 0.3;
 playerCompiledScripts = true;

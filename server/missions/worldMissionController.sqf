@@ -39,6 +39,6 @@ while {true} do
 		#endif
         _result = 0;
     } else {
-    	sleep 0.01;  
+    	sleep 1;  
     };    
 };

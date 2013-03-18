@@ -1,33 +1,25 @@
-/*%FSM<COMPILE "C:\Program Files (x86)\Bohemia Interactive\Tools\FSM Editor Personal Edition\scriptedFSM.cfg, DZS Spawn">*/
+/*%FSM<COMPILE "G:\Program Files\Bohemia Interactive\Tools\FSM Editor Personal Edition\scriptedFSM.cfg, DZS Spawn">*/
 /*%FSM<HEAD>*/
 /*
 item0[] = {"Defcon_1",0,250,-113.384918,71.331543,-23.384855,121.331497,0.000000,"Defcon 1"};
 item1[] = {"true",8,218,21.382607,75.913559,111.382607,125.913559,0.000000,"true"};
-item2[] = {"Spawn_Cars",2,4346,14.735853,159.452621,104.735863,209.452637,0.000000,"Spawn Cars"};
-item3[] = {"Moving_on_",8,218,-81.016647,226.857544,8.983353,276.857544,0.000000,"" \n "Moving" \n "on" \n ""};
-item4[] = {"Spawn_Objects",2,250,14.214413,283.754944,104.214310,333.754913,0.000000,"Spawn Objects"};
-item5[] = {"Set_Triggers",2,250,11.333839,398.940277,101.333801,448.940430,0.000000,"Set Triggers"};
-item6[] = {"Defcon_11_",1,250,-1.793461,818.715881,88.206528,868.715881,0.000000,"" \n "Defcon 11" \n ""};
-item7[] = {"Moving_On",8,218,-76.465454,333.049347,13.534546,383.049347,0.000000,"Moving" \n "On"};
-item8[] = {"Moving__On",8,218,-120.307533,559.688843,-30.307526,609.688843,0.000000,"Moving " \n "On"};
-item9[] = {"Spawn_Boats",2,250,-2.245014,613.041565,87.754990,663.041565,0.000000,"Spawn Boats"};
-item10[] = {"Moving__On",8,218,-134.692505,674.028503,-44.692505,724.028503,0.000000,"Moving " \n "On"};
-item11[] = {"Spawn__Helicopte",2,250,-4.347343,730.791687,85.652672,780.791687,0.000000,"Spawn " \n "Helicopters"};
-item12[] = {"Done",8,218,-146.255432,807.527161,-56.255402,857.527161,0.000000,"Done"};
+item2[] = {"Spawn_Objects",2,250,17.162418,218.898804,107.162323,268.898804,0.000000,"Spawn Objects"};
+item3[] = {"Set_Triggers",2,250,14.281845,412.206299,104.281799,462.206451,0.000000,"Set Triggers"};
+item4[] = {"Defcon_11_",1,4346,-0.319454,803.975891,89.680534,853.975891,0.000000,"" \n "Defcon 11" \n ""};
+item5[] = {"Moving_On",8,218,-98.575493,305.043274,-8.575508,355.043274,0.000000,"Moving" \n "On"};
+item6[] = {"Moving__On",8,218,-114.411522,502.202759,-24.411514,552.202759,0.000000,"Moving " \n "On"};
+item7[] = {"Spawn_Boats",2,250,12.495022,615.989624,102.495033,665.989624,0.000000,"Spawn Boats"};
+item8[] = {"Moving__On",8,218,-119.952477,707.930542,-29.952469,757.930542,0.000000,"Moving " \n "On"};
 link0[] = {0,1};
 link1[] = {1,2};
-link2[] = {2,3};
-link3[] = {3,4};
-link4[] = {4,7};
-link5[] = {5,8};
-link6[] = {7,5};
-link7[] = {8,9};
-link8[] = {9,10};
-link9[] = {10,11};
-link10[] = {11,12};
-link11[] = {12,6};
-globals[] = {0.000000,0,0,0,0,640,480,1,38,6316128,1,-161.192245,258.264343,470.778046,-380.411926,205,416,1};
-window[] = {2,-1,-1,-32000,-32000,623,2127,3150,62,1,223};
+link2[] = {2,5};
+link3[] = {3,6};
+link4[] = {5,3};
+link5[] = {6,7};
+link6[] = {7,8};
+link7[] = {8,4};
+globals[] = {0.000000,0,0,0,0,640,480,1,38,6316128,1,-356.078033,453.149841,905.256226,45.912228,549,583,1};
+window[] = {0,-1,-1,-1,-1,753,25,1048,25,1,567};
 *//*%FSM</HEAD>*/
 class FSM
 {
@@ -46,7 +38,7 @@ class FSM
        "piers = [""Land_Nav_Boathouse_PierT"",""Land_molo_drevo_bs"",""Land_Nav_Boathouse_PierL""];" \n
        "" \n
        "_pos = [0,0];" \n
-       " buildings = nearestObjects [_pos, [""house""], 60000];" \n
+       " buildings = nearestObjects [_pos, [""house""], 20000];" \n
        "diag_log(""DZS Spawn: Started"");" \n
        "" \n
        "_startTime = time;"/*%FSM</STATEINIT""">*/;
@@ -57,52 +49,11 @@ class FSM
         class true
         {
           priority = 0.000000;
-          to="Spawn_Cars";
+          to="Spawn_Objects";
           precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
           condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
           action=/*%FSM<ACTION""">*/"_objNum = 0;" \n
            "_vehNum = 0;"/*%FSM</ACTION""">*/;
-        };
-        /*%FSM</LINK>*/
-      };
-    };
-    /*%FSM</STATE>*/
-    /*%FSM<STATE "Spawn_Cars">*/
-    class Spawn_Cars
-    {
-      name = "Spawn_Cars";
-      init = /*%FSM<STATEINIT""">*/"private[""_num"",""_build""];" \n
-       "{" \n
-       "_num = (random 100);" \n
-       "	if(_num < chanceNumber) then " \n
-       "	{" \n
-       "		if((typeOf _x) in blacklist) then" \n
-       "		{} else" \n
-       "		{" \n
-       "			if((typeOf _x) in militarylist) then" \n
-       "			{" \n
-       "				_build = getPos _x;" \n
-       "				[_build,1] call vehicleInfo;" \n
-       "			} else {" \n
-       "				_build = getPos _x;" \n
-       "				[_build,0] call vehicleInfo;" \n
-       "			};" \n
-       "		};	" \n
-       "	};" \n
-       "} forEach buildings;" \n
-       "" \n
-       "CVG_vehicleDone = true;"/*%FSM</STATEINIT""">*/;
-      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
-      class Links
-      {
-        /*%FSM<LINK "Moving_on_">*/
-        class Moving_on_
-        {
-          priority = 0.000000;
-          to="Spawn_Objects";
-          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
-          condition=/*%FSM<CONDITION""">*/"CVG_vehicleDone"/*%FSM</CONDITION""">*/;
-          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
         };
         /*%FSM</LINK>*/
       };
@@ -267,48 +218,9 @@ class FSM
         class Moving__On
         {
           priority = 0.000000;
-          to="Spawn__Helicopte";
-          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
-          condition=/*%FSM<CONDITION""">*/"CVG_boatDone"/*%FSM</CONDITION""">*/;
-          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
-        };
-        /*%FSM</LINK>*/
-      };
-    };
-    /*%FSM</STATE>*/
-    /*%FSM<STATE "Spawn__Helicopte">*/
-    class Spawn__Helicopte
-    {
-      name = "Spawn__Helicopte";
-      init = /*%FSM<STATEINIT""">*/"	if (CVG_Helis == 1) then {" \n
-       "	{	" \n
-       "" \n
-       "				if ((typeOf _x) in hangars) then {" \n
-       "					_num = random 100;" \n
-       "					if (_num < 30) then {" \n
-       "						_Offset = [0,-30,0];" \n
-       "						_worldPos = _x modelToWorld _Offset;" \n
-       "						_heli_Class = CVG_Helicopters call BIS_fnc_selectRandom;" \n
-       "						_heli = createVehicle [_heli_Class,[ _worldPos select 0, _worldPos select 1, 0], [], 0, ""NONE""];" \n
-       "						_heli setDir (random 360);" \n
-       "						waitUntil {typeOf _heli == _heli_Class};" \n
-       "					};" \n
-       "				};	" \n
-       "" \n
-       "} forEach buildings;" \n
-       "};" \n
-       "" \n
-       "CVG_heliDone = true;"/*%FSM</STATEINIT""">*/;
-      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
-      class Links
-      {
-        /*%FSM<LINK "Done">*/
-        class Done
-        {
-          priority = 0.000000;
           to="Defcon_11_";
           precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
-          condition=/*%FSM<CONDITION""">*/"CVG_heliDone"/*%FSM</CONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"CVG_boatDone"/*%FSM</CONDITION""">*/;
           action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
         };
         /*%FSM</LINK>*/

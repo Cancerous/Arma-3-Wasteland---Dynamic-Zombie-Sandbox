@@ -1,5 +1,5 @@
 /**
- * Initialise un objet déplaçable/héliportable/remorquable/transportable
+ * Initialise un objet déplacable/héliportable/remorquable/transportable
  * 
  * @param 0 l'objet
  * 

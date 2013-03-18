@@ -182,9 +182,9 @@ class RscCombo2
 	colorText[] = {0.023529,0,0.0313725,1};
 	colorBackground[] = {0.95,0.95,0.95,1};
 	colorScrollbar[] = {0.023529,0,0.0313725,1};
-	soundSelect[] = {"",0.1,1};
-	soundExpand[] = {"",0.1,1};
-	soundCollapse[] = {"",0.1,1};
+	soundSelect[] = {"", 0.1, 1};
+	soundExpand[] = {"", 0.1, 1};
+	soundCollapse[] = {"", 0.1, 1};
 	maxHistoryDelay = 1;
 	class ScrollBar
 	{
@@ -226,7 +226,9 @@ class RscListBox2
 	colorSelectBackground[] = {0,0,0,1};
 	colorSelectBackground2[] = {0.8784,0.8471,0.651,1};
 	colorBackground[] = {0,0,0,1};
-	soundSelect[] = {"",0.1,1};
+	soundSelect[] = {"", 0.1, 1};
+	soundExpand[] = {"", 0.1, 1};
+	soundCollapse[] = {"", 0.1, 1};
 	arrowEmpty = "#(argb,8,8,3)color(1,1,1,1)";
 	arrowFull = "#(argb,8,8,3)color(1,1,1,1)";
 	class ScrollBar
@@ -264,10 +266,10 @@ class RscButton2
 	colorFocused[] = {1,0.537,0,1};
 	colorShadow[] = {0.023529,0,0.0313725,1};
 	colorBorder[] = {0.023529,0,0.0313725,1};
-	soundEnter[] = {"\ca\ui\data\sound\onover",0.09,1};
-	soundPush[] = {"\ca\ui\data\sound\new1",0,0};
-	soundClick[] = {"\ca\ui\data\sound\onclick",0.07,1};
-	soundEscape[] = {"\ca\ui\data\sound\onescape",0.09,1};
+		soundEnter[] = {"", 0.09, 1};
+		soundPush[] = {"", 0.09, 1};
+		soundClick[] = {"", 0.07, 1};
+		soundEscape[] = {"", 0.09, 1};
 	style = 2;
 	x = 0;
 	y = 0;
@@ -341,10 +343,10 @@ class RscShortcutButton2
 	size = 0.03921;
 	sizeEx = 0.03921;
 	text = "";
-	soundEnter[] = {"\ca\ui\data\sound\onover",0.09,1};
-	soundPush[] = {"\ca\ui\data\sound\new1",0,0};
-	soundClick[] = {"\ca\ui\data\sound\onclick",0.07,1};
-	soundEscape[] = {"\ca\ui\data\sound\onescape",0.09,1};
+		soundEnter[] = {"", 0.09, 1};
+		soundPush[] = {"", 0.09, 1};
+		soundClick[] = {"", 0.07, 1};
+		soundEscape[] = {"", 0.09, 1};
 	action = "";
 	class AttributesImage
 	{
@@ -394,10 +396,10 @@ class RscShortcutButtonMain2
 	size = 0.03921;
 	sizeEx = 0.03921;
 	text = "";
-	soundEnter[] = {"\ca\ui\data\sound\onover",0.09,1};
-	soundPush[] = {"\ca\ui\data\sound\new1",0,0};
-	soundClick[] = {"\ca\ui\data\sound\onclick",0.07,1};
-	soundEscape[] = {"\ca\ui\data\sound\onescape",0.09,1};
+		soundEnter[] = {"", 0.09, 1};
+		soundPush[] = {"", 0.09, 1};
+		soundClick[] = {"", 0.07, 1};
+		soundEscape[] = {"", 0.09, 1};
 	action = "";
 	class Attributes
 	{
@@ -436,13 +438,6 @@ class RscSlider2
 	shadow = 0;
 	h = 0.025;
 };
-
-
-
-
-
-
-
 class BuyDialog
 {
 	idd = 3000;
@@ -515,7 +510,5 @@ class BuyDialog
 			h = 0.0470196 * safezoneH;
 			onButtonClick = "[] execVM ""gamemodes\LTJ_infected\buyWeapon.sqf""";
 		};
-		
-
 	};
 };

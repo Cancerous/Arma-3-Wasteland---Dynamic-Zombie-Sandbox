@@ -36,11 +36,11 @@ waitUntil {CLY_hordetrigger==_hordename};
 
 //Spawn zombies
 for "_x" from 0 to (count _positions)-1 do {
-   waitUntil {{side _x==east or side _x==west or side _x==resistance} count allGroups<432};
+   //waitUntil {{side _x==east or side _x==west or side _x==resistance} count allGroups<432};
 	//Create unit, choose side
-	_side=resistance;
-	if ({side _x==resistance} count allGroups>=144) then {_side=west};
-	if (_side==west and {side _x==west} count allGroups>=144) then {_side=east};
+	_side=logic;
+	//if ({side _x==resistance} count allGroups>=144) then {_side=west};
+	//if (_side==west and {side _x==west} count allGroups>=144) then {_side=east};
 	_group=createGroup _side;
     
 	_class=if !(_zombietype in ["armored","slow armored"]) then {

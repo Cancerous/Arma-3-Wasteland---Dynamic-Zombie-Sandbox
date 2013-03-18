@@ -21,7 +21,7 @@ if ((_uid in moderators) OR (_uid in administrators) OR (_uid in serverAdministr
         hint "Welcome Owner";		
 	};	
 } else {
-	sleep 0.01;
+	sleep 1;
     _handle = player execVM "client\systems\adminPanel\checkAdmin2.sqf"; 
     waitUntil {scriptDone _handle};
 };

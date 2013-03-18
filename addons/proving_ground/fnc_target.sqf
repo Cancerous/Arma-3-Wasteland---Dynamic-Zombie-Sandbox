@@ -126,7 +126,7 @@ case 1: {
 			case 7: {_kindOf = ["ship"];};
 			default {_kindOf = ["TargetBase"];_filter = [];};
 		};
-		_cfgvehicles = configFile >> "cfgVehicles";
+		_cfgvehicles = configFile >> "CfgVehicles";
 		lbClear GET_CTRL(balca_target_vehlist_IDC);
 		for "_i" from 0 to (count _cfgvehicles)-1 do {
 			_vehicle = _cfgvehicles select _i;

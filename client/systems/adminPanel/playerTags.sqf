@@ -18,7 +18,7 @@ if ((_uid in moderators) OR (_uid in administrators) OR (_uid in serverAdministr
 				group _x setGroupIconParams [[1, 0.35, 0, 1], format ["%1 (%2m)", name _x, round (_x distance player)], 0.7, true];
 			};
 		} forEach entities "AllVehicles";
-	sleep 0.01;
+	sleep 0.3;
 	};
 	{clearGroupIcons group _x;} forEach entities "AllVehicles";
 } else {

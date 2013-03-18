@@ -166,7 +166,7 @@ FZF_IC_INIT =
 
     FZF_IC_Handle = [] spawn
     {
-		sleep 0.01;
+		sleep 1;
         while {true} do
         {
 #define SHOW_HUD (cameraView in ["INTERNAL","EXTERNAL","GUNNER"]) && (alive(player) && isNil("BIS_DEBUG_CAM") && (count(allUnits) > 1)) && (!visibleMap)

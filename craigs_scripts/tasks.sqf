@@ -132,7 +132,7 @@ if (CVg_TaskType == 2) then {
     if (isServer) then {
         _rad=20000;
         _cnps = getArray (configFile >> "CfgWorlds" >> worldName >> "centerPosition");
-        _hills = nearestLocations [_cnps, ["Hill"], _rad];
+        _hills = nearestLocations [_cnps, ["NameLocal"], _rad];
         _hillcount = count _hills;
         _hillnum = floor (random _hillcount);
         _hill = _hills select _hillnum;
@@ -170,7 +170,7 @@ if (CVg_TaskType == 2) then {
         []spawn {
             
             private ["_group"];
-            {_x moveInGunner (nearestObject [_x, "StaticWeapon"]); sleep 0.01;} forEach (units _group);
+            {_x moveInGunner (nearestObject [_x, "StaticWeapon"]); sleep 0.1;} forEach (units _group);
         };
     };
     if (isDedicated) then {

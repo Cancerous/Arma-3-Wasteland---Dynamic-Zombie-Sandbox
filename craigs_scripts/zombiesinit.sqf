@@ -89,10 +89,10 @@ CLY_zombiehandledamage =
 					_newdamage = _damage - _olddamage;
 					switch (_this select 1) do
 					{
-						case "" : {_damage = _olddamage + _newdamage * 0.1;};
-						case "head_hit" : {_olddamage + _newdamage * 5;};
-						case "body" : {_damage = _olddamage + _newdamage * 0.25;};
-						case "legs" : {_damage = _olddamage + _newdamage * 0.45;};
+						case "" : {_damage = _olddamage + _newdamage * 0.05;};
+						case "head_hit" : {_damage = _olddamage + _newdamage * 0.3;};
+						case "body" : {_damage = _olddamage + _newdamage * 0.1;};
+						case "legs" : {_damage = 0.1;};
 					};
 					if (_this select 3 != _unit) then
 					{
@@ -131,9 +131,9 @@ CLY_zombiehandledamage =
 					switch (_this select 1) do
 					{
 						case "" : {_damage = _olddamage + _newdamage * 0.05;};
-						case "head_hit" : {_damage = _olddamage + _newdamage * 0.75;};
+						case "head_hit" : {_damage = _olddamage + _newdamage * 0.3;};
 						case "body" : {_damage = _olddamage + _newdamage * 0.1;};
-						case "legs" : {_damage = _olddamage + _newdamage * 0.45;};
+						case "legs" : {_damage = 0.1;};
 					};
 					if (_this select 3 != _unit) then
 					{
@@ -173,9 +173,9 @@ CLY_zombiehandledamage =
 				switch (_this select 1) do
 				{
 					case "" : {_damage = _olddamage + _newdamage * 0.05;};
-					case "head_hit" : {_damage = _olddamage + _newdamage * .1;};
+					case "head_hit" : {_damage = _olddamage + _newdamage * 0.3;};
 					case "body" : {_damage = _olddamage + _newdamage * 0.1;};
-					case "legs" : {_damage = 0;};
+					case "legs" : {_damage = 0.1;};
 				};
 				if (_this select 3 != _unit) then
 				{
@@ -467,7 +467,7 @@ if (!isDedicated) then {
                         if (count (getPosATL _zombie nearObjects ["logic",0.1])>0) then {
                             drop ["\ca\data\koulesvetlo","","Billboard",3,3,[-0.25+random 0.5,-0.25+random 0.5,0.1],[0,0,0],0,1.26,1,0,[0,0.015,0.01,0.005,0],[[1,0.25,0.25,1]],[0],0,0,"","",_zombie];
                         };
-                        sleep 0.01;
+                        sleep 0.1;
                     };
                 };
             } forEach _zombies;

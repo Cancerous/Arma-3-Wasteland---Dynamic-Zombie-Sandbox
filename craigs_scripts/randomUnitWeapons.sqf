@@ -14,7 +14,7 @@ if (player != player) then {
 };
 
 
-sleep 0.01;
+sleep 0.1;
 private ["_car","_weapons","_mags","_rnd","_weapon","_mag"];
 
 waitUntil {local Player};

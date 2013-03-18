@@ -65,6 +65,6 @@ waituntil {!(IsNull (findDisplay 46))};
 if (isNil "FZF_IC_INIT") then   {
 	call compile preprocessFileLineNumbers "client\functions\newPlayerIcons.sqf";
 };
-sleep 0.01;
+sleep 0.1;
 true spawn playerSpawn;
 [] spawn FZF_IC_INIT;

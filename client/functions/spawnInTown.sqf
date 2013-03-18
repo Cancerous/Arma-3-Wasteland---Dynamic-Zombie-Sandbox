@@ -113,9 +113,9 @@ switch(_switch) do
 
 // words at start, dedicated can't run it
 if (!isDedicated) then {
-sleep 1;
+sleep 2;
 _mins = floor(60 * (daytime - floor(daytime)));
 [
-	"404 Wasteland",_townName,format ["%1:%3%2", floor(daytime), _mins, if(_mins < 10) then {"0"} else {""}]
+	"Wasteland with DZS",_townName,format ["%1:%3%2", floor(daytime), _mins, if(_mins < 10) then {"0"} else {""}]
 ] spawn BIS_fnc_infoText;
-}
+};

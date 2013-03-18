@@ -23,11 +23,11 @@ while {true} do
 		{
 			R3F_LOG_objet_addAction = _objet_pointe;
 			
-			// Note : les expressions de conditions ne sont pas factorisées pour garder de la clarté (déjà que c'est pas vraiment ça) (et le gain serait minime)
+			// Note : les expressions de conditions ne sont pas factorisées pour garder de la clarté (déjà que c'est pas vraiment ca) (et le gain serait minime)
 
 			Object_canLock = !(_objet_pointe getVariable ['objectLocked', false]);
 			
-			// Si l'objet est un objet déplaçable
+			// Si l'objet est un objet déplacable
 			if ({_objet_pointe isKindOf _x} count R3F_LOG_CFG_objets_deplacables > 0) then
 			{
 				// Condition action deplacer_objet
@@ -39,7 +39,7 @@ while {true} do
 			// Si l'objet est un objet remorquable
 			if ({_objet_pointe isKindOf _x} count R3F_LOG_CFG_objets_remorquables > 0) then
 			{
-				// Et qu'il est déplaçable
+				// Et qu'il est déplacable
 				if ({_objet_pointe isKindOf _x} count R3F_LOG_CFG_objets_deplacables > 0) then
 				{
 					// Condition action remorquer_deplace
@@ -63,7 +63,7 @@ while {true} do
 			// Si l'objet est un objet transportable
 			if ({_objet_pointe isKindOf _x} count R3F_LOG_classes_objets_transportables > 0) then
 			{
-				// Et qu'il est déplaçable
+				// Et qu'il est déplacable
 				if ({_objet_pointe isKindOf _x} count R3F_LOG_CFG_objets_deplacables > 0) then
 				{
 					// Condition action charger_deplace
@@ -146,5 +146,5 @@ while {true} do
 			([0,0,0] distance velocity R3F_LOG_objet_addAction < 15) && (getPos R3F_LOG_objet_addAction select 2 < 40) && !(R3F_LOG_objet_addAction getVariable "R3F_LOG_disabled"));
 	};
 	
-	sleep 0.01;
+	sleep 0.1;
 };

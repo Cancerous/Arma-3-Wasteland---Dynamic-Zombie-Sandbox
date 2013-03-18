@@ -16,7 +16,7 @@
 #ifdef R3F_ARTY_enable
 
 // Attente fin briefing
-sleep 0.01;
+sleep 0.1;
 
 private ["_liste_vehicules_connus", "_liste_vehicules", "_count_liste_vehicules", "_i", "_objet"];
 

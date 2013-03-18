@@ -47,7 +47,7 @@ _trackCam = {
 		_cam camCommit 5;
 		_cam camSetTarget _lastpos;
 		_endTime = time + 5;
-		while {PG_get(TRACKING)&&(time<_endtime)} do {sleep 0.01;};
+		while {PG_get(TRACKING)&&(time<_endtime)} do {sleep 0.1;};
 	};
 
 	_cam cameraeffect ["terminate", "back"];

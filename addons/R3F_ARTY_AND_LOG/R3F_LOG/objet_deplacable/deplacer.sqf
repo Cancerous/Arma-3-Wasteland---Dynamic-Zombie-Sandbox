@@ -121,7 +121,7 @@ else
 					sleep 1;
 				};
 				
-				if ([0,0,0] distance (velocity player) > 3.5) then
+				if ([0,0,0] distance (velocity player) > 5) then
 				{
 					player globalChat STR_R3F_LOG_courir_trop_vite;
 
@@ -131,7 +131,7 @@ else
 					sleep 1;
 				};
 				
-				sleep 0.01;
+				sleep 0.1;
 			};
 			
 			// L'objet n'est plus porté, on le repose

@@ -1,6 +1,6 @@
 /**
  * English and French comments
- * Commentaires anglais et français
+ * Commentaires anglais et francais
  * 
  * This file adds the "British Armed Forces" objetcs in the configuration variables of the logistics system.
  * Fichier ajoutant les objets de "British Armed Forces" dans la configuration du système de logistique.

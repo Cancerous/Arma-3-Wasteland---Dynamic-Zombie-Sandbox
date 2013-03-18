@@ -35,7 +35,7 @@ while {_spawnnumb < _spawngroup} do {
         [unit,"normal",objNull,true,20,_newpos] exec "zombie_scripts\cly_z_init.sqs"; //turns them into zombies
         _spawned = _spawned + 1; 
         // adds another zombie to the amount of zomibes spawned
-        sleep 0.01; //waits
+        sleep 0.1; //waits
         
         horde = horde + [unit];
     };

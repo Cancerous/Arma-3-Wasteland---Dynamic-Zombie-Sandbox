@@ -96,5 +96,5 @@ while {true} do
 		_nameclawhud ctrlSetText "";
 		_nameclawhud ctrlCommit 0;
 	};
-	sleep 0.01;
+	sleep 0.3;
 };

@@ -45,5 +45,5 @@ while {true} do
 		if (count units _x == 0) then {deleteGroup _x;};
 	} forEach allGroups;
 	
-	sleep 0.01;
+	sleep 5;
 };

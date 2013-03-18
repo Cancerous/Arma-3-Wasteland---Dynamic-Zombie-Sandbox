@@ -1,6 +1,6 @@
 /**
  * English and French comments
- * Commentaires anglais et français
+ * Commentaires anglais et francais
  * 
  * This file adds the ACE OA objetcs in the configuration variables of the logistics system.
  * Fichier ajoutant les objets d'ACE OA dans la configuration du système de logistique.
@@ -12,7 +12,7 @@
  * Fichier édité pour ACE OA Build 380 (16 Juil 2010)
  */
 
-// ACE OA est-il présent ? (is ACE OA activated ?)
+// ACE OA est-il présent e (is ACE OA activated e)
 if (isClass (configFile >> "CfgVehicles" >> "ACE_Required_Logic")) then
 {
 	/****** TOW WITH VEHICLE / REMORQUER AVEC VEHICULE ******/

@@ -1,7 +1,7 @@
 //Zombie generator script by Celery
 
-private ["_amount","_activate","_relocate","_pos","_marker","_despawn","_zombie","_spawn","_zombietype","_total","_side","_r","_group","_class","_idarray","_positions","_markers","_horde","_removeidarray","_zombies","_trigger","_radius","_triggerpos","_activatedist","_deactivatedist","_posx","_posy","_altlogic"];
-
+private ["_x","_amount","_activate","_relocate","_pos","_marker","_despawn","_zombie","_spawn","_zombietype","_total","_side","_r","_group","_class","_idarray","_positions","_markers","_horde","_removeidarray","_zombies","_trigger","_radius","_triggerpos","_activatedist","_deactivatedist","_posx","_posy","_altlogic"];
+sleep 3;
 if (!isServer) exitWith {};
 
 waitUntil {{isNil "_x"} count ["CLY_minspawndist","CLY_maxspawndist","CLY_despawndist","CLY_defaultdensity","CLY_hordereservedgroups","CLY_players","CLY_debug","BIS_fnc_inTrigger"]==0};
@@ -76,9 +76,13 @@ while {_amount>0} do {
             if (!isNull (_zombies select _x)) then {
                 _zombie=_zombies select _x;
                 _despawn=true;
-                
                 if ({_zombie distance [getPos vehicle _x select 0,getPos vehicle _x select 1,0]<CLY_despawndist or !isNull (_zombie getVariable "victim")} count CLY_players>0) then {_despawn=false};
                 if (_despawn or !alive _zombie or (_zombie getVariable "horde")) then {
+					if (count usedBuildings != 0) then {
+						{
+							if (_x distance _zombie <= 500) then { usedBuildings = usedBuildings - [_x]};
+						} forEach usedBuildings;
+					};
                     if (_despawn) then {_zombie setDamage 1};
                     _zombies set [_x,objNull];
                     _removeidarray set [count _removeidarray,_x];
@@ -132,7 +136,7 @@ while {_amount>0} do {
         {_idarray=_idarray-[_x]} forEach _removeidarray;
         _amount=count _idarray;
         
-        sleep 0.01;
+        sleep 0.1;
     };
     {deleteMarkerLocal _x} forEach _markers;
     _amount=count _idarray;

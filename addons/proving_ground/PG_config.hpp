@@ -1296,7 +1296,7 @@ class balca_sound_player
 
 	class balca_soundlist : balca_debug_list
 	{
-		idc = []; //balca_soundlist_IDC;
+		idc = balca_soundlist_IDC;
 		x = safezoneX; 
 		w = column_weight*3 - column_div;
 		y = safezoneY + offset_top*2; 
@@ -1304,7 +1304,7 @@ class balca_sound_player
 		colorText[] = {1, 1, 1, 1};
 		colorBackground[] = {0,0,0,0};
 		onLBSelChanged= "";
-		//onLBDblClick = "[1] call c_proving_ground_fnc_sound;";
+		onLBDblClick = "[1] call c_proving_ground_fnc_sound;";
 	};
 
 	class balca_clipboard_btn : balca_debug_btn
@@ -1312,7 +1312,7 @@ class balca_sound_player
 		x = safezoneX; w = column_weight-column_div;
 		y = display_height-safezoneY- offset_bottom;
 		text = "to Clipboard";
-		//action = "[2] call c_proving_ground_fnc_sound;"; 
+		action = "[2] call c_proving_ground_fnc_sound;"; 
 	};
 
 	class balca_close_btn : balca_debug_btn

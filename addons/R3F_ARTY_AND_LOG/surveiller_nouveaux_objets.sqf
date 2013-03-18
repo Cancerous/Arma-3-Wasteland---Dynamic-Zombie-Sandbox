@@ -13,7 +13,7 @@
 #include "R3F_LOG_disable_enable.sqf"
 
 // Attente fin briefing
-sleep 0.01;
+sleep 0.1;
 
 private ["_liste_objets_depl_heli_remorq_transp", "_liste_vehicules_connus", "_liste_vehicules", "_count_liste_vehicules", "_i", "_objet"];
 
@@ -42,7 +42,7 @@ while {true} do
 				_objet = _liste_vehicules select _i;
 				
 				#ifdef R3F_LOG_enable
-				// Si l'objet est un objet déplaçable/héliportable/remorquable/transportable
+				// Si l'objet est un objet déplacable/héliportable/remorquable/transportable
 				if ({_objet isKindOf _x} count _liste_objets_depl_heli_remorq_transp > 0) then
 				{
 					[_objet] spawn R3F_LOG_FNCT_objet_init;
@@ -81,6 +81,6 @@ while {true} do
 	}
 	else
 	{
-		sleep 2;
+		sleep 0.3;
 	};
 };

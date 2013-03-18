@@ -55,7 +55,7 @@ switch(_switch) do
                 	if (doCancelAction) exitWith {// Player selected "cancel action"
     					mutexScriptInProgress = false;
 					}; 
-                	sleep 0.01;
+                	sleep 0.1;
                 };
                 
                 if (!(doCancelAction)) then {
@@ -85,7 +85,7 @@ switch(_switch) do
                 	if (doCancelAction) exitWith {// Player selected "cancel action"
     					mutexScriptInProgress = false;
 					}; 
-                	sleep 0.01;
+                	sleep 0.1;
                 };
                 
                 if (!(doCancelAction)) then {

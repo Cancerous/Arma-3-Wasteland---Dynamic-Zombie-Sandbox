@@ -58,5 +58,5 @@ while {true} do
         _hudVehicle ctrlCommit 0;
     };
         
-	sleep 0.01;
+	sleep 0.3;
 };

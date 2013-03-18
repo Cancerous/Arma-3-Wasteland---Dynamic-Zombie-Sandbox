@@ -18,7 +18,8 @@ diag_log format["WASTELAND SERVER - Started Side Mission State"];
 [mission_Truck,"mission_Truck"]
 */
 _SMarray = [[mission_WepCache,"mission_WepCache"],      
-            [mission_AirWreck,"mission_AirWreck"]];
+            [mission_AirWreck,"mission_AirWreck"],
+			[mission_Horde,"mission_Horde"]];
 
 _lastMission = "nomission";
 while {true} do
@@ -45,6 +46,6 @@ while {true} do
 	messageSystem = _hint;
 	publicVariable "messageSystem";
     _lastMission = _missionType;
-	waitUntil{sleep 0.01; scriptDone _missionRunning};
+	waitUntil{sleep 0.1; scriptDone _missionRunning};
     sleep 5;
 };
