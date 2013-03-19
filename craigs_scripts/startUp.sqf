@@ -116,7 +116,7 @@ waitUntil {!isnil "bis_fnc_init"};
 //progressLoadingScreen 0.2;
 //////////////////////////////////
 //Towns
-_rad=30000;
+_rad=20000;
 _cnps = getArray (configFile >> "CfgWorlds" >> worldName >> "centerPosition");
 townlist= nearestLocations [_cnps, ["nameCity","nameVillage"], _rad];
 //this part goes into the cfgWeapons and grabs all the useable weapons and vehicle classnames and puts them into arrays based on type
@@ -251,7 +251,7 @@ CVG_Men = [];
 	};
 } forEach [1,2,3,5,7,8];
 _pos = [0,0];
- buildings = nearestObjects [_pos, ["house"], 20000];
+ buildings = nearestObjects [_pos, ["house"], 60000];
 //progressLoadingScreen 0.3;
 gunsComplete = 1;
 //ammo cache script
@@ -341,7 +341,7 @@ diag_log format ["CLY_zombieclasses: %1",CLY_zombieclasses];
 //progressLoadingScreen 0.4;
 /////////////////////////////////
 ////// Setup all the weapons
-if (isServer) then {
+
 	Switch (CVG_weapontype) do {
 		case 1: {
 			//allweapons
@@ -396,6 +396,7 @@ if (isServer) then {
 	vehicleInfo =		 compile preProcessFileLineNumbers "craigs_scripts\dvs\vehicleinfo.sqf";
 	objSpawn = 		compile preProcessFileLineNumbers "craigs_scripts\dvs\ObjectSpawn.sqf";
 	WF_FNCT_getRandomSafePos = compile preProcessFileLineNumbers "craigs_scripts\getRandomSafePos.sqf";
+if (isServer) then {
    //Spawn loot (added A3, March 10
 	[] execVM "tonic\wepConfig.sqf";
 	hrn_fnc_loot = compile PreProcessFileLineNumbers "tonic\hrn_loot.sqf";
@@ -527,7 +528,6 @@ if (CVG_CityDestruction == 2) then {
 
 
 
-	screendone = 1;
 
 [] execVM "craigs_scripts\tasks.sqf"; 
 	
@@ -535,11 +535,9 @@ if (CVG_FoodWater == 1) then {
 	[] execVM "tonic\init.sqf";
 };
 
-//Sets up respawn
-//_playerRespawn = player addMPEventHandler ["MPRespawn", {Null = _this execVM "craigs_scripts\playerRestart.sqf";}]; 
+screendone = 1;
 
 //EH
-
 
 sleep 0.01;//This will stop script until ingame
 //After mission started
@@ -549,7 +547,6 @@ setViewDistance CVG_Viewdist;
 
 if (!isDedicated) then
 {
-	_EHkilled = player addEventHandler ["killed", {_this execVM "craigs_scripts\onDeath.sqf"}];	
 	player execVM "zombie_scripts\cly_z_victim.sqf";
 	//[] execVM "craigs_scripts\sirenpoles.sqf";
 	if (CVG_ZombieTowns == 4) then {

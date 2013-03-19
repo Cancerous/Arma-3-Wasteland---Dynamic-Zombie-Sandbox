@@ -22,7 +22,7 @@
 		};
 		_zombie enableSimulation false;
 		if (CVG_Horde == 1) then {_horde = false} else {_horde = true};
-		{ _zombie setDamage 0.75; _zombie sethit ["head", 0.75]; _zombie sethit ["arms", 0.75]; _zombie sethit ["legs", 0.75]; _zombie sethit ["body", 0.75];};
+
 		
 		//Initialize zombification
 		if (_locType == "Object") then {
@@ -32,6 +32,7 @@
 			[_zombie,_zombietype,objNull,_horde,0,[(_object select 0) + (random 5),(_object select 1) + (random 5),0],true] exec "zombie_scripts\cly_z_init.sqs";
 		};
         _spawned = _spawned + 1;
+
 		diag_log format ["Zombie %1 spawned at %2",_zombie,_object];
 		sleep 0.1;
     };

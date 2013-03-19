@@ -20,8 +20,13 @@ _interval=CLY_randomhordemininterval+random (CLY_randomhordemaxinterval-CLY_rand
 
 #randompos
 ~1
-_pos=[(_averagepos select 0)-CLY_randomhordemaxspawndist*0.5+random CLY_randomhordemaxspawndist,(_averagepos select 1)-CLY_randomhordemaxspawndist*0.5+random CLY_randomhordemaxspawndist,0]
-_logic setPos [_pos select 0,_pos select 1,1000]
+;_pos=[(_averagepos select 0)-CLY_randomhordemaxspawndist*0.5+random CLY_randomhordemaxspawndist,(_averagepos select 1)-CLY_randomhordemaxspawndist*0.5+random CLY_randomhordemaxspawndist,0]
+_exp = "(100 * houses) * (100 * deadBody) * (1 + meadow) * (1 - forest) * (1 - trees) - (100 * sea) - (100 * hills)"
+_prec = 100
+_bestplace = selectBestPlaces [_averagepos,500,_exp,_prec,1]
+_spot = _bestplace select 0
+_pos = _spot select 0
+_logic setPos [_pos select 0,_pos select 1,0]
 ?surfaceIsWater _pos or (getPos _logic select 2)<(getPosATL _logic select 2) or _pos distance _averagepos>CLY_randomhordemaxspawndist or _pos distance _averagepos<CLY_randomhordeminspawndist:goto "randompos"
 
 _trigger=createTrigger ["EmptyDetector",_pos]

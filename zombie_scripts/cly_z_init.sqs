@@ -10,7 +10,7 @@ _victim=_this select 2
 _horde=_this select 3
 _radius=_this select 4
 _pos=_this select 5
-_dynamic = if (count _this > 5) then {_this select 6} else {false}
+_dynamic = true
 
 removeAllWeapons _zombie
 removeAllItems _zombie
@@ -53,6 +53,11 @@ CVG_hardzombies = true;
 _zombie enableSimulation true
 
 _EHkilled = _zombie addEventHandler ["killed", {_this execVM "craigs_scripts\onDeath.sqf"}]
+_zombie sethit ["head", 0.1]
+_zombie sethit ["arms", 0.1]
+_zombie sethit ["legs", 0.1]
+_zombie sethit ["body", 0.1]
+_zombie setDamage 0.6
 
 [_zombie, _radius] execVM "zombie_scripts\cly_z_routines.sqf"
 

@@ -164,7 +164,7 @@ class Header
 			title="Maximum Agro radius:";
 			values[]={100,200,300,400,500,600,700,1000,9999};
 			texts[]={"100 Meters", "200 Meters","300 Meters","400 Meters","500 Meters","600 Meters","700 Meters","1000 Meters","Random"};
-			default=500;
+			default=300;
 		};
 		
 		class CVG_Zdensity17

@@ -43,7 +43,12 @@ while {_amount>0} do {
 		_relocate=true;
 		//Relocate if position is on water or on a structure or close to player
 		while {_relocate} do {
-			_pos=[(_triggerpos select 0)-_radius+random _radius*2,(_triggerpos select 1)-_radius+random _radius*2,0];
+		_exp = "(100 * houses) * (100 * deadBody) * (1 + meadow) * (1 - forest) * (1 - trees) - (100 * sea) - (100 * hills)";
+		_prec = 100;
+		_bestplace = selectBestPlaces [_triggerpos,500,_exp,_prec,1];
+		_spot = _bestplace select 0;
+		_pos = _spot select 0;
+		//_pos=[(_triggerpos select 0)-_radius+random _radius*2,(_triggerpos select 1)-_radius+random _radius*2,0];
 			_altlogic setPos [_pos select 0,_pos select 1,1000];
 			if ([_trigger,_pos] call BIS_fnc_inTrigger and !surfaceIsWater _pos and (getPos _altlogic select 2)==(getPosATL _altlogic select 2) and {_pos distance [getPos vehicle _x select 0,getPos vehicle _x select 1,0]<CLY_minspawndist} count CLY_players==0) then {_relocate=false};
 		};

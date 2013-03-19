@@ -7,7 +7,7 @@ diag_log "Zombie .sqs init executed"
 ?isNil "CLY_cutscene" : CLY_cutscene = false
 CLY_playerrating = rating player
 
-CLY_maxaggroradius=500
+CLY_maxaggroradius=300
 CLY_defaultdensity=100
 
 
@@ -42,13 +42,13 @@ CLY_game = ""
 @isDedicated or !isNull player
 
 ;Fade sound
-[] spawn {0 fadeSound 0;sleep 2.5;5 fadeSound 1}
+;[] spawn {0 fadeSound 0;sleep 2.5;5 fadeSound 1}
 
 ;Make markers invisible
 ?isServer:{_x setMarkerAlpha 0} forEach ["respawn_civilian","safehouseborder"]
 
 ;Character specific equipment
-?CLY_game != "A2" : call compile "removeBackpack player"
+;?CLY_game != "A2" : call compile "removeBackpack player"
 
 
 ;Zombie facts
@@ -71,15 +71,15 @@ _hqwest=createCenter west
 _hqeast=createCenter east
 _hqres=createCenter resistance
 _hqciv=createCenter civilian
-{_x setFriend [west,1]} forEach [west,east,civilian]
-{_x setFriend [east,1]} forEach [west,east,civilian]
-{_x setFriend [resistance,1]} forEach [resistance]
+{_x setFriend [west,1]} forEach [west,civilian]
+{_x setFriend [east,1]} forEach [east,civilian]
+{_x setFriend [resistance,1]} forEach [resistance,civilian]
 {_x setFriend [civilian,1]} forEach [west,east,civilian]
 
 
 ;Zombie aggro radius (random between min and max)
-CLY_minaggroradius=20
-CLY_maxaggroradius = 500
+CLY_minaggroradius=1
+CLY_maxaggroradius = 300
 
 ;Max aggro radius if spawned within X meters of one of the objects in the array
 CLY_altmaxaggroradius = 100
@@ -88,11 +88,11 @@ CLY_altmaxaggroradiustriggers = [];
 CVG_minspawndist = 100
 ;At what range from a player zombies can spawn and despawn
 CLY_minspawndist=CVG_minspawndist
-CLY_maxspawndist=500
+CLY_maxspawndist=450
 CLY_despawndist=CLY_maxspawndist+50
 
 ;Distance from victim at which a non-horde zombie gives up the chase
-CLY_chasegiveupdist=400
+CLY_chasegiveupdist=301
 
 ;Zombie will pick a random victim within this radius from the nearest target
 ;Value of 1 or below is multiplier of aggro radius, 0 disables randomization
@@ -125,7 +125,7 @@ CLY_randomhordeminamount=1
 CLY_randomhordemaxamount=3
 
 ;Groups reserved for hordes - allows hordes to spawn in very crowded areas
-CLY_hordereservedgroups=50
+CLY_hordereservedgroups=100
 ;?CVG_Horde == 2:CLY_hordereservedgroups=200
 ;Zombie types and their % of automatically generated zombies (must total 100)
 ;normal		makes noise when idle, runs to victim when one is spotted
@@ -137,15 +137,15 @@ CLY_hordereservedgroups=50
 ;ambusher		crawls, silent until very close, waits still, starts running when victim is in aggro range
 ;armored		runs to victim when one is spotted, silent until close, withstands lots of damage
 ;slow armored	walks to victim when one is spotted, silent until close, withstands lots of damage
-CLY_zombietypes = [["normal", 62], ["surprise", 30], ["passive", 0], ["crawler", 6], ["passive crawler", 0], ["sneaker", 2], ["ambusher", 0], ["creeper", 0], ["walker", 0], ["armored", 0], ["slow armored", 0]]
+CLY_zombietypes = [["normal", 60], ["surprise", 30], ["passive", 0], ["crawler", 6], ["passive crawler", 0], ["sneaker", 4], ["ambusher", 0], ["creeper", 0], ["walker", 0], ["armored", 0], ["slow armored", 0]]
 ;Chance of zombie spawning with a lootable bandage
 CLY_zombiebandagechance=0.06
 
 ;Range at which a zombie can attack
-CLY_zombieattackdist = 2.5
+CLY_zombieattackdist = 5.0
 
 ;Chance of zombie dropping a random magazine
-CLY_zombiemagazinechance=0.1
+CLY_zombiemagazinechance = 5.0
 
 ;Magazines that a zombie can drop
 CLY_zombiemagazines=["16Rnd_9x21_Mag",["20Rnd_556x45_UW_mag","20Rnd_762x45_Mag","30Rnd_65x39_caseless_mag","30Rnd_65x39_case_mag","100Rnd_65x39_caseless_mag_Tracer","200Rnd_65x39_cased_Box"]]
@@ -180,7 +180,7 @@ for "_x" from 1 to 107 do {_0=if (_x<10) then {"0"} else {""};_face=format ["Fac
 for "_x" from 1 to 20 do {_0=if (_x<10) then {"0"} else {""};_face=format ["Face%1%2_camo1_EP1",_0,_x];CLY_faces=CLY_faces+[_face];CLY_faces_d=CLY_faces_d+[_face]}
 for "_x" from 108 to 124 do {_face=format ["Face%1_camo1_PMC",_x];CLY_faces=CLY_faces+[_face];CLY_faces_a=CLY_faces_a+[_face]}
 for "_x" from 26 to 40 do {_face=format ["Face%1_camo1",_x];CLY_faces_b=CLY_faces_b+[_face]}
-for "_x" from 78 to 86 do {_face=format ["Face%1_camo1",_x];if (_face!="Face85_camo1") then {CLY_faces_b=CLY_faces_b+[_face]}}
+for "_x" from 78 to 86 do {_face=format ["Face%1_camo1",_x];if (_face!="Face58_camo1") then {CLY_faces_b=CLY_faces_b+[_face]}}
 for "_x" from 1 to 107 do {_0=if (_x<10) then {"0"} else {""};_face=format ["Face%1%2_camo1",_0,_x];if (_face!="Face58_camo1" and !(_face in CLY_faces_b)) then {CLY_faces_c=CLY_faces_c+[_face]}}
 
 ;Default face type for uncategorized classes

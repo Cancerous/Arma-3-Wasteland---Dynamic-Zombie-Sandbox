@@ -39,7 +39,6 @@ true spawn playerSpawn;
 
 if (!isDedicated) then
  {
-	_EHkilled = player addEventHandler ["killed", {_this execVM "craigs_scripts\onDeath.sqf"}];	
 	player execVM "zombie_scripts\cly_z_victim.sqf";
 	if (CVG_ZombieTowns == 4) then {
 		[] spawn zedLoop; //[] execVM

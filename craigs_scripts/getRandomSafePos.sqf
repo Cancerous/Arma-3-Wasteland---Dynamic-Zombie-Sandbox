@@ -22,12 +22,18 @@ _y = 0;
 _pos = [_x, _y];
 
 while {(_x == 0) or (_y == 0) or (surfaceIsWater _pos)} do {
-    _xOp = if (random 1 > 0.5) then {1} else {-1};
-    _yOp = if (random 1 > 0.5) then {1} else {-1};
-            
-    _x = (getPos _object select 0) + (((random _Rpos0) + _minPos) * _xOp);
-    _y = (getPos _object select 1) + (((random _Rpos1) + _minPos) * _yOp);
-    _pos = [_x, _y];    
+    // _xOp = if (random 1 > 0.5) then {1} else {-1};
+    // _yOp = if (random 1 > 0.5) then {1} else {-1};
+    // _x = (getPos _object select 0) + (((random _Rpos0) + _minPos) * _xOp);
+    // _y = (getPos _object select 1) + (((random _Rpos1) + _minPos) * _yOp);
+	//    _pos = [_x, _y]; 
+	_exp = "(100 * houses) * (100 * deadBody) * (10 + meadow) * (1 - forest) * (1 - trees) - (100 * sea) - (100 * hills)";
+	_prec = 100;
+	_tpos = getPos _object;
+	_bestplace = selectBestPlaces [_tpos,500,_exp,_prec,1];
+	_spot = _bestplace select 0;
+	_pos = _spot select 0;
+
 };
 
 

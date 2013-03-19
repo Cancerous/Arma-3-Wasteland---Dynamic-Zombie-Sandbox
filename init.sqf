@@ -17,11 +17,6 @@ Craig
 //Include Strings for text like side missions.
 //#include "en_strings.sqf";
 
-//Just some variables being set for if is server, client, jip. 
-if(isServer) then { Z_Server = true;} else { Z_Server = false;};
-if(!isDedicated) then { Z_Client = true; } else { Z_Client = false};
-if(isNull player) then { Z_JIP = true; } else { Z_JIP = false; };
-
 //Init some variables
 screendone = 0;
 paramsDone = 0;
@@ -40,9 +35,8 @@ if(isServer) then { X_Server = true;};
 if(!isDedicated) then { X_Client = true;};
 if(isNull player) then {X_JIP = true;};
 
-
 //If jip client.. Execute some JIP code.
-if(Z_JIP) then { [] execVM "onJip.sqf"; };
+//if(X_JIP) then { [] execVM "onJip.sqf"; };
 
 true spawn {
 	if(!isDedicated) then {
@@ -55,22 +49,24 @@ true spawn {
 gameType = (paramsArray select 9);
 
 
+//init Wasteland Core
+[] execVM "config.sqf";
+[] execVM "briefing.sqf";
+
+if(!isDedicated) then {
+	playerCompiledScripts = false;
+	player call compile preprocessFileLineNumbers "client\functions\clientCompile.sqf";
+};
 
 if (gameType == 0) then {
 	//Launch the mission
 	[] execVM "craigs_scripts\startup.sqf";
-
-
-	//waitUntil {screendone == 1};
-
 	/*
-	if(Z_Server) then {
+	if(X_Server) then {
 	"R3F_DZS" addPublicVariableEventHandler {[_this select 1] execVM "server_obj_spawn.sqf"};
 	};
 	*/
-
 	// sets parameter defaults if the game is in SP
-
 		CLY_friendlyfire= 1;
 		CLY_terraingrid= 0;
 		CVG_Debug= 1;
@@ -85,7 +81,7 @@ if (gameType == 0) then {
 		CVG_playerItems= 1; 
 		CVG_Aminals= 2; 
 		CVG_Horde= 1;
-		CVG_maxaggroradius=500;
+		CVG_maxaggroradius=300;
 		CVG_Zdensity = 100;
 		CVG_minSpawnDist = 100;
 		CVG_weapontype= 1;
@@ -104,21 +100,14 @@ if (gameType == 0) then {
 		CVG_survivors = 0;
 		CVG_logistics = 0;
 		CVG_SideMissions =0;
-	if (CVG_logistics == 1) then {
-		[] execVM "addons\R3F_ARTY_AND_LOG\init.sqf";
-	};
-	if (CVG_SideMissions == 1) then {
-		SMarray = ["SM1","SM2","SM3","SM4"];
-		[1] execVM "sideMissions\SMfinder.sqf";
-	};
-	
+	// if (CVG_SideMissions == 1) then {
+		// SMarray = ["SM1","SM2","SM3","SM4"];
+		// [1] execVM "sideMissions\SMfinder.sqf";
+	// };
 };
 
-//init Wasteland Core
-[] execVM "config.sqf";
-[] execVM "briefing.sqf";
 
-if(X_Client) then {
+if(!isDedicated) then {
 	waitUntil {player == player};
 
 	//Wipe Group.
@@ -130,13 +119,18 @@ if(X_Client) then {
 
 	[] execVM "client\init.sqf";
 };
-if(X_Server) then {
+if(isServer) then {
 	diag_log format ["############################# %1 #############################", missionName];
 	#ifdef __DEBUG__
 	diag_log format ["T%1,DT%2,F%3", time, diag_tickTime, diag_frameno];
 	#endif
     diag_log format["WASTELAND SERVER - Initilizing Server"];
 	[] execVM "server\init.sqf";
+};
+
+if (gameType == 0) then {
+	waitUntil {!(isNil "playerCompiledScripts")};
+	[] spawn genZeds; 
 };
 
 if (gameType == 1) then {
@@ -160,6 +154,7 @@ if (gameType == 2) then {
 [0.1, 0.5, 0.5] execVM "addons\scripts\DynamicWeatherEffects.sqf";
 
 //runs player connect script
-onPlayerConnected "Z_JIP_Time = date; publicVariable ""Z_JIP_Time""";
+onPlayerConnected "X_JIP_Time = date; publicVariable ""X_JIP_Time""";
 sleep 3;
-_messages = ["Escape this hellhole!","Survive","Lock and load","Get ready, Zombies are coming","Pillage and steal","The higher, the better","Enjoy your stay!","Headshots are better!!","craigvandergalien@gmail.com","Unite or Fight","Kill some Zs!","By Craig Vander Galien","Help: Luke Jansen"];
+
+// _messages = ["Escape this hellhole!","Survive","Lock and load","Get ready, Zombies are coming","Pillage and steal","The higher, the better","Enjoy your stay!","Headshots are better!!","craigvandergalien@gmail.com","Unite or Fight","Kill some Zs!","By Craig Vander Galien","Help: Luke Jansen"];

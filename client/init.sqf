@@ -15,14 +15,13 @@ currentMissionsMarkers = [];
 currentRadarMarkers = [];
 
 //Initialization Variables
-playerCompiledScripts = false;
 playerSetupComplete = false;
+//playerCompiledScripts = false;
+
+//player call compile preprocessFileLineNumbers "client\functions\clientCompile.sqf";
 
 waitUntil {!isNull player};
 waitUntil{time > 2};
-
-//Call client compile list.
-player call compile preprocessFileLineNumbers "client\functions\clientCompile.sqf";
 
 //Stop people being civ's.
 if(!(playerSide in [west, east, resistance])) then {

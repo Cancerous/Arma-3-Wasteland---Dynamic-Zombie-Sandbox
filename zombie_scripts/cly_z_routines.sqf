@@ -91,10 +91,16 @@ while {alive _zombie} do
 		if (!(_zombie getVariable ["zombietype", ""] in ["passive", "passive crawler", "ambusher"]) && time > _wait) then
 		{
 			_zombie doMove getPosATL _zombie;
-			_movepos = [0, 0, 1000];
-			while {surfaceIsWater _movepos || _movepos select 2 == 1000} do
+			_zpost = getPosATL _zombie;
+			_movepos = [0, 0, 0];
+			while {surfaceIsWater _movepos} do
 			{
-				_movepos = [(getPosATL _zombie select 0) - 30 + random 60, (getPosATL _zombie select 1) - 30 + random 60, 0];
+				_exp = "(100 * houses) * (100 * deadBody) * (1 + meadow) * (1 - forest) * (1 - trees) - (100 * sea) - (100 * hills)";
+				_prec = 100;
+				_bestplace = selectBestPlaces [_zpost,500,_exp,_prec,1];
+				_spot = _bestplace select 0;
+				_movepos = _spot select 0;
+				//_movepos = [(getPosATL _zombie select 0) - 30 + random 60, (getPosATL _zombie select 1) - 30 + random 60, 0];
 			};
 			_zombie doMove _movepos;
 			_zombie setSpeedMode "LIMITED";

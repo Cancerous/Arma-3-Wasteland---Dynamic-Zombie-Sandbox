@@ -189,7 +189,7 @@ CLY_zombiehandledamage =
 };
 
 //Disable saving
-enableSaving [true,true];
+//enableSaving[false,false];
 
 //Weather
 setWind [2,-2,true];
