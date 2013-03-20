@@ -4,7 +4,7 @@
 //@file Created: 20/11/2012 05:19
 //@file Description: The client init.
 
-if(!X_Client) exitWith {};
+if(isDedicated) exitWith {};
 
 mutexScriptInProgress = false;
 respawnDialogActive = false;
@@ -15,13 +15,14 @@ currentMissionsMarkers = [];
 currentRadarMarkers = [];
 
 //Initialization Variables
+playerCompiledScripts = false;
 playerSetupComplete = false;
-//playerCompiledScripts = false;
 
-//player call compile preprocessFileLineNumbers "client\functions\clientCompile.sqf";
 
 waitUntil {!isNull player};
 waitUntil{time > 2};
+//Call client compile list.
+player call compile preprocessFileLineNumbers "client\functions\clientCompile.sqf";
 
 //Stop people being civ's.
 if(!(playerSide in [west, east, resistance])) then {

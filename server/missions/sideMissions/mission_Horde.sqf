@@ -83,7 +83,8 @@ _startTime = floor(time);
 
 _unitsAlive = 0;
 _playerPresent = false;
-
+//_zombiesstart = nearestObjects [[_randomPos select 0, _randomPos select 1,0],["Man"],100];
+//{if(isNil {_x getVariable "zombietype"}) then {_zombiesstart = _zombiestart - _x}}forEach _zombiestart;
 waitUntil
 {
     sleep 1; 
@@ -96,8 +97,9 @@ waitUntil
 	#endif
 	if(_currTime - _startTime >= sideMissionTimeout) then {_result = 1;};
 	{if({isPlayer _x} count crew _vehicle > 0) exitWith {_playerPresent = true};}forEach _people;
-	{if(({isPlayer _x} count _people > 0) || (_playerPresent)) then {_unitsAlive = 0; _playerPresent = false;};};
-	(_result == 1) OR ((_playerPresent) AND (_unitsAlive < 1))
+	_zombiesnow = nearestObjects [[_randomPos select 0, _randomPos select 1,0],["Man"],100];
+	{if(isNil {_x getVariable "zombietype"}) then {_zombiesnow = _zombiesnow - [_x]};}forEach _zombiesnow;
+	(_result == 1) OR ((_playerPresent) AND (_zombiesnow < 10))
 };
 
 if(_result == 1) then

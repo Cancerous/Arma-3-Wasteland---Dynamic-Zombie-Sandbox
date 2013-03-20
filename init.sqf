@@ -50,17 +50,13 @@ gameType = (paramsArray select 9);
 
 
 //init Wasteland Core
-[] execVM "config.sqf";
-[] execVM "briefing.sqf";
+_cfg1 = [] execVM "config.sqf";
+_brf1 = [] execVM "briefing.sqf";
 
-if(!isDedicated) then {
-	playerCompiledScripts = false;
-	player call compile preprocessFileLineNumbers "client\functions\clientCompile.sqf";
-};
 
 if (gameType == 0) then {
 	//Launch the mission
-	[] execVM "craigs_scripts\startup.sqf";
+	_su1 = [] execVM "craigs_scripts\startup.sqf";
 	/*
 	if(X_Server) then {
 	"R3F_DZS" addPublicVariableEventHandler {[_this select 1] execVM "server_obj_spawn.sqf"};
@@ -117,7 +113,7 @@ if(!isDedicated) then {
 		[player] join grpNull;    
 	};
 
-	[] execVM "client\init.sqf";
+	_cli1 = [] execVM "client\init.sqf";
 };
 if(isServer) then {
 	diag_log format ["############################# %1 #############################", missionName];
@@ -125,33 +121,34 @@ if(isServer) then {
 	diag_log format ["T%1,DT%2,F%3", time, diag_tickTime, diag_frameno];
 	#endif
     diag_log format["WASTELAND SERVER - Initilizing Server"];
-	[] execVM "server\init.sqf";
+	_svi1 = [] execVM "server\init.sqf";
+
 };
 
-if (gameType == 0) then {
-	waitUntil {!(isNil "playerCompiledScripts")};
-	[] spawn genZeds; 
+if ((gameType == 0) && (isServer)) then {
+	hordeThread= compile preprocessFileLineNumbers "client\functions\playerSpawn.sqf";
+	zloop = [] spawn hordeThread;
 };
 
 if (gameType == 1) then {
-	[] execVM "gamemodes\LTJ_infected\infected_startUp.sqf";
+	_infs1 = [] execVM "gamemodes\LTJ_infected\infected_startUp.sqf";
 };
 
 if (gameType == 2) then {
-	[] execVM "gamemodes\CVG_TownAttack\townattack_startup.sqf";
+	_ta1 = [] execVM "gamemodes\CVG_TownAttack\townattack_startup.sqf";
 	waitUntil {screenDone == 1};
 };
 
 //launch celery's scripts
 
-[] execVM  "craigs_scripts\zombiesinit.sqf";
-[] exec "craigs_scripts\zombiesinit.sqs";
+_z1 = [] execVM  "craigs_scripts\zombiesinit.sqf";
+_z2 = [] exec "craigs_scripts\zombiesinit.sqs";
 
 
 //init 3rd Party Scripts
-[] execVM "addons\R3F_ARTY_AND_LOG\init.sqf";
-[] execVM "addons\proving_Ground\init.sqf";
-[0.1, 0.5, 0.5] execVM "addons\scripts\DynamicWeatherEffects.sqf";
+_r3f1 = [] execVM "addons\R3F_ARTY_AND_LOG\init.sqf";
+_pg1 = [] execVM "addons\proving_Ground\init.sqf";
+_dw1 = [0.1, 0.5, 0.5] execVM "addons\scripts\DynamicWeatherEffects.sqf";
 
 //runs player connect script
 onPlayerConnected "X_JIP_Time = date; publicVariable ""X_JIP_Time""";

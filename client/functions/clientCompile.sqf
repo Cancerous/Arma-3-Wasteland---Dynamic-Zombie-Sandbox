@@ -38,7 +38,6 @@ loadGunStore = compile preprocessFileLineNumbers "client\systems\gunStore\loadGu
 
 //Zombie compiles
 CVG_spawn_Zombies = compile preProcessFileLineNumbers "craigs_scripts\CVG_spawn_zombies.sqf";
-genZeds = compile preProcessFileLineNumbers "craigs_Scripts\hordeSpawner.sqf";
 zedLoop = compile preprocessFileLineNumbers "craigs_scripts\zombieRespawner.sqf";
 
 

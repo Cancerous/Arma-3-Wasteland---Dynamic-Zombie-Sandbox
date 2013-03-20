@@ -10,7 +10,7 @@ private ["_counter","_pos","_type","_num","_markerName","_marker","_amountOfVehi
 
 _counter = 0;
 //110
-for "_i" from 1 to 160 do
+for "_i" from 1 to 100 do
 {
 	_pos = getMarkerPos format ["Spawn_%1", _i];
 	_type = 0;

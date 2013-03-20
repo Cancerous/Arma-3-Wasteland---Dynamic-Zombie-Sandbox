@@ -17,7 +17,7 @@ while{true}do{
 		};
 	};
     
-    if ((_target isKindOf "Car" || _target isKindOf "Motorcycle" || _target isKindOf "Tank") && player == vehicle player) then{
+    if ((_target isKindOf "Land" || _target isKindOf "Air" || _target isKindOf "Boat") && player == vehicle player) then{
 		if((side _target == playerSide || playerside == resistance) && (player distance _target) < __DISTANCE && ((count crew _target) > 0))then{
             _unit = crew _target select 0;
 			_nameString = "<t size='0.3' shadow='2' color='#7FFF00'>" + format['%1',_unit getVariable ['unitname', name _target]] + "</t>";

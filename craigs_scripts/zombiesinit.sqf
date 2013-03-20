@@ -204,7 +204,7 @@ if (isDedicated) exitWith {};
 /////No dedicated after this/////
 
 
-
+/*
 //Put player in proper start position
 [] spawn {
     sleep 1;
@@ -240,7 +240,7 @@ if (CVG_Respawn == 0) then {
         };
     };
 };
-
+*/
 
 //---Accuracy boost---
 //Activate accuracy boost

@@ -255,7 +255,7 @@ _pos = [0,0];
 //progressLoadingScreen 0.3;
 gunsComplete = 1;
 //ammo cache script
-[] execVM "craigs_scripts\AmmoCaches.sqf";
+_amocch = [] execVM "craigs_scripts\AmmoCaches.sqf";
 //Some functions
 fn_getBuildingPositions = {
 	private ["_building","_positions","_i","_next"];
@@ -398,10 +398,10 @@ diag_log format ["CLY_zombieclasses: %1",CLY_zombieclasses];
 	WF_FNCT_getRandomSafePos = compile preProcessFileLineNumbers "craigs_scripts\getRandomSafePos.sqf";
 if (isServer) then {
    //Spawn loot (added A3, March 10
-	[] execVM "tonic\wepConfig.sqf";
+	_wepcfg = [] execVM "tonic\wepConfig.sqf";
 	hrn_fnc_loot = compile PreProcessFileLineNumbers "tonic\hrn_loot.sqf";
 	//Start HRN_Loot System
-	[] spawn hrn_fnc_loot;
+	_spnlt = [] spawn hrn_fnc_loot;
 	/*
 	The Zombie Trigger creating begins. The first section spawns zombie triggers in a grid
 	*/
@@ -515,21 +515,22 @@ if (!isDedicated) then {
 
 //Starts fasttime script
 if (CVG_fastTime == 1) then {
-	[4] execFSM "craigs_scripts\core_time.fsm";
+	_cft1 = [4] execFSM "craigs_scripts\core_time.fsm";
 };
 
 
 ///This block  of code spawns the building destruction. Executes on all clients
+if (isServer) then {
 if (CVG_CityDestruction == 2) then {
 	diag_Log  "loading building destruction";
 	_newPos = getArray(configFile >> "CfgWorlds" >> worldName >> "centerPosition");
 	[_newPos,10000,0,[]] call bis_fnc_destroyCity;
 };
+};
 
 
 
-
-[] execVM "craigs_scripts\tasks.sqf"; 
+_ct1 = [] execVM "craigs_scripts\tasks.sqf"; 
 	
 if (CVG_FoodWater == 1) then {
 	[] execVM "tonic\init.sqf";
@@ -550,6 +551,6 @@ if (!isDedicated) then
 	player execVM "zombie_scripts\cly_z_victim.sqf";
 	//[] execVM "craigs_scripts\sirenpoles.sqf";
 	if (CVG_ZombieTowns == 4) then {
-		[] spawn zedLoop; //[] execVM
+		_zlsu1 = [] spawn zedLoop; //[] execVM
 	};
 };

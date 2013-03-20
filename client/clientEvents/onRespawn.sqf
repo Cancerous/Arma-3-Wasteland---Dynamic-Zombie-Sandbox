@@ -41,6 +41,6 @@ if (!isDedicated) then
  {
 	player execVM "zombie_scripts\cly_z_victim.sqf";
 	if (CVG_ZombieTowns == 4) then {
-		[] spawn zedLoop; //[] execVM
+		//[] spawn zedLoop; //[] execVM
 	};
 };

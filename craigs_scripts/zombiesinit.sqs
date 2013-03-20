@@ -117,12 +117,12 @@ CLY_randomhordemininterval=300
 CLY_randomhordemaxinterval=960
 
 ;Minimum and maximum random horde spawning distance from player group
-CLY_randomhordeminspawndist=300
+CLY_randomhordeminspawndist=100
 CLY_randomhordemaxspawndist=500
 
 ;Minimum and maximum number of zombies in a random horde
 CLY_randomhordeminamount=1
-CLY_randomhordemaxamount=3
+CLY_randomhordemaxamount=6
 
 ;Groups reserved for hordes - allows hordes to spawn in very crowded areas
 CLY_hordereservedgroups=100
@@ -139,13 +139,13 @@ CLY_hordereservedgroups=100
 ;slow armored	walks to victim when one is spotted, silent until close, withstands lots of damage
 CLY_zombietypes = [["normal", 60], ["surprise", 30], ["passive", 0], ["crawler", 6], ["passive crawler", 0], ["sneaker", 4], ["ambusher", 0], ["creeper", 0], ["walker", 0], ["armored", 0], ["slow armored", 0]]
 ;Chance of zombie spawning with a lootable bandage
-CLY_zombiebandagechance=0.06
+CLY_zombiebandagechance=0.1
 
 ;Range at which a zombie can attack
-CLY_zombieattackdist = 5.0
+CLY_zombieattackdist = 1.75
 
 ;Chance of zombie dropping a random magazine
-CLY_zombiemagazinechance = 5.0
+CLY_zombiemagazinechance = 0.1
 
 ;Magazines that a zombie can drop
 CLY_zombiemagazines=["16Rnd_9x21_Mag",["20Rnd_556x45_UW_mag","20Rnd_762x45_Mag","30Rnd_65x39_caseless_mag","30Rnd_65x39_case_mag","100Rnd_65x39_caseless_mag_Tracer","200Rnd_65x39_cased_Box"]]
