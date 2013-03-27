@@ -85,10 +85,10 @@ CLY_maxaggroradius = 300
 CLY_altmaxaggroradius = 100
 CLY_altmaxaggroradiustriggers = [];
 
-CVG_minspawndist = 100
+CVG_minspawndist = 75
 ;At what range from a player zombies can spawn and despawn
 CLY_minspawndist=CVG_minspawndist
-CLY_maxspawndist=450
+CLY_maxspawndist=300
 CLY_despawndist=CLY_maxspawndist+50
 
 ;Distance from victim at which a non-horde zombie gives up the chase
@@ -113,12 +113,12 @@ CLY_minaggroknowsabout = 0.1
 CLY_nospawnobjects=[]
 
 ;Minimum and maximum interval between spawning random hordes
-CLY_randomhordemininterval=300
-CLY_randomhordemaxinterval=960
+CLY_randomhordemininterval=120
+CLY_randomhordemaxinterval=500
 
 ;Minimum and maximum random horde spawning distance from player group
-CLY_randomhordeminspawndist=100
-CLY_randomhordemaxspawndist=500
+CLY_randomhordeminspawndist=75
+CLY_randomhordemaxspawndist=300
 
 ;Minimum and maximum number of zombies in a random horde
 CLY_randomhordeminamount=1

@@ -4,7 +4,7 @@
 // simply as that -------------------------------------------------------------------------------------------
 if (!isServer) exitWith {};
 
-private ["_proba","_PosPlayer","_position","_randomPosP","_randomNum", "_victim", "_sleepTime"];
+private ["_proba","_PosPlayer","_position","_randomPosP","_randomNum","_victim","_sleepTime"];
 while {true} do {
 
 	waitUntil {sleep 30; diag_log "Random Hordes wait 30 sec"; count playableUnits > 0};
@@ -14,7 +14,7 @@ while {true} do {
 	//_sleepTime = 1200 - _sleepTime;
 	//_sleepTime = 120 + _sleepTime;
 
-	diag_log format ["Horde Spawning starts now", str(_sleepTime)];
+	diag_log format ["Horde Spawning starts now", nil];
 	sleep _sleepTime;
 
 	_victim = playableUnits select (floor random count playableUnits);

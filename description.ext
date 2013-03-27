@@ -29,8 +29,8 @@ disabledAI=1;
 //loadScreen =  "craigs_scripts\img.paa";
 class Header
 {
-	gameType=Wasteland;
-	//gameType=COOP;
+	//gameType=Wasteland;
+	gameType=COOP;
     minPlayers=1;
     maxPlayers=60;
 };
@@ -180,7 +180,7 @@ class Header
 			title="Minimum spawn dist:";
 			values[]={5,10,25,50,75,100,150,200,300,400,999};
 			texts[]={"5 Meters", "10 Meters","25 Meters","50 Meters","75 Meters","100 Meters","150 Meters","200 Meters","300 Meters","400 Meters","Random"};
-			default=100;
+			default=75;
 		};
 		
 		class CVG_weapontype19

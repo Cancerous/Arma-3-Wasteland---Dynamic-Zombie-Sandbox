@@ -25,7 +25,7 @@ if (CVG_weapontype == 6) then {
 // if enabled add NVGs
 if (CVG_NVG == 2) then {
     _num = floor (random 100);
-    if (_num < 10) then { _car addWeaponCargoGlobal ["NVgoggles", 1]};
+    if (_num < 10) then { _car addItemCargoGlobal ["NVgoggles", 1]};
 };
 
 

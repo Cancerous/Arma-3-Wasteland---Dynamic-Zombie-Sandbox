@@ -50,15 +50,15 @@ gameType = (paramsArray select 9);
 
 
 //init Wasteland Core
-_cfg1 = [] execVM "config.sqf";
-_brf1 = [] execVM "briefing.sqf";
+[] execVM "config.sqf";
+[] execVM "briefing.sqf";
 
 
-if (gameType == 0) then {
+//if (gameType == 0) then {
 	//Launch the mission
-	_su1 = [] execVM "craigs_scripts\startup.sqf";
+	[] execVM "craigs_scripts\startup.sqf";
 	/*
-	if(X_Server) then {
+	if(isServer) then {
 	"R3F_DZS" addPublicVariableEventHandler {[_this select 1] execVM "server_obj_spawn.sqf"};
 	};
 	*/
@@ -72,14 +72,14 @@ if (gameType == 0) then {
 		CVG_Fog = 0;
 		CVG_Viewdist = 2500;
 		CVG_Weather = 1;
-		gameType = 0;
+		//gameType = 0;
 		CVG_playerWeapons = 1; 
 		CVG_playerItems= 1; 
 		CVG_Aminals= 2; 
 		CVG_Horde= 1;
 		CVG_maxaggroradius=300;
 		CVG_Zdensity = 100;
-		CVG_minSpawnDist = 100;
+		CVG_minSpawnDist = 75;
 		CVG_weapontype= 1;
 		CVG_Zombietowns= 4;
 		CVG_taskType = 4;
@@ -100,7 +100,7 @@ if (gameType == 0) then {
 		// SMarray = ["SM1","SM2","SM3","SM4"];
 		// [1] execVM "sideMissions\SMfinder.sqf";
 	// };
-};
+//};
 
 
 if(!isDedicated) then {
@@ -113,7 +113,7 @@ if(!isDedicated) then {
 		[player] join grpNull;    
 	};
 
-	_cli1 = [] execVM "client\init.sqf";
+	[] execVM "client\init.sqf";
 };
 if(isServer) then {
 	diag_log format ["############################# %1 #############################", missionName];
@@ -121,34 +121,34 @@ if(isServer) then {
 	diag_log format ["T%1,DT%2,F%3", time, diag_tickTime, diag_frameno];
 	#endif
     diag_log format["WASTELAND SERVER - Initilizing Server"];
-	_svi1 = [] execVM "server\init.sqf";
+	[] execVM "server\init.sqf";
 
 };
 
-if ((gameType == 0) && (isServer)) then {
-	hordeThread= compile preprocessFileLineNumbers "client\functions\playerSpawn.sqf";
+if (isServer) then {
+	hordeThread= compile preprocessFileLineNumbers "craigs_scripts\hordeSpawner.sqf";
 	zloop = [] spawn hordeThread;
 };
 
 if (gameType == 1) then {
-	_infs1 = [] execVM "gamemodes\LTJ_infected\infected_startUp.sqf";
+	[] execVM "gamemodes\LTJ_infected\infected_startUp.sqf";
 };
 
 if (gameType == 2) then {
-	_ta1 = [] execVM "gamemodes\CVG_TownAttack\townattack_startup.sqf";
+	[] execVM "gamemodes\CVG_TownAttack\townattack_startup.sqf";
 	waitUntil {screenDone == 1};
 };
 
 //launch celery's scripts
 
-_z1 = [] execVM  "craigs_scripts\zombiesinit.sqf";
-_z2 = [] exec "craigs_scripts\zombiesinit.sqs";
+[] execVM  "craigs_scripts\zombiesinit.sqf";
+[] exec "craigs_scripts\zombiesinit.sqs";
 
 
 //init 3rd Party Scripts
-_r3f1 = [] execVM "addons\R3F_ARTY_AND_LOG\init.sqf";
-_pg1 = [] execVM "addons\proving_Ground\init.sqf";
-_dw1 = [0.1, 0.5, 0.5] execVM "addons\scripts\DynamicWeatherEffects.sqf";
+[] execVM "addons\R3F_ARTY_AND_LOG\init.sqf";
+[] execVM "addons\proving_Ground\init.sqf";
+[0.1, 0.5, 0.5] execVM "addons\scripts\DynamicWeatherEffects.sqf";
 
 //runs player connect script
 onPlayerConnected "X_JIP_Time = date; publicVariable ""X_JIP_Time""";

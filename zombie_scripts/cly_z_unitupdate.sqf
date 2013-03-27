@@ -1,7 +1,7 @@
 //This script updates the player list and cleans up unitless groups
+if (!isServer) exitWith {};
 terminate CLYupdateHandle;
 CLYupdateHandle = [] spawn {
-	if (!isServer) exitWith {terminate CLYupdateHandle;};
 	waitUntil {!isNil "CLY_deadcharacters"};
 
 	while {true} do

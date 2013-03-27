@@ -99,7 +99,7 @@ waitUntil
 	{if({isPlayer _x} count crew _vehicle > 0) exitWith {_playerPresent = true};}forEach _people;
 	_zombiesnow = nearestObjects [[_randomPos select 0, _randomPos select 1,0],["Man"],100];
 	{if(isNil {_x getVariable "zombietype"}) then {_zombiesnow = _zombiesnow - [_x]};}forEach _zombiesnow;
-	(_result == 1) OR ((_playerPresent) AND (_zombiesnow < 10))
+	(_result == 1) OR ((_playerPresent) AND ((count _zombiesnow) < 10))
 };
 
 if(_result == 1) then
