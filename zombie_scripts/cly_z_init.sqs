@@ -37,9 +37,9 @@ _zombie setVariable ["horde", _horde, true]
 _zombie setVariable ["despawn", false]
 _zombie setVariable ["dynamic", _dynamic]
 ;_zombie setObjectTexture [0,"\CA\characters_E\civil\Tak_civil01\Data\w1_tak_civil01_mc.paa"]
-?gameType == 1:_zombie addMPEventHandler ["MPkilled", {nul = [_this select 0, _this select 1,"killed"] execVM "gamemodes\LTJ_infected\points.sqf"; }]
-?gameType == 1:_zombie addMPEventHandler ["MPhit", {nul = [_this select 0, _this select 1,"hit"] execVM "gamemodes\LTJ_infected\points.sqf"; }]
-?gameType == 2:_zombie addMPEventHandler ["MPkilled", {nul = [_this select 0, _this select 1,"killed"] execVM "gamemodes\CVG_townattack\kills.sqf"; }]
+;?gameType == 1:_zombie addMPEventHandler ["MPkilled", {nul = [_this select 0, _this select 1,"killed"] execVM "gamemodes\LTJ_infected\points.sqf"; }]
+;?gameType == 1:_zombie addMPEventHandler ["MPhit", {nul = [_this select 0, _this select 1,"hit"] execVM "gamemodes\LTJ_infected\points.sqf"; }]
+;?gameType == 2:_zombie addMPEventHandler ["MPkilled", {nul = [_this select 0, _this select 1,"killed"] execVM "gamemodes\CVG_townattack\kills.sqf"; }]
 
 ;Custom zombie damage handling
 CVG_hardzombies = true;

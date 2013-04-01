@@ -61,33 +61,16 @@ if(!isNull(pvar_PlayerTeamKiller)) then {
 	publicVariable "publicVar_teamkillMessage";
 };
 
-private["_a","_b","_c","_d","_e","_f","_m","_player","_killer","_buildings","_h","_pos","_unit","_x","_to_delete"];
+private["_a","_b","_c","_d","_e","_f","_h","_m","_x","_buildings","_player","_pos","_killer","_to_delete"];
 
-_unit = _this select 0;
-
-if (!isNil {_unit getVariable "zombietype"}) then {
-	if ((count magazines _unit) > 0) then {
-		_h=getPosATL _unit nearObjects ["logic",0.1];
-		if (count _h>0) then {deleteVehicle (_h select 0)};
-		_pos = getPos _unit;
-		_buildings = nearestObjects [_pos, ["house"], 1000];
-		{
-			usedBuildings = usedBuildings - [_x];
-		} forEach _buildings;
-		sleep 120;
-		hideBody _unit;
-		sleep 10;
-		deleteVehicle _unit;
-	};
-};
-
-if ((isNil {_unit getVariable "zombietype"}) && (!(_unit isKindOf "Man"))) then {
-
+//questionable, note to self, if it breaks first just comment out the rmoving of logic objects and retest
 	_h=getPosATL _unit nearObjects ["logic",0.1];
 	if (count _h>0) then {deleteVehicle (_h select 0)};
-	sleep 500;
-	deleteVehicle _unit;
-};
+	_pos = getPos _unit;
+	_buildings = nearestObjects [_pos, ["house"], 1000];
+	{
+		usedBuildings = usedBuildings - [_x];
+	} forEach _buildings;
 
 _to_delete = [];
 _to_delete_quick = [];

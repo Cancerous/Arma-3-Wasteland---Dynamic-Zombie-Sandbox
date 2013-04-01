@@ -19,45 +19,7 @@ private ["_options","_value","_side","_group","_logic","_type","_weap_type","_cu
 This part declares all the variables for the mission. It gets the values from the chosen parameters
 */
 private ["_options","_value","_num"];
-CLY_friendlyfire=paramsArray select 0;
-CLY_terraingrid=paramsArray select 1;
-CVG_Debug= (paramsArray select 2);
-CVG_timeToSkipTo = (paramsArray select 3);
-CVG_CityDestruction= (paramsArray select 4);
-CVG_bandages= (paramsArray select 5);
-CVG_Fog = (paramsArray select 6);
-CVG_Viewdist = (paramsArray select 7);
-CVG_Weather = (paramsArray select 8);
-gameType = (paramsArray select 9);
-CVG_FoodWater = (paramsArray select 10);
-CVG_Playerstart = (paramsArray select 11); 
-CVG_playerWeapons = (paramsArray select 12); 
-CVG_playerItems= (paramsArray select 13); 
-CVG_Aminals= (paramsArray select 14); 
-CVG_Horde= (paramsArray select 15);
-CVG_maxaggroradius = (paramsArray select 16);
-CVG_Zdensity = (paramsArray select 17);
-CVG_minSpawnDist = (paramsArray select 18);
-CVG_weapontype = (paramsArray select 19);
-CVG_Zombietowns= (paramsArray select 20);
-CVG_taskType = (paramsArray select 21);
-CVG_taskOption = (paramsArray select 22);
-vehspawntype = (paramsArray select 23);
-chanceNumber = (paramsArray select 24);
-CVG_Fuel = (paramsArray select 25);
-CVG_fastTime = (paramsArray select 26);
-CVG_Weaponcount = (paramsArray select 27);
-CVG_VehicleStatus = (paramsArray select 28);
-CVG_Mochilla = (paramsArray select 29);
-CVG_Caches = (paramsArray select 30);
-CVG_SideMissions= (paramsArray select 31);
-CVG_SideMarkers= (paramsArray select 32);
-CVG_Logistics= (paramsArray select 33);
-CVG_NVG= (paramsArray select 34);
-CVG_E= (paramsArray select 35);
-CVG_Helis= (paramsArray select 36);
-CVG_TownAttackVehicles= (paramsArray select 38);
-CVG_TownAttackBoxes= (paramsArray select 39);
+
 //progressLoadingScreen 0.1;
 // This part, if random was chosen, executes the randomness
 if (CVG_timeToSkipTo == 25) then {

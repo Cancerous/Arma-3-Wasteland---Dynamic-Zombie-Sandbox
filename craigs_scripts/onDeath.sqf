@@ -11,9 +11,9 @@ if (!isNil {_unit getVariable "zombietype"}) then {
 		{
 			usedBuildings = usedBuildings - [_x];
 		} forEach _buildings;
-		sleep 120;
+		sleep 30;
 		hideBody _unit;
-		sleep 10;
+		sleep 1;
 		deleteVehicle _unit;
 	};
 };
@@ -22,6 +22,6 @@ if ((isNil {_unit getVariable "zombietype"}) && (!(_unit isKindOf "Man"))) then 
 
 	_h=getPosATL _unit nearObjects ["logic",0.1];
 	if (count _h>0) then {deleteVehicle (_h select 0)};
-	sleep 500;
+	sleep 30;
 	deleteVehicle _unit;
 };

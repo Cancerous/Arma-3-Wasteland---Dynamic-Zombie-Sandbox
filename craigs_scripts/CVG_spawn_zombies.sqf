@@ -17,9 +17,9 @@
 		_zombietype = "normal";
 		_zombie= _group createUnit [_class,getPos zombiespawner,[],50,"NONE"];
 		waitUntil {typeOf _zombie == _class};
-		if (gameType == 1 or gameType == 2) then {
+/*		if (gameType == 1 or gameType == 2) then {
 			spawned_Zombies = spawned_Zombies + [_zombie];
-		};
+		};*/
 		_zombie enableSimulation false;
 		if (CVG_Horde == 1) then {_horde = false} else {_horde = true};
 

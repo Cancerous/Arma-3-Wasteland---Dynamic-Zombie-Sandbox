@@ -25,7 +25,7 @@ if (random 1 < 0.4 && _zombie getVariable ["zombietype", ""] != "creeper") then
 			_zombie = _this select 0;
 			if (_zombie getVariable "victim" != _zombie && !(_zombie getVariable "despawn")) then
 			{
-				_sound = CLY_noises_die select floor random count CLY_noises_die;
+				_sound = CLY_noises_die select (floor (random (count CLY_noises_die)));
 				_object = "logic" createVehicleLocal [0, 0, 0];
 				_object attachTo [_zombie, [0, 0, 1.5]];
 				_object say3D _sound;
@@ -57,10 +57,10 @@ if (CLY_zombiemagazinechance > 0) then
 {
 	if (random 1 <= CLY_zombiemagazinechance || _armored) then
 	{
-		_mag = CLY_zombiemagazines select floor random count CLY_zombiemagazines;
+		_mag = CLY_zombiemagazines select (floor (random (count CLY_zombiemagazines)));
 		while {typeName _mag == "ARRAY"} do
 		{
-			_mag = _mag select floor random count _mag;
+			_mag = _mag select (floor (random (count _mag)));
 		};
 		_zombie addMagazine _mag;
 	};
@@ -80,7 +80,7 @@ while {alive _zombie} do
 		//Noise
 		if (_zombie getVariable ["zombietype", ""] in ["normal", "walker"] && time > _noisewait) then
 		{
-			_sound = CLY_noises_idle select floor random count CLY_noises_idle;
+			_sound = CLY_noises_idle select (floor (random (count CLY_noises_idle)));
 			_zombie say3D _sound;
 			CLY_z_noisepv = [_zombie, _sound];
 			publicVariable "CLY_z_noisepv";
@@ -112,7 +112,7 @@ while {alive _zombie} do
 		if (_zombie getVariable "horde") then
 		{
 			_victim = objNull;
-			_dist = 10000;
+			_dist = 20000;
 			{
 				_distance = _zombie distance vehicle _x;
 				if (_distance < _dist) then
@@ -144,7 +144,7 @@ while {alive _zombie} do
 							}
 						} forEach (getPosATL vehicle _victim nearEntities ["Man", _victimradius]);
 					};
-					_victim = _victims select floor random count _victims;
+					_victim = _victims select (floor (random (count _victims)));
 					_zombie setVariable ["victim", _victim, true];
 				};
 			};
@@ -219,11 +219,11 @@ while {alive _zombie} do
 				{
 					_sound = if !(_zombie getVariable ["zombietype", ""] in ["walker", "slow armored"]) then
 					{
-						CLY_noises_chase select floor random count CLY_noises_chase;
+						CLY_noises_chase select (floor (random (count CLY_noises_chase)));
 					}
 					else
 					{
-						CLY_noises_idle select floor random count CLY_noises_idle;
+						CLY_noises_idle select (floor (random (count CLY_noises_idle)));
 					};
 					_zombie say3D _sound;
 					CLY_z_noisepv = [_zombie, _sound];
@@ -234,7 +234,7 @@ while {alive _zombie} do
 				{
 					if (_dist < 12 && unitPos _zombie != "DOWN" && canStand _zombie) then
 					{
-						_sound = CLY_noises_chase select floor random count CLY_noises_chase;
+						_sound = CLY_noises_chase select (floor (random (count CLY_noises_chase)));
 						_zombie say3D _sound;
 						CLY_z_noisepv = [_zombie, _sound];
 						publicVariable "CLY_z_noisepv";
@@ -299,7 +299,7 @@ while {alive _zombie} do
 			{
 				_anim = if (_zombie selectionPosition "launcher" select 2 < 0.5372) then {"awopppnemstpsgthwnondnon_end";} else {"awoppercmstpsgthwnondnon_end";};
 				_noises = CLY_noises_attack;
-				_sound = _noises select floor random count _noises;
+				_sound = _noises select (floor (random (count _noises)));
 				_object = "logic" createVehicleLocal [0, 0, 0];
 				_object attachTo [_zombie, [0, 0, 1.5]];
 				_object say3D _sound;
@@ -315,7 +315,7 @@ while {alive _zombie} do
 				
 				if (_vehicle == _victim) then
 				{
-					_sound = if (_victim isKindOf "Animal") then {if (typeOf _victim in ["Fin", "Pastor"]) then {CLY_noises_yelp select floor random count CLY_noises_yelp;} else {"";}} else {CLY_noises_scream select floor random count CLY_noises_scream;};
+					_sound = if (_victim isKindOf "Animal") then {if (typeOf _victim in ["Fin", "Pastor"]) then {CLY_noises_yelp select (floor (random (count CLY_noises_yelp)));} else {"";}} else {CLY_noises_scream select floor random count CLY_noises_scream;};
 					if (_sound != "") then {
 						_object = "logic" createVehicleLocal [0, 0, 0];
 						_object attachTo [_victim, [0, 0, 1.5]];

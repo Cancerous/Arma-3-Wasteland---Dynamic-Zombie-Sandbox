@@ -55,8 +55,6 @@ gameType = (paramsArray select 9);
 
 
 //if (gameType == 0) then {
-	//Launch the mission
-	[] execVM "craigs_scripts\startup.sqf";
 	/*
 	if(isServer) then {
 	"R3F_DZS" addPublicVariableEventHandler {[_this select 1] execVM "server_obj_spawn.sqf"};
@@ -79,7 +77,7 @@ gameType = (paramsArray select 9);
 		CVG_Horde= 1;
 		CVG_maxaggroradius=300;
 		CVG_Zdensity = 100;
-		CVG_minSpawnDist = 75;
+		CVG_minSpawnDist = 50;
 		CVG_weapontype= 1;
 		CVG_Zombietowns= 4;
 		CVG_taskType = 4;
@@ -96,6 +94,9 @@ gameType = (paramsArray select 9);
 		CVG_survivors = 0;
 		CVG_logistics = 0;
 		CVG_SideMissions =0;
+
+	//Launch the mission
+	[] execVM "craigs_scripts\startup.sqf";
 	// if (CVG_SideMissions == 1) then {
 		// SMarray = ["SM1","SM2","SM3","SM4"];
 		// [1] execVM "sideMissions\SMfinder.sqf";
@@ -129,7 +130,7 @@ if (isServer) then {
 	hordeThread= compile preprocessFileLineNumbers "craigs_scripts\hordeSpawner.sqf";
 	zloop = [] spawn hordeThread;
 };
-
+/*
 if (gameType == 1) then {
 	[] execVM "gamemodes\LTJ_infected\infected_startUp.sqf";
 };
@@ -138,7 +139,7 @@ if (gameType == 2) then {
 	[] execVM "gamemodes\CVG_TownAttack\townattack_startup.sqf";
 	waitUntil {screenDone == 1};
 };
-
+*/
 //launch celery's scripts
 
 [] execVM  "craigs_scripts\zombiesinit.sqf";

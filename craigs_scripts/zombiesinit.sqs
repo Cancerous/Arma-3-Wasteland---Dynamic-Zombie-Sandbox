@@ -45,7 +45,7 @@ CLY_game = ""
 ;[] spawn {0 fadeSound 0;sleep 2.5;5 fadeSound 1}
 
 ;Make markers invisible
-?isServer:{_x setMarkerAlpha 0} forEach ["respawn_civilian","safehouseborder"]
+;?isServer:{_x setMarkerAlpha 0} forEach ["respawn_civilian","safehouseborder"]
 
 ;Character specific equipment
 ;?CLY_game != "A2" : call compile "removeBackpack player"
@@ -85,7 +85,7 @@ CLY_maxaggroradius = 300
 CLY_altmaxaggroradius = 100
 CLY_altmaxaggroradiustriggers = [];
 
-CVG_minspawndist = 75
+CVG_minspawndist = 50
 ;At what range from a player zombies can spawn and despawn
 CLY_minspawndist=CVG_minspawndist
 CLY_maxspawndist=300
@@ -151,10 +151,10 @@ CLY_zombiemagazinechance = 0.1
 CLY_zombiemagazines=["16Rnd_9x21_Mag",["20Rnd_556x45_UW_mag","20Rnd_762x45_Mag","30Rnd_65x39_caseless_mag","30Rnd_65x39_case_mag","100Rnd_65x39_caseless_mag_Tracer","200Rnd_65x39_cased_Box"]]
 
 ;Sound arrays
-CLY_noises_idle=["idle2","idle3","idle4","idle5","idle6","idle7","idle8"]
-CLY_noises_chase=["chase1","chase2","chase3","chase4","chase5","chase6","chase7","chase8"]
+CLY_noises_idle=["idle1","idle2","idle3","idle4","idle5","idle6","idle7","idle8"]
+CLY_noises_chase=["chase1","chase2","chase3","chase4","chase5","chase6","chase7","chase8","chase9","chase10","chase11"]
 CLY_noises_attack=["attack1","attack2","attack3","attack4"]
-CLY_noises_die=["die1","die2"]
+CLY_noises_die=["die1","die2","die3"]
 CLY_noises_scream=["scream1","scream2","scream3"]
 
 ;Unit classes that can be used as zombies - civilian units are not recommended due to AI problems

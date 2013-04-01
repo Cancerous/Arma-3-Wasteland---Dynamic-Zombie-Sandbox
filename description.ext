@@ -1,10 +1,5 @@
 onLoadMission="Loading Mission";
-//#define LOADSCREEN "craigs_scripts\img.paa"
-//#define LOADSCREENTEXT "Creating World"
-//#include "loadingscreen.ext"
-//disableChannels[]={2};
-//enableItemsDropping = 0;
-//Dialog includes
+
 #include "addons\R3F_ARTY_AND_LOG\desc_include.h"
 #include "client\systems\common.hpp"
 #include "client\systems\playerMenu\dialog\player_settings.hpp"
@@ -26,322 +21,15 @@ briefing = 0;
 respawn="BASE";
 respawnDelay=15;
 disabledAI=1;
-//loadScreen =  "craigs_scripts\img.paa";
+
 class Header
 {
 	//gameType=Wasteland;
 	gameType=COOP;
     minPlayers=1;
-    maxPlayers=60;
+    maxPlayers=65;
 };
 
-	class Params
-	{
-		class CLY_friendlyfire0
-		{
-			title="Friendly fire damage:";
-			values[]={1,2,0};
-			texts[]={"Full","Reduced","Off"};
-			default=1;
-		};
-		class CLY_terraingrid1
-		{
-			title="Terrain detail:";
-			values[]={0,50,25};
-			texts[]={"Individual choice","Very low (no grass)","Low (default)"};
-			default=0;
-		};
-		
-		class CVG_Debug2
-		{
-			title="Debug mode:";
-			values[]={1,2};
-			texts[]={"Off", "On"};
-			default=1;
-		};
-		
-		class CVG_timeOfDay3
-		{
-			title="Start time:";
-			values[]={1,3,6,9,12,15,18,21,24,25};
-			texts[]={"0100 Hours","0300 Hours","0600 Hours","0900 Hours","1200 Hours","1500 Hours","1800 Hours","2100 Hours","2400 Hours","Random"};
-			default=18;
-		};
-		
-		class CVG_CityDestruction4
-		{
-			title="Building destruction:";
-			values[]={1,2};
-			texts[]={"No","YES"};
-			default=2;
-		};
-		class CVG_bandages5
-		{
-			title="Bandage Count:";
-			values[]={0,1,2,3,4,5,6,7,10};
-			texts[]={"0","1", "2","3","4","5","6","7","10"};
-			default=4;
-		};
-		class CVG_Fog6
-		{
-			title="Volumetric Fog:";
-			values[]={1,0};
-			texts[]={"Yes","No"};
-			default=0;
-		};
-		class CVG_View_Dist7
-		{
-			title="View Distance:";
-			values[]={100,200,300,400,600,1000,1500,2000,2500,3000,5000,10000};
-			texts[]={"100m","200m","300m","400m","600m","1000m","1500m","2000m","2500m","3000m","5000m","10,000m"};
-			default=2500;
-		};
-		
-		class CVG_weather8
-		{
-			title="Weather:";
-			values[]={1,2,3,4,5};
-			texts[]={"Clear","Overcast w/wintry mix","In between","Foggy and Overcast","Completely Random"};
-			default=1;
-		};
-		
-		class CVG_GAMEMODE9
-		{
-			title="Game Type (Some parameters may be overridden)";
-			values[]={0,1,2};
-			texts[]={"Classic","Infected","Clear out Town"};
-			default=0;
-		};
-		class CVG_FoodWater10
-		{
-			title="Food and Water System";
-			values[]={0,1};
-			texts[]={"Off","On (Requires logistics, animals suggested)"};
-			default=0;
-		};
-		class CVG_playerStart11
-		{
-			title="Player start area:";
-			values[]={50,100,150};
-			texts[]={"At a random town", "Randomly around map","With other players"};
-			default=50;
-		};
-		
-		class CVG_playerWeapons12
-		{
-			title="Start with weapons:";
-			values[]={1,2,3};
-			texts[]={"Yes", "No","Random"};
-			default=1;
-		};
-		
-		class CVG_playerItems13
-		{
-			title="Start with map:";
-			values[]={1,2,3};
-			texts[]={"Yes", "No","Random"};
-			default=1;
-		};
-		
-		class CVG_Aminals14
-		{
-			title="Ambient Aminals:";
-			values[]={1,2};
-			texts[]={"Yes", "No"};
-			default=2;
-		};
-		
-		class CVG_Horde15
-		{
-			title="Super Zombies, All zombies can find you anywhere you are:";
-			values[]={1,2};
-			texts[]={"Off", "On"};
-			default=1;
-		};
-		
-		class CVG_maxaggrodist16
-		{
-			title="Maximum Agro radius:";
-			values[]={100,200,300,400,500,600,700,1000,9999};
-			texts[]={"100 Meters", "200 Meters","300 Meters","400 Meters","500 Meters","600 Meters","700 Meters","1000 Meters","Random"};
-			default=300;
-		};
-		
-		class CVG_Zdensity17
-		{
-			title="Zombies per KM:";
-			values[]={10,20,30,40,50,60,70,100,99};
-			texts[]={"10", "20","30","40","50","60","70","100","Random"};
-			default=100;
-		};
-		
-		class CVG_MINSPAWNDIST18
-		{
-			title="Minimum spawn dist:";
-			values[]={5,10,25,50,75,100,150,200,300,400,999};
-			texts[]={"5 Meters", "10 Meters","25 Meters","50 Meters","75 Meters","100 Meters","150 Meters","200 Meters","300 Meters","400 Meters","Random"};
-			default=75;
-		};
-		
-		class CVG_weapontype19
-		{
-			title="Findable weapon types:";
-			values[]={1,2,3,4,5,6,8,7};
-			texts[]={"All Weapons (And I mean Every Weapon)","Local Weapons","BLUFOR Weapons","OPFOR Weapons","Pistols","All Weapons, based on type","Weapons from mods only","Random"};
-			default=1;
-		};
-		
-		class CVG_Zombietowns20
-		{
-			title="Zombie spawn area:";
-			values[]={1,2,3,4};
-			texts[]={"Towns","Everywhere","Everywhere, More in towns","In groups, around nearby buildings, (Best)"};
-			default=4;
-		};
-		
-		class CVG_tasks21
-		{
-			title="Task types:";
-			values[]={2,1,3,4};
-			texts[]={"Find and defend US base - Beta","Find escape helicopter","Survive for 30 minutes","Sandbox. Survive. No escape. Fight for weapons. Do what it takes."};
-			default=4;
-		};
-		
-		class CVG_Taskoptions22
-		{
-			title="Show task location";
-			values[]={0,1};
-			texts[]={"No (A lot harder)","Yes (for a quick game. You know right where to go)"};
-			default=1;
-		};
-		
-		class CVG_vehicles23
-		{
-			title="Vehicle Spawn Types:";
-			values[]={0,1,2,3,4,5};
-			texts[]={"Based on surroundings (All)","All Civilian","Trucks","Military","All","Vehicles from mods only"};
-			default=0;
-		};
-		
-		class CVG_vehicle24
-		{
-			title="Vehicle Spawn Number:";
-			values[]={0,1,5,10,20,40,60,99};
-			texts[]={"None (The Are you Man enough? Mode)","Almost none","Tiny","Small","Medium","Large","Insane","Random"};
-			default=0;
-		};
-		
-		class CVG_Fuel25
-		{
-			title="Destroy Fuel Stations:";
-			values[]={0,1,3};
-			texts[]={"No","Yes","Random"};
-			default=0;
-		};
-		
-		class CVG_fastTime26
-		{
-			title="Speed up time:";
-			values[]={0,1};
-			texts[]={"No","Yes"};
-			default=0;
-		};
-		
-		class CVG_Weaponcount27
-		{
-			title="Amount of Weapons (affects vehicle weapons and sidemissions):";
-			values[]={20,50,75,101,99};
-			texts[]={"Very Few","Medium","Plenty","Every Vehicle","Random"};
-			default=75;
-		};
-		
-		class CVG_Vehicleinfo28
-		{
-			title="Vehicle Status (options represent best possible condition):";
-			values[]={1,2,3,4};
-			texts[]={"Very Good","Okay","Bad","Random"};
-			default=4;
-		};
-		class CVG_Mochilla29
-		{
-			title="ACE Stamina/backpacks:";
-			values[]={0,1};
-			texts[]={"Disabled","Enabled"};
-			default=0;
-		};
-		class CVG_Caches30
-		{
-			title="Small Ammo Caches in Towns:";
-			values[]={0,1};
-			texts[]={"Disabled","Enabled"};
-			default=1;
-		};
-		class CVG_sideMission31
-		{
-			title="Side Missions:";
-			values[]={0,1};
-			texts[]={"Disabled","Enabled"};
-			default=0;
-		};
-		class CVG_sideMarkers32
-		{
-			title="Side Mission Markers";
-			values[]={0,1};
-			texts[]={"Exact Position","General Area"};
-			default=1;
-		};
-		class CVG_Logistics33
-		{
-			title="R3F Logistics:";
-			values[]={0,1};
-			texts[]={"Disabled","Enabled"};
-			default=0;
-		};
-		class CVG_NVGS34
-		{
-			title="Night Vision";
-			values[]={0,1,2};
-			texts[]={"Disabled","On Players at Start","Available throughout mission"};
-			default=1;
-		};
-		class CVG_E35
-		{
-			title="Press E to get in vehicles";
-			values[]={0,1};
-			texts[]={"Disabled","Enabled"};
-			default=0;
-		};
-		class CVG_Heli36
-		{
-			title="Helicopters have a chance to spawn at airports ";
-			values[]={0,1};
-			texts[]={"Disabled","Enabled"};
-			default=1;
-		};
-		class CVG_PLACEHOLDER37
-		{
-			title="------------The following parameters are for the Town Attack Gamemode------------";
-			values[]={0};
-			texts[]={"--------"};
-			default=0;
-		};
-		class CVG_TattackVehicles38
-		{
-			title="Start with vehicles?";
-			values[]={0,1};
-			texts[]={"No","Start with Military Vehicles"};
-			default=0;
-		};
-		class CVG_TattackAmmo39
-		{
-			title="Ammoboxes for town attack";
-			values[]={0,1,2};
-			texts[]={"None","Magic Box","5 Random Boxes"};
-			default=2;
-		};
-	
-	};
-	
 class CfgSounds
 {
     class attack1
@@ -434,8 +122,6 @@ class CfgSounds
         sound[]={\sound\chase11.ogg,0.1,1};
         titles[]={};
     };
-    
-    
     class die1
     {
         name="die1";
@@ -454,6 +140,12 @@ class CfgSounds
         sound[]={\sound\die3.ogg,0.1,1};
         titles[]={};
     };
+	class idle1
+	{
+        name="idle1";
+        sound[]={\sound\idle1.ogg,0.1,1};
+        titles[]={};
+	};
     class idle2
     {
         name="idle2";
@@ -719,7 +411,6 @@ class RscTitles {
 			};
 		};   
  	};
-
 	class bandagehud
    	{
 		idd=-1;
@@ -752,7 +443,6 @@ class RscTitles {
 			};
 		};   
  	};
-
 	class meathud
    	{
 		idd=-1;
@@ -785,8 +475,6 @@ class RscTitles {
 			};
 		};   
  	};
-
-
 	class hud
    	{
 		idd=-1;
@@ -817,8 +505,7 @@ class RscTitles {
 				text="";
 			};
 		};   
- 	};	
-	
+ 	};
 	class namehud
    	{
 		idd = -1;
@@ -868,9 +555,4 @@ class RscTitles {
 		};   
  	};
 };
-
-
-#include "BuyDialog.hpp"
-
-
-
+//#include "BuyDialog.hpp"

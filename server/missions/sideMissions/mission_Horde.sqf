@@ -69,7 +69,7 @@ messageSystem = _hint;
 publicVariable "messageSystem";
 
 //hillpos doesn't work for some reason
-_trigger=createTrigger ["EmptyDetector",getpos townlogic];
+_trigger=createTrigger ["EmptyDetector",_randomPos]; //getpos townlogic];
 _trigger setTriggerArea [10,10,0,false];
 [_trigger,15,CLY_hordetrigger,"normal"] execVM "zombie_scripts\cly_z_horde.sqf";
 
